@@ -1,0 +1,88 @@
+# El cuaderno necesita una dirección: esto compila y publica los dos PDF
+# en GitHub Pages en cada push a `main`, como en "Aprendo a leer". Repite
+# a propósito los pasos de build.yml y lee su propio log: Pages no debe
+# publicar nunca un PDF que no se haya construido limpio.
+#
+# PRIMER DESPLIEGUE: crear la página de Pages de un repositorio es una
+# acción administrativa que ningún token de workflow puede hacer. Alguien
+# con permisos de administrador tiene que entrar una vez en Settings ->
+# Pages -> Build and deployment -> Source y elegir "GitHub Actions".
+
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Genera los .tex desde el JSON
+        run: make generate
+
+      - name: Valida el contenido antes de publicar nada
+        run: python3 tools/gen_numeros.py --check
+
+      - name: Compila el cuaderno (color y blanco y negro)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |
+            main.tex
+            main-bw.tex
+          latexmk_use_lualatex: true
+          args: -interaction=nonstopmode -file-line-error
+
+      - name: Lee los logs y comprueba las páginas
+        run: |
+          for r in main main-bw; do
+            python3 tools/checklog.py "$r.log"
+            python3 tools/check_pages.py "$r.aux"
+          done
+
+      - name: Monta el sitio
+        run: |
+          mkdir -p _site
+          cp docs/index.html _site/
+          cp main.pdf _site/aprendo-los-numeros.pdf
+          cp main-bw.pdf _site/aprendo-los-numeros-bn.pdf
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Si configure-pages ha fallado
+        if: failure()
+        run: |
+          {
+            echo '## Si esto ha fallado en configure-pages'
+            echo
+            echo 'Crear la página de Pages de un repositorio por primera vez'
+            echo 'es una acción administrativa que ningún token de workflow'
+            echo 'puede hacer. Alguien con permisos de administrador debe'
+            echo 'entrar una vez en Settings -> Pages -> Build and'
+            echo 'deployment -> Source y elegir "GitHub Actions".'
+          } >> "$GITHUB_STEP_SUMMARY"

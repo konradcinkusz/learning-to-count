@@ -1,0 +1,130 @@
+# ¿Se sigue construyendo el PDF, y siguen valiendo las comprobaciones?
+#
+# Como en "Aprendo a leer": dos jobs, y la separación es la clave.
+# `gates` solo necesita Python y responde en segundos; `build` necesita
+# una instalación de TeX y responde en minutos. Un error de contenido (un
+# número que todavía no ha llegado, un grupo de "rodea" repetido) debe
+# costar el primero, nunca el segundo. Ninguno lleva `continue-on-error`:
+# una comprobación que no puede tumbar el build es decoración.
+
+name: Build
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md', 'docs/**']
+  pull_request:
+    paths-ignore: ['**.md', 'docs/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gates:
+    name: Gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Nada generado está en git: un checkout limpio lo genera antes de
+      # validar nada. content/numeros-trazo.json (el contorno de cada
+      # número) SÍ está en git -- tools/gen_numeros.py lo lee
+      # directamente, sin matplotlib (eso solo hace falta para
+      # regenerarlo, ver tools/gen_numeros_puntos.py).
+      - name: Genera los .tex desde el JSON
+        run: make generate
+
+      # La escalera (cada número llega en su semana, y nada lo usa antes),
+      # el calendario (días, semanas, temas, el lunes se traza y el
+      # viernes se repasa) y lo que se comprueba de cada actividad (ver
+      # render_actividad en tools/gen_numeros.py).
+      - name: Valida el contenido (escalera, calendario, actividades)
+        run: python3 tools/gen_numeros.py --check
+
+  build:
+    name: PDF (${{ matrix.variant }})
+    needs: gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      # Color y blanco-y-negro comparten body.tex y el contenido generado
+      # letra por letra; una matriz en vez de un job duplicado: un cambio
+      # que solo rompe uno de los dos formatos tiene que ser tan visible
+      # como uno que rompe los dos.
+      matrix:
+        include:
+          - variant: color
+            root: main
+          - variant: bw
+            root: main-bw
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Genera los .tex desde el JSON
+        run: make generate
+
+      # LuaLaTeX, no pdflatex: la letra es Andika (fonts/andika/) --
+      # fontspec exige lualatex o xelatex. args NO lleva -pdf: con
+      # latexmk_use_lualatex la propia acción añade -lualatex.
+      - name: Compila el cuaderno
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: ${{ matrix.root }}.tex
+          latexmk_use_lualatex: true
+          args: -interaction=nonstopmode -file-line-error
+
+      # Nunca `grep '^!'`: con -file-line-error una línea de error empieza
+      # por una ruta, y -interaction=nonstopmode escribe un PDF encima del
+      # error. Ver tools/checklog.py.
+      - name: Lee el log correctamente
+        run: python3 tools/checklog.py ${{ matrix.root }}.log
+
+      # Cada día cabe en una sola cara A4: se comprueba en las páginas
+      # reales del .aux, en los dos formatos.
+      - name: Cada día ocupa exactamente una página
+        run: python3 tools/check_pages.py ${{ matrix.root }}.aux
+
+      - name: Resumen
+        if: always()
+        run: |
+          pages=$(grep -oE "Output written on ${{ matrix.root }}\.pdf \([0-9]+ pages?" ${{ matrix.root }}.log \
+                  | grep -oE "[0-9]+" | tail -1)
+          bytes=$(stat -c%s ${{ matrix.root }}.pdf 2>/dev/null || echo 0)
+          {
+            echo "## Build (${{ matrix.variant }})"
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Páginas | ${pages:-desconocido} |"
+            echo "| Tamaño | $((bytes / 1024)) KiB |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pdf-${{ matrix.variant }}
+          path: ${{ matrix.root }}.pdf
+          if-no-files-found: error
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: log-${{ matrix.variant }}
+          path: ${{ matrix.root }}.log
+          if-no-files-found: warn
+          retention-days: 30

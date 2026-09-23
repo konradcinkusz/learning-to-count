@@ -1,0 +1,74 @@
+% diagrams/objetos.tex -- las cosas que se cuentan: cada una dibujada
+% dentro de la misma caja, de -1 a 1 en x y en y, para que
+% tools/gen_numeros.py las pueda poner en fila, en grupos o en el marco
+% de diez sin saber qué es cada una (ver OBJETOS en tools/gen_numeros.py,
+% que dice qué macro dibuja cada cosa y cómo se llama en singular y en
+% plural). Todas las zonas quedan cerradas y rellenas de blanco, para
+% que cada una se pueda colorear.
+%
+% Muchas son los dibujos de «First Words» (diagrams/kit.tex, del
+% repositorio de "Aprendo a leer"), encogidos o movidos hasta caber en la
+% caja; las demás son nuevas y siguen el mismo estilo de línea.
+\tikzset{objeto/.style={line width=1.1pt, line cap=round, line join=round}}
+
+% Una manzana, con el rabito y una hoja.
+\newcommand{\objManzana}{%
+  \filldraw[fill=white] (0,0.55) .. controls (-0.35,0.9) and (-1.0,0.78) .. (-0.95,0.02)
+    .. controls (-0.9,-0.72) and (-0.35,-1.0) .. (0,-0.8)
+    .. controls (0.35,-1.0) and (0.9,-0.72) .. (0.95,0.02)
+    .. controls (1.0,0.78) and (0.35,0.9) .. (0,0.55) -- cycle;
+  \draw (0,0.55) .. controls (0.02,0.8) .. (0.1,0.98);
+  \filldraw[fill=white] (0.08,0.85) .. controls (0.32,1.05) and (0.62,0.98) .. (0.7,0.84)
+    .. controls (0.5,0.68) and (0.25,0.7) .. (0.08,0.85) -- cycle;}
+
+% Una pelota de playa, con cuatro gajos.
+\newcommand{\objPelota}{%
+  \filldraw[fill=white] (0,0) circle (0.9);
+  \draw (-0.9,0) .. controls (-0.3,0.38) and (0.3,0.38) .. (0.9,0);
+  \draw (0,0.9) .. controls (-0.38,0.3) and (-0.38,-0.3) .. (0,-0.9);}
+
+% Un hueso, tumbado: la barra y los cuatro nudos, un solo contorno.
+\newcommand{\objHueso}{%
+  \filldraw[fill=white] (-0.492,0.16) -- (0.492,0.16)
+    arc[start angle=197.2, end angle=-62.7, radius=0.27]
+    arc[start angle=62.7, end angle=-197.2, radius=0.27]
+    -- (-0.492,-0.16)
+    arc[start angle=17.2, end angle=-242.7, radius=0.27]
+    arc[start angle=242.7, end angle=-17.2, radius=0.27] -- cycle;}
+
+% Un sol: el círculo y ocho rayos.
+\newcommand{\objSol}{%
+  \filldraw[fill=white] (0,0) circle (0.5);
+  \foreach \a in {0,45,...,315} {\draw (\a:0.66) -- (\a:0.96);}}
+
+% Una huella de Toby.
+\newcommand{\objHuella}{%
+  \begin{scope}[shift={(0,-0.28)}, scale=1.65] \huellaFW \end{scope}}
+
+% Toby, sentado.
+\newcommand{\objToby}{%
+  \begin{scope}[shift={(0.38,-0.88)}, scale=0.4] \tobySentadoFW \end{scope}}
+
+% Un globo, con su hilo.
+\newcommand{\objGlobo}{%
+  \begin{scope}[shift={(0,-0.85)}, scale=0.72] \globoFW{0.2}{-0.2} \end{scope}}
+
+% Una estrella.
+\newcommand{\objEstrella}{%
+  \begin{scope}[scale=0.95] \estrellaFW \end{scope}}
+
+% Una hoja de otoño.
+\newcommand{\objHoja}{%
+  \begin{scope}[shift={(0,-0.8)}, scale=1.2] \hojaFW \end{scope}}
+
+% Un corazón.
+\newcommand{\objCorazon}{%
+  \begin{scope}[shift={(0,-0.82)}, scale=1.35] \corazonFW \end{scope}}
+
+% Un caramelo.
+\newcommand{\objCaramelo}{%
+  \begin{scope}[scale=1.25] \carameloFW \end{scope}}
+
+% Un pez.
+\newcommand{\objPez}{%
+  \begin{scope}[shift={(0.2,0)}, scale=0.72] \pezFW \end{scope}}
