@@ -89,11 +89,30 @@ el número de todos los días.
 
 ### Invierno (semanas 14–26, días 66–130): hasta el 20, comparar, las primeras sumas
 
-La decena (10 = una fila entera del marco de diez, dos veces) y los
-números del 11 al 20, dos por semana (semanas 14–18); más, menos e igual
-(19); el anterior y el siguiente, la recta numérica (20–21); ordenar
-(22); juntar: la suma con dibujos, hasta 5 y hasta 10 (23–25); repaso
-(26).
+Del 11 al 20, dos por semana: el primero llega el lunes y el segundo el
+miércoles (`LLEGADA` en el script), y cada uno se traza el día que
+llega; hasta entonces, no se puede usar. Son *diez y algo más*: en «El
+número de hoy» van dos marcos de diez, uno encima de otro (el primero,
+lleno), y las cosas, las diez primeras aparte. Después, sin números
+nuevos, una semana para cada cosa que se aprende a hacer con ellos — y,
+como con los números, el script no deja usar una actividad antes de su
+semana (`DESDE_SEMANA`).
+
+| Semana | Tema | Qué llega |
+|---|---|---|
+| 14 | El frío de enero | 11 y 12 |
+| 15 | El cumpleaños de Papá | 13 y 14 |
+| 16 | El disfraz de Carnaval | 15 y 16 |
+| 17 | El Día de la Paz | 17 y 18 (las palomas de papel) |
+| 18 | Lucía se pone mala | 19 y 20 |
+| 19 | Un domingo de manualidades con la abuela | *Compara*: más, menos, los mismos |
+| 20 | La biblioteca del barrio | *Antes y después* |
+| 21 | El cumpleaños de Toby | *La recta* |
+| 22 | Un día de mucho viento | *Ordena* |
+| 23 | El proyecto de plantas de Marta | *Junta*: las primeras sumas, hasta 5 |
+| 24 | Dani rompe el dinosaurio de Lucía | *Junta*, hasta 10 |
+| 25 | Huele a primavera | *Junta*, hasta 10, y diez y diez |
+| 26 | Despedida del segundo trimestre | repaso, y la medalla de invierno |
 
 ### Primavera (semanas 27–39, días 131–195): sumar y restar hasta 10, hasta el 50
 
@@ -108,7 +127,7 @@ Las decenas hasta el 100 y la tabla del 100; sumas y restas hasta 20; el
 dinero (euros), la hora (en punto, y media), medir (más largo, más
 corto, con palmos), en el pueblo de la abuela Rosa; repaso y diploma.
 
-Lo de invierno en adelante es el plan: cada fase lo concreta semana a
+Lo de primavera en adelante es el plan: cada fase lo concreta semana a
 semana (y lo lleva a `ESCALERA` y a las actividades nuevas) antes de
 escribir sus días.
 
@@ -144,6 +163,26 @@ viernes, tres de las demás; las dos de repaso (la 6, del 1 al 5, y la
 13, del 0 al 10) no tienen *Traza*, y el número de cada día es uno de
 los que ya han llegado.
 
+## Las actividades del invierno
+
+Las de otoño siguen (*Rodea*, *Cuenta* y *Colorea* llegan al 20; *Une*
+puede usar marcos de diez en vez de cosas: `"objeto": "puntos"`), y
+llegan seis, cada una en su semana:
+
+| Actividad | Desde | Qué se hace | Qué comprueba el script |
+|---|---|---|---|
+| **Diez y más** | 14 | Una bandeja llena (10) y otra con lo que falta: "10 y 3 son [ ]" | que el total, del 11 al 20, sea el número del día |
+| **Compara** | 19 | Rodear el grupo con más, con menos, o los dos que tienen los mismos; o, solo con números, el más grande o el más pequeño | que haya una sola respuesta, y que el número del día esté entre los grupos o los números |
+| **Antes y después** | 20 | Tres casas: en la de en medio vive el número; en las de los lados se escriben el de antes y el de después | que el de antes y el de después hayan llegado (el 0 no tiene de antes) |
+| **La recta** | 21 | Una recta de 5 a 11 números, con 1–3 huecos | que el primero se vea y que la recta pase por el número del día |
+| **Ordena** | 22 | Tarjetas desordenadas, y abajo, en fila, los huecos para escribirlas en orden (de menor a mayor, o al revés) | que no vengan ya en orden |
+| **Junta** | 23 | Dos grupos con una "y" en medio: "3 y 2 son [ ]" — la suma, sin signos todavía | que sume el número del día, y como mucho 10 |
+
+Los días con dos números nuevos, el lunes y el miércoles son *Traza*
+(con dos renglones: la caja de arriba es más alta), el martes y el
+jueves usan el último número que ha llegado, y el viernes, *Repasa*,
+cualquiera de los dos.
+
 ## Cómo se comprueba
 
 - `make generate` escribe `content/generated-days.tex` y
@@ -152,7 +191,9 @@ los que ya han llegado.
   generado esté al día.
 - `tools/checklog.py` lee el log de LuaLaTeX (errores, cajas overfull) y
   `tools/check_pages.py` comprueba en el `.aux` que cada día ocupa
-  exactamente una página — los dos, de *Aprendo a leer*, sin cambios.
+  exactamente una página — los dos, de *Aprendo a leer* —, y además que
+  el día 1 cae en la página 4: "Cómo usar este cuaderno" crece con cada
+  actividad nueva, y tiene que seguir cabiendo en una página.
 - El CI (`.github/workflows/build.yml`) hace las dos cosas en cada push y
   cada PR, en color y en blanco y negro; Pages publica los dos PDF en
   cada push a `main`.
@@ -167,7 +208,9 @@ fusionarse, y `DIAS_ESCRITOS` dice cuántos días hay ya.
    que había que dibujar (castañas, la cesta, velas, una araña, huevos
    en su huevera — solos, se confundían con el 0 —...) y dos
    actividades nuevas, *Une* y *Completa*. Hecho.
-3. **El invierno** (días 66–130): la decena, hasta el 20, comparar, las
-   primeras sumas — con sus actividades nuevas.
+3. **El invierno** (días 66–130): del 11 al 20, dos por semana;
+   comparar, antes y después, la recta, ordenar y las primeras sumas,
+   con seis actividades nuevas y 21 dibujos más (copos, un muñeco de
+   nieve, palomas de papel, ovillos, semillas...). Hecho.
 4. **La primavera** (días 131–195).
 5. **El verano** (días 196–260), el diploma, y el cuaderno completo.

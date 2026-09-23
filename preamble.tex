@@ -51,6 +51,8 @@
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{graphicx}
 \usepackage{multicol}
 
 \pagestyle{empty}
@@ -165,6 +167,25 @@
 \newtcolorbox{cajaCompleta}[1][]{cajadia, #1,
   colback=colorRespondeClaro, colframe=colorResponde, colbacktitle=colorResponde,
   title=\lblCompleta}
+% Las del invierno.
+\newtcolorbox{cajaDecena}[1][]{cajadia, #1,
+  colback=colorRelacionaClaro, colframe=colorRelaciona, colbacktitle=colorRelaciona,
+  title=\lblDecena}
+\newtcolorbox{cajaCompara}[1][]{cajadia, #1,
+  colback=colorRelacionaClaro, colframe=colorRelaciona, colbacktitle=colorRelaciona,
+  title=\lblCompara}
+\newtcolorbox{cajaVecinos}[1][]{cajadia, #1,
+  colback=colorRespondeClaro, colframe=colorResponde, colbacktitle=colorResponde,
+  title=\lblVecinos}
+\newtcolorbox{cajaRecta}[1][]{cajadia, #1,
+  colback=colorRespondeClaro, colframe=colorResponde, colbacktitle=colorResponde,
+  title=\lblRecta}
+\newtcolorbox{cajaOrdena}[1][]{cajadia, #1,
+  colback=colorCompletaClaro, colframe=colorCompleta, colbacktitle=colorCompleta,
+  title=\lblOrdena}
+\newtcolorbox{cajaJunta}[1][]{cajadia, #1,
+  colback=colorDibujaClaro, colframe=colorDibuja, colbacktitle=colorDibuja,
+  title=\lblJunta}
 \newtcolorbox{cajaDibuja}[1][]{cajadia, #1,
   colback=colorDibujaClaro, colframe=colorDibuja, colbacktitle=colorDibuja,
   title=\lblDibuja}
@@ -185,6 +206,15 @@
     \node[anchor=base west, inner sep=0pt, text=colorGris!55,
       font=\fontsize{44}{44}\selectfont\bfseries] at (2mm,0) {#1};
   \end{tikzpicture}\par\vspace{12mm}}
+% El hueco en el que se escribe la respuesta: "10 y 3 son [ ]".
+\newcommand{\huecoRespuesta}{\raisebox{-5mm}{\tikz\draw[line width=1.1pt,
+  rounded corners=2mm, fill=white] (0,0) rectangle (26mm,18mm);}}
+% Lo que no cabe en su sitio, encogido hasta que quepa (#1, el ancho):
+% los nombres largos, como "diecisiete", en la caja de arriba.
+\newsavebox{\cajaAjustada}
+\newcommand{\ajustado}[2]{\sbox{\cajaAjustada}{#2}%
+  \ifdim\wd\cajaAjustada>#1\relax\resizebox{#1}{!}{\usebox{\cajaAjustada}}%
+  \else\usebox{\cajaAjustada}\fi}
 % El cartel de cada diez páginas, al pie de "Repasa".
 \newcommand{\cartel}[1]{\begin{center}\bfseries\Large\color{colorCrea}#1\end{center}}
 
@@ -256,6 +286,13 @@
       \fi
     }
   \end{tikzpicture}}
+% Del 11 al 20, dos marcos, uno encima de otro: el primero, lleno.
+\newcommand{\marcosDiez}[1]{%
+  \ifnum#1>10\relax
+    \marcoDiez{10}\par\vspace{1.5mm}\marcoDiez{\numexpr#1-10\relax}%
+  \else
+    \marcoDiez{#1}%
+  \fi}
 
 % La caja de arriba: el número grande, su nombre, el marco de diez y las
 % cosas que se cuentan ese día (#3: un tikzpicture que compone
@@ -271,7 +308,7 @@
   \begin{cajaNumero}
   \begin{tabularx}{\linewidth}{@{}>{\centering\arraybackslash}m{\anchoNumeroDeHoy}@{\hspace{3mm}}>{\centering\arraybackslash}m{42mm}@{\hspace{3mm}}>{\centering\arraybackslash}X@{}}
   {\fuenteNumeroDeHoy\color{colorLectura}#1} &
-  {\fontsize{30}{34}\selectfont\bfseries #2}\par\vspace{3mm}\marcoDiez{#1} &
+  \ajustado{42mm}{\fontsize{30}{34}\selectfont\bfseries #2}\par\vspace{3mm}\marcosDiez{#1} &
   #3 \\
   \end{tabularx}
   \par\vspace{2mm}

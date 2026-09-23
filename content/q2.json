@@ -1,0 +1,447 @@
+{
+  "_comentario": "Invierno (trimestre 2, días 66-130): del 11 al 20, dos por semana (el segundo llega el miércoles), y después, sin números nuevos, comparar, antes y después, la recta, ordenar y juntar -- las primeras sumas, con dibujos. Ver notes/01-plan.md.",
+  "dias": [
+    {
+      "dia": 66, "semana": 14, "tema": "El frío de enero",
+      "numero": 11, "objeto": "copo",
+      "frase": "Empieza el invierno, y por la ventana caen once copos de nieve.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 67, "semana": 14, "tema": "El frío de enero",
+      "numero": 11, "objeto": "boton",
+      "frase": "La abuela le cose a Lucía once botones en el abrigo nuevo.",
+      "actividad": {"tipo": "decena", "objeto": "copo"}
+    },
+    {
+      "dia": 68, "semana": 14, "tema": "El frío de enero",
+      "numero": 12, "objeto": "tronco",
+      "frase": "Toby duerme junto al fuego, y Papá trae doce troncos.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 69, "semana": 14, "tema": "El frío de enero",
+      "numero": 12, "objeto": "libro",
+      "frase": "Esta semana, Lucía le ha leído a Dani doce cuentos.",
+      "actividad": {"tipo": "une", "objeto": "puntos", "grupos": [12, 10, 11]}
+    },
+    {
+      "dia": 70, "semana": 14, "tema": "El frío de enero",
+      "numero": 12, "objeto": "muneco",
+      "frase": "El sábado, en el parque, hay doce muñecos de nieve.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 11, y cuál es el 12.", "Sé que el 12 es 10 y 2.", "Sé contar hasta 12."],
+        "prompt": "Dibuja tu muñeco de nieve, con 12 botones."
+      }
+    },
+    {
+      "dia": 71, "semana": 15, "tema": "El cumpleaños de Papá",
+      "numero": 13, "objeto": "fresa",
+      "frase": "Hoy es el cumpleaños de Papá, y Mamá pone trece fresas en la tarta.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 72, "semana": 15, "tema": "El cumpleaños de Papá",
+      "numero": 13, "objeto": "globo",
+      "frase": "Dani esconde trece globos debajo de la mesa.",
+      "actividad": {"tipo": "decena", "objeto": "vela"}
+    },
+    {
+      "dia": 73, "semana": 15, "tema": "El cumpleaños de Papá",
+      "numero": 14, "objeto": "gorrofiesta",
+      "frase": "¡Sorpresa! Catorce amigos esperan a Papá con gorros de fiesta.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 74, "semana": 15, "tema": "El cumpleaños de Papá",
+      "numero": 14, "objeto": "corazon",
+      "frase": "El regalo de Dani es un dibujo con catorce corazones.",
+      "actividad": {"tipo": "cuenta", "objeto": "regalo", "opciones": [12, 14, 13]}
+    },
+    {
+      "dia": 75, "semana": 15, "tema": "El cumpleaños de Papá",
+      "numero": 14, "objeto": "regalo",
+      "frase": "Esa noche, Lucía cuenta los regalos de Papá: ¡catorce!",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 13, y cuál es el 14.", "Sé que el 14 es 10 y 4.", "Sé contar hasta 14."],
+        "prompt": "Dibuja la tarta de Papá, con 14 fresas."
+      }
+    },
+    {
+      "dia": 76, "semana": 16, "tema": "El disfraz de Carnaval",
+      "numero": 15, "objeto": "mariposa",
+      "frase": "En el desfile habrá quince mariposas, y una será Lucía.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 77, "semana": 16, "tema": "El disfraz de Carnaval",
+      "numero": 15, "objeto": "boton",
+      "frase": "La abuela Rosa cose las alas de Lucía con quince botones.",
+      "actividad": {"tipo": "serie", "serie": [11, 12, null, 14, 15]}
+    },
+    {
+      "dia": 78, "semana": 16, "tema": "El disfraz de Carnaval",
+      "numero": 16, "objeto": "piruleta",
+      "frase": "En la clase de Lucía hay dieciséis niños, y cada uno tendrá su piruleta.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 79, "semana": 16, "tema": "El disfraz de Carnaval",
+      "numero": 16, "objeto": "estrella",
+      "frase": "Dani va de dragón verde, y Toby lleva un pañuelo con dieciséis estrellas.",
+      "actividad": {"tipo": "decena", "objeto": "piruleta"}
+    },
+    {
+      "dia": 80, "semana": 16, "tema": "El disfraz de Carnaval",
+      "numero": 16, "objeto": "nota",
+      "frase": "En el desfile, todos cantan y bailan dieciséis canciones.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 15, y cuál es el 16.", "Sé que el 16 es 10 y 6.", "Sé contar hasta 16."],
+        "prompt": "Dibuja tu disfraz de Carnaval."
+      }
+    },
+    {
+      "dia": 81, "semana": 17, "tema": "El Día de la Paz",
+      "numero": 17, "objeto": "paloma",
+      "frase": "Marta enseña a hacer palomas de papel, y la clase hace diecisiete.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 82, "semana": 17, "tema": "El Día de la Paz",
+      "numero": 17, "objeto": "lapiz",
+      "frase": "Para pintar las palomas, hay diecisiete lápices de colores.",
+      "actividad": {"tipo": "busca", "veces": 5, "otros": [7, 11, 14, 16]}
+    },
+    {
+      "dia": 83, "semana": 17, "tema": "El Día de la Paz",
+      "numero": 18, "objeto": "paloma",
+      "frase": "Marta hace una paloma más, y ya hay dieciocho.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 84, "semana": 17, "tema": "El Día de la Paz",
+      "numero": 18, "objeto": "corazon",
+      "frase": "Entre todos, pintan dieciocho corazones por la paz.",
+      "actividad": {"tipo": "decena", "objeto": "paloma"}
+    },
+    {
+      "dia": 85, "semana": 17, "tema": "El Día de la Paz",
+      "numero": 17, "objeto": "estrella",
+      "frase": "Esa noche, desde la ventana, Lucía cuenta diecisiete estrellas.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 17, y cuál es el 18.", "Sé que el 18 es 10 y 8.", "Sé contar hasta 18."],
+        "prompt": "Dibuja una paloma de la paz, con tus colores favoritos."
+      }
+    },
+    {
+      "dia": 86, "semana": 18, "tema": "Lucía se pone mala",
+      "numero": 19, "objeto": "estrella",
+      "frase": "Lucía tiene fiebre, y mira las diecinueve estrellas del techo.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 87, "semana": 18, "tema": "Lucía se pone mala",
+      "numero": 19, "objeto": "mandarina",
+      "frase": "La abuela le trae a Lucía diecinueve mandarinas del pueblo.",
+      "actividad": {"tipo": "serie", "serie": [15, 16, 17, null, 19]}
+    },
+    {
+      "dia": 88, "semana": 18, "tema": "Lucía se pone mala",
+      "numero": 20, "objeto": "flor",
+      "frase": "Para no aburrirse en la cama, Lucía colorea veinte flores.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 89, "semana": 18, "tema": "Lucía se pone mala",
+      "numero": 20, "objeto": "osito",
+      "frase": "Dani le deja a Lucía todos sus peluches: ¡veinte ositos!",
+      "actividad": {"tipo": "decena", "objeto": "flor"}
+    },
+    {
+      "dia": 90, "semana": 18, "tema": "Lucía se pone mala",
+      "numero": 20, "objeto": "huella",
+      "frase": "El sábado, Lucía ya está curada, y corre con Toby veinte vueltas al parque.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 19, y cuál es el 20.", "Sé que el 20 es 10 y 10.", "Sé contar hasta 20."],
+        "prompt": "Dibuja a Lucía en el parque con Toby, ya curada."
+      }
+    },
+    {
+      "dia": 91, "semana": 19, "tema": "Un domingo de manualidades con la abuela",
+      "numero": 12, "objeto": "ovillo",
+      "frase": "El domingo, la abuela Rosa trae doce ovillos de lana de colores.",
+      "actividad": {"tipo": "compara", "objeto": "ovillo", "grupos": [12, 8], "que": "mas"}
+    },
+    {
+      "dia": 92, "semana": 19, "tema": "Un domingo de manualidades con la abuela",
+      "numero": 2, "objeto": "ovillo",
+      "frase": "Lucía elige dos ovillos para tejer: uno azul y otro rojo.",
+      "actividad": {"tipo": "compara", "numeros": [9, 2, 5], "que": "menos"}
+    },
+    {
+      "dia": 93, "semana": 19, "tema": "Un domingo de manualidades con la abuela",
+      "numero": 5, "objeto": "boton",
+      "frase": "Dani prefiere jugar con los botones de la abuela, y se guarda cinco.",
+      "actividad": {"tipo": "compara", "objeto": "ovillo", "grupos": [5, 3, 5], "que": "igual"}
+    },
+    {
+      "dia": 94, "semana": 19, "tema": "Un domingo de manualidades con la abuela",
+      "numero": 15, "objeto": "estrella",
+      "frase": "La abuela le enseña a Lucía a bordar quince estrellas.",
+      "actividad": {"tipo": "compara", "numeros": [11, 15, 13], "que": "mas"}
+    },
+    {
+      "dia": 95, "semana": 19, "tema": "Un domingo de manualidades con la abuela",
+      "numero": 1, "objeto": "bufanda",
+      "frase": "Al final del día, Lucía tiene una bufanda pequeña, y le encanta.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé ver dónde hay más.", "Sé ver dónde hay menos.", "Sé ver dónde hay los mismos."],
+        "prompt": "Dibuja la bufanda de Lucía, con rayas de colores."
+      }
+    },
+    {
+      "dia": 96, "semana": 20, "tema": "La biblioteca del barrio",
+      "numero": 7, "objeto": "libro",
+      "frase": "Lucía va a la biblioteca cada sábado, y hoy devuelve siete libros.",
+      "actividad": {"tipo": "vecinos", "numeros": [7]}
+    },
+    {
+      "dia": 97, "semana": 20, "tema": "La biblioteca del barrio",
+      "numero": 9, "objeto": "gato",
+      "frase": "El bibliotecario le guarda un libro con nueve gatos.",
+      "actividad": {"tipo": "vecinos", "numeros": [9, 14]}
+    },
+    {
+      "dia": 98, "semana": 20, "tema": "La biblioteca del barrio",
+      "numero": 16, "objeto": "libro",
+      "frase": "Lucía busca un libro para Dani en la estantería dieciséis.",
+      "actividad": {"tipo": "serie", "serie": [18, 17, null, 15, 14]}
+    },
+    {
+      "dia": 99, "semana": 20, "tema": "La biblioteca del barrio",
+      "numero": 13, "objeto": "toby",
+      "frase": "En el libro para Dani salen trece perros, y uno se parece a Toby.",
+      "actividad": {"tipo": "vecinos", "numeros": [13, 19, 5]}
+    },
+    {
+      "dia": 100, "semana": 20, "tema": "La biblioteca del barrio",
+      "numero": 10, "objeto": "libro",
+      "frase": "Esa noche, Lucía le lee el libro a Dani, y Dani se duerme en la página diez.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé qué número va antes.", "Sé qué número va después.", "Sé contar hacia atrás desde el 10."],
+        "prompt": "Dibuja la biblioteca del barrio, con muchos libros."
+      }
+    },
+    {
+      "dia": 101, "semana": 21, "tema": "El cumpleaños de Toby",
+      "numero": 1, "objeto": "toby",
+      "frase": "Hoy hace un año que Toby llegó a casa de Lucía.",
+      "actividad": {"tipo": "recta", "desde": 0, "hasta": 10, "faltan": [4, 7]}
+    },
+    {
+      "dia": 102, "semana": 21, "tema": "El cumpleaños de Toby",
+      "numero": 5, "objeto": "corona",
+      "frase": "Lucía hace cinco coronas de cartón, una para cada uno, también para Toby.",
+      "actividad": {"tipo": "recta", "desde": 5, "hasta": 15, "faltan": [9, 13]}
+    },
+    {
+      "dia": 103, "semana": 21, "tema": "El cumpleaños de Toby",
+      "numero": 7, "objeto": "pelota",
+      "frase": "Dani le regala su pelota roja, y Toby ya tiene siete pelotas.",
+      "actividad": {"tipo": "recta", "desde": 2, "hasta": 12, "faltan": [6, 11]}
+    },
+    {
+      "dia": 104, "semana": 21, "tema": "El cumpleaños de Toby",
+      "numero": 12, "objeto": "hueso",
+      "frase": "Toby tiene doce huesos de regalo, y los esconde debajo del sofá.",
+      "actividad": {"tipo": "recta", "desde": 10, "hasta": 20, "faltan": [13, 16, 18]}
+    },
+    {
+      "dia": 105, "semana": 21, "tema": "El cumpleaños de Toby",
+      "numero": 7, "objeto": "pelota",
+      "frase": "Esa noche, Toby se duerme con sus siete pelotas.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé leer los números de la recta.", "Sé qué número falta en la recta.", "Sé contar hasta 20."],
+        "prompt": "Dibuja la fiesta de cumpleaños de Toby."
+      }
+    },
+    {
+      "dia": 106, "semana": 22, "tema": "Un día de mucho viento",
+      "numero": 9, "objeto": "hoja",
+      "frase": "Sopla un viento fortísimo, y vuelan nueve hojas por la calle.",
+      "actividad": {"tipo": "ordena", "numeros": [9, 3, 12, 7]}
+    },
+    {
+      "dia": 107, "semana": 22, "tema": "Un día de mucho viento",
+      "numero": 1, "objeto": "gorro",
+      "frase": "A Lucía casi se le vuela el gorro nuevo, pero lo agarra con una mano.",
+      "actividad": {"tipo": "ordena", "numeros": [5, 1, 8, 4], "orden": "mayor"}
+    },
+    {
+      "dia": 108, "semana": 22, "tema": "Un día de mucho viento",
+      "numero": 6, "objeto": "cometa",
+      "frase": "En el parque, con tanto viento, vuelan seis cometas.",
+      "actividad": {"tipo": "ordena", "numeros": [14, 6, 11, 17, 9]}
+    },
+    {
+      "dia": 109, "semana": 22, "tema": "Un día de mucho viento",
+      "numero": 11, "objeto": "nube",
+      "frase": "El viento empuja once nubes por el cielo, muy deprisa.",
+      "actividad": {"tipo": "ordena", "numeros": [11, 20, 15], "orden": "mayor"}
+    },
+    {
+      "dia": 110, "semana": 22, "tema": "Un día de mucho viento",
+      "numero": 3, "objeto": "estrella",
+      "frase": "Por la noche, el viento se calma, y salen tres estrellas.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé qué número es más grande.", "Sé ordenar números, del más pequeño al más grande.", "Sé ordenarlos también al revés."],
+        "prompt": "Dibuja un día de mucho viento, con cometas y hojas volando."
+      }
+    },
+    {
+      "dia": 111, "semana": 23, "tema": "El proyecto de plantas de Marta",
+      "numero": 3, "objeto": "alubia",
+      "frase": "Marta reparte una maceta a cada niño, y cada uno planta tres semillas.",
+      "actividad": {"tipo": "junta", "objeto": "alubia", "grupos": [2, 1]}
+    },
+    {
+      "dia": 112, "semana": 23, "tema": "El proyecto de plantas de Marta",
+      "numero": 4, "objeto": "maceta",
+      "frase": "En la ventana de la clase hay cuatro macetas al sol.",
+      "actividad": {"tipo": "junta", "objeto": "maceta", "grupos": [2, 2]}
+    },
+    {
+      "dia": 113, "semana": 23, "tema": "El proyecto de plantas de Marta",
+      "numero": 5, "objeto": "brote",
+      "frase": "Al cabo de unos días, en la maceta de Lucía salen cinco brotes.",
+      "actividad": {"tipo": "junta", "objeto": "brote", "grupos": [4, 1]}
+    },
+    {
+      "dia": 114, "semana": 23, "tema": "El proyecto de plantas de Marta",
+      "numero": 5, "objeto": "pipa",
+      "frase": "La abuela le regala a Dani cinco pipas de girasol para plantar.",
+      "actividad": {"tipo": "junta", "objeto": "pipa", "grupos": [3, 2]}
+    },
+    {
+      "dia": 115, "semana": 23, "tema": "El proyecto de plantas de Marta",
+      "numero": 2, "objeto": "maceta",
+      "frase": "Ahora, Lucía y Dani tienen dos macetas en su ventana.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé juntar dos grupos.", "Sé contar cuántas hay en total.", "Sé que 3 y 2 son 5."],
+        "prompt": "Dibuja tu maceta, con la planta que te gustaría que saliera."
+      }
+    },
+    {
+      "dia": 116, "semana": 24, "tema": "Dani rompe el dinosaurio de Lucía",
+      "numero": 6, "objeto": "trex",
+      "frase": "Lucía tiene seis dinosaurios, y el que más quiere es el verde.",
+      "actividad": {"tipo": "junta", "objeto": "trex", "grupos": [4, 2]}
+    },
+    {
+      "dia": 117, "semana": 24, "tema": "Dani rompe el dinosaurio de Lucía",
+      "numero": 8, "objeto": "gota",
+      "frase": "Lucía se enfada mucho, y a Dani se le caen ocho lágrimas.",
+      "actividad": {"tipo": "junta", "objeto": "gota", "grupos": [5, 3]}
+    },
+    {
+      "dia": 118, "semana": 24, "tema": "Dani rompe el dinosaurio de Lucía",
+      "numero": 7, "objeto": "corazon",
+      "frase": "Mamá les dice que lo importante es pedir perdón, y les da siete besos.",
+      "actividad": {"tipo": "junta", "objeto": "corazon", "grupos": [4, 3]}
+    },
+    {
+      "dia": 119, "semana": 24, "tema": "Dani rompe el dinosaurio de Lucía",
+      "numero": 10, "objeto": "gota",
+      "frase": "Entre los dos pegan la pata con diez gotas de pegamento.",
+      "actividad": {"tipo": "junta", "objeto": "estrella", "grupos": [7, 3]}
+    },
+    {
+      "dia": 120, "semana": 24, "tema": "Dani rompe el dinosaurio de Lucía",
+      "numero": 2, "objeto": "corazon",
+      "frase": "Por la noche, los dos hermanos ya han hecho las paces.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé juntar dos grupos, hasta 10.", "Sé que 7 y 3 son 10.", "Sé pedir perdón cuando rompo algo."],
+        "prompt": "Dibuja a Lucía y a Dani arreglando el dinosaurio."
+      }
+    },
+    {
+      "dia": 121, "semana": 25, "tema": "Huele a primavera",
+      "numero": 9, "objeto": "arbol",
+      "frase": "En el parque hay nueve almendros llenos de flores blancas.",
+      "actividad": {"tipo": "junta", "objeto": "flor", "grupos": [5, 4]}
+    },
+    {
+      "dia": 122, "semana": 25, "tema": "Huele a primavera",
+      "numero": 8, "objeto": "flor",
+      "frase": "Dani recoge ocho flores caídas, y se las da a Lucía.",
+      "actividad": {"tipo": "junta", "objeto": "mariposa", "grupos": [6, 2]}
+    },
+    {
+      "dia": 123, "semana": 25, "tema": "Huele a primavera",
+      "numero": 10, "objeto": "pajaro",
+      "frase": "En el cielo vuelan diez golondrinas, muy alto.",
+      "actividad": {"tipo": "junta", "objeto": "pajaro", "grupos": [7, 3]}
+    },
+    {
+      "dia": 124, "semana": 25, "tema": "Huele a primavera",
+      "numero": 20, "objeto": "mariposa",
+      "frase": "De vuelta a casa, ven veinte mariposas entre las flores.",
+      "actividad": {"tipo": "decena", "objeto": "flor"}
+    },
+    {
+      "dia": 125, "semana": 25, "tema": "Huele a primavera",
+      "numero": 3, "objeto": "flor",
+      "frase": "Lucía y Dani plantan tres flores en el balcón.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé juntar dos grupos.", "Sé contar desde el 10.", "Sé los números hasta el 20."],
+        "prompt": "Dibuja el parque en primavera, con flores y mariposas."
+      }
+    },
+    {
+      "dia": 126, "semana": 26, "tema": "Despedida del segundo trimestre",
+      "numero": 14, "objeto": "pato",
+      "frase": "El domingo, la familia va al parque grande, y ven catorce patos en el lago.",
+      "actividad": {"tipo": "recta", "desde": 10, "hasta": 20, "faltan": [14, 18]}
+    },
+    {
+      "dia": 127, "semana": 26, "tema": "Despedida del segundo trimestre",
+      "numero": 4, "objeto": "estrella",
+      "frase": "Lucía se acuerda de las cuatro cosas más bonitas del invierno.",
+      "actividad": {"tipo": "ordena", "numeros": [4, 16, 9, 12]}
+    },
+    {
+      "dia": 128, "semana": 26, "tema": "Despedida del segundo trimestre",
+      "numero": 6, "objeto": "libro",
+      "frase": "Dani está muy orgulloso: ya lee seis palabras él solo.",
+      "actividad": {"tipo": "junta", "objeto": "libro", "grupos": [4, 2]}
+    },
+    {
+      "dia": 129, "semana": 26, "tema": "Despedida del segundo trimestre",
+      "numero": 17, "objeto": "flor",
+      "frase": "Toby corre feliz entre los árboles, y huele diecisiete flores nuevas.",
+      "actividad": {"tipo": "une", "objeto": "puntos", "grupos": [20, 17, 12]}
+    },
+    {
+      "dia": 130, "semana": 26, "tema": "Despedida del segundo trimestre",
+      "numero": 20, "objeto": "estrella",
+      "frase": "Lucía piensa que ha sido un invierno de veinte estrellas.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé los números del 0 al 20.", "Sé comparar, ordenar y juntar.", "Sé qué número va antes, y cuál después."],
+        "prompt": "Dibuja lo que más te ha gustado del invierno."
+      }
+    }
+  ]
+}

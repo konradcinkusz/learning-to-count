@@ -24,7 +24,9 @@ trazar el número (el contorno de puntos sale del glifo real de la letra
 del cuaderno, como las letras de *Aprendo a leer*), colorear
 exactamente N cosas, rodear el grupo que tiene N, contar y rodear el
 número, buscar el número entre otros, unir cada grupo con su número,
-completar el tren de números, dibujar N cosas, y los viernes, repasar.
+completar el tren de números, dibujar N cosas, y los viernes, repasar;
+y desde el invierno, comparar, el número de antes y el de después, la
+recta numérica, ordenar y juntar dos grupos -- las primeras sumas.
 
 - **Otoño**: del 1 al 10, y el 0 -- un número nuevo cada semana.
 - **Invierno**: hasta el 20, más y menos, el anterior y el siguiente,
@@ -97,8 +99,9 @@ Font License 1.1 ([`fonts/andika/OFL.txt`](fonts/andika/OFL.txt)). Ver
 
 ## Estado
 
-**En obras.** Fase 2 de 5: el otoño entero (días 1–65: del 1 al 10, y
-el 0) y su medalla, en color y en blanco y negro, con las mismas
+**En obras.** Fase 3 de 5: el otoño y el invierno (días 1–130: del 0 al
+20, comparar, antes y después, la recta, ordenar y las primeras sumas),
+con sus medallas, en color y en blanco y negro, con las mismas
 comprobaciones que tendrá el cuaderno entero -- 1 día = 1 página, log
 limpio, cada día dentro de la escalera. Ver "Las fases" en
 [`notes/01-plan.md`](notes/01-plan.md).
