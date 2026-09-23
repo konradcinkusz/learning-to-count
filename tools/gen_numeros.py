@@ -51,7 +51,7 @@ SEMANAS_POR_TRIMESTRE = 13
 # uno en verde antes de fusionarse), cuántos días tiene ya escritos: se
 # exigen exactamente esos, del 1 en adelante y sin huecos. None = el
 # cuaderno está entero, con sus 260 días.
-DIAS_ESCRITOS = 195
+DIAS_ESCRITOS = None
 
 NOMBRE_MEDALLA = {1: "Otoño", 2: "Invierno", 3: "Primavera"}
 ULTIMO_DIA_TRIMESTRE = {1: 65, 2: 130, 3: 195, 4: 260}
@@ -115,6 +115,11 @@ ESCALERA = {
     # decena entera: los veinti-, los treinta y..., los cuarenta y...
     35: [30, 40, 50],
     36: list(range(21, 30)), 37: list(range(31, 40)), 38: list(range(41, 50)),
+    # Verano: de 10 en 10 hasta el 100, y después, de dos decenas en dos
+    # (del 51 al 69) y de tres en tres (del 71 al 99): ya se sabe cómo son.
+    40: [60, 70, 80, 90, 100],
+    41: list(range(51, 60)) + list(range(61, 70)),
+    42: list(range(71, 80)) + list(range(81, 90)) + list(range(91, 100)),
 }
 # El día de la semana (0 = lunes) en que llega cada número nuevo: el
 # primero, el lunes; el segundo, si lo hay, el miércoles. Hasta ese día,
@@ -143,6 +148,11 @@ DESDE_SEMANA = {
     "resta": 30,    # quitar: 5 - 2 = [ ]
     "problema": 31, # un problema que lee el adulto
     "bloques": 36,  # decenas y unidades: 2 decenas y 3 unidades son 23
+    # Las del verano.
+    "tabla": 42,    # la tabla del 100
+    "dinero": 46,   # euros: monedas de 1 y 2, billetes de 5, 10 y 20
+    "hora": 48,     # en punto (y, desde la semana 49, y media: MEDIA_DESDE)
+    "mide": 50,     # cuántos cubitos mide, y cuál es más largo
 }
 
 # Lo que se cuenta de 2 en 2 o de 5 en 5 en "Cuenta" ("de"): las ruedas
@@ -291,6 +301,15 @@ OBJETOS = {
     "regadera": (r"\objRegadera", "regadera", "regaderas", "f"),
     "tarjeta": (r"\objTarjeta", "tarjeta", "tarjetas", "f"),
     "pan": (r"\objPan", "pan", "panes", "m"),
+    "rayo": (r"\objRayo", "rayo", "rayos", "m"),
+    "lechuga": (r"\objLechuga", "lechuga", "lechugas", "f"),
+    "maleta": (r"\objMaleta", "maleta", "maletas", "f"),
+    "helado": (r"\objHelado", "helado", "helados", "m"),
+    "concha": (r"\objConcha", "concha", "conchas", "f"),
+    "cubo": (r"\objCubo", "cubo", "cubos", "m"),
+    "churro": (r"\objChurro", "churro", "churros", "m"),
+    "caracol": (r"\objCaracol", "caracol", "caracoles", "m"),
+    "reloj": (r"\objReloj", "reloj", "relojes", "m"),
 }
 
 # Lo que se dibuja vacío en "El número de hoy" el día que el número es el
@@ -760,6 +779,8 @@ def dibujo_serie(valores):
     ancho = min(2.6, ancho)
     u = ancho / 2.4
     tam = 44 if ancho >= 2.2 else 38 if ancho >= 1.8 else 32
+    if any(v is not None and v >= 100 for v in valores):
+        tam = min(tam, 28)
     fuente = f"\\fontsize{{{tam}}}{{{tam}}}\\selectfont\\bfseries"
     piezas, x = [], 0.0
     if con_locomotora:
@@ -1094,6 +1115,153 @@ def render_cuenta(d, tipo, num, semana, a, n):
                    r"\huecoRespuesta[18mm]\ unidades}\\[5mm] son \huecoRespuesta"),
     ), ("bloques", f"{decenas} {'decena' if decenas == 1 else 'decenas'} y {unidades} "
         f"{'unidad' if unidades == 1 else 'unidades'} son {numero}")
+
+
+# Las actividades del verano: la tabla del 100, el dinero, la hora y medir.
+VALORES_DINERO = (1, 2, 5, 10, 20)      # euros: monedas de 1 y 2, billetes de 5, 10 y 20
+MAX_DINERO = 20
+MEDIA_DESDE = 49                        # "y media", desde la semana 49
+MAX_MIDE = 14                           # los cubitos de la regla
+
+
+def dibujo_tabla(desde, faltan):
+    """Media tabla del 100: cinco filas de diez, desde `desde` (1, 11,
+    21...), con las casillas de `faltan` vacías. En cm."""
+    celda = 1.4
+    piezas = []
+    for i in range(50):
+        v = desde + i
+        x, y = (i % 10) * celda, -(i // 10) * celda
+        piezas.append(f"\\draw[line width=0.9pt] ({x:.2f},{y:.2f}) rectangle ++({celda},{celda});")
+        if v not in faltan:
+            piezas.append(f"\\node[font=\\fontsize{{17}}{{17}}\\selectfont\\bfseries] at "
+                          f"({x + celda / 2:.2f},{y + celda / 2:.2f}) {{{v}}};")
+    return "\\begin{tikzpicture}\n" + "\n".join(piezas) + "\n\\end{tikzpicture}"
+
+
+def dibujo_dinero(valores):
+    """Los billetes, primero, y después las monedas, en fila (en dos si no
+    caben). En cm."""
+    piezas, x, y = [], 0.0, 0.0
+    orden = sorted(valores, reverse=True)
+    anchos = [3.6 if v >= 5 else 2.2 for v in orden]
+    filas, fila, ancho_fila = [], [], 0.0
+    for v, w in zip(orden, anchos):
+        if fila and ancho_fila + w > 14.5:
+            filas.append(fila); fila, ancho_fila = [], 0.0
+        fila.append((v, w)); ancho_fila += w
+    filas.append(fila)
+    for f, fila in enumerate(filas):
+        total = sum(w for _, w in fila)
+        x = -total / 2
+        for v, w in fila:
+            macro = f"\\billete{{{v}}}" if v >= 5 else f"\\monedaEuro{{{v}}}"
+            piezas.append(f"\\begin{{scope}}[shift={{({x + w / 2:.2f},{-f * 2.3:.2f})}}]{macro}\\end{{scope}}")
+            x += w
+    return "\\begin{tikzpicture}\n" + "\n".join(piezas) + "\n\\end{tikzpicture}"
+
+
+def dibujo_mide(largos):
+    """"Mide": un lápiz por cada largo, encima de su regla de cubitos. En cm."""
+    piezas = []
+    for i, largo in enumerate(largos):
+        y = -i * 3.4
+        piezas.append(f"\\begin{{scope}}[shift={{(0,{y:.2f})}}]\\reglaCubitos{{{MAX_MIDE}}}\\end{{scope}}")
+        piezas.append(f"\\begin{{scope}}[shift={{(0,{y + 1.65:.2f})}}, yscale=1.4]\\lapizLargo{{{largo}}}\\end{{scope}}")
+    return "\\begin{tikzpicture}\n" + "\n".join(piezas) + "\n\\end{tikzpicture}"
+
+
+def render_verano(d, tipo, num, semana, a, n):
+    """(tex, clave) de "La tabla del 100", "El dinero", "La hora" y "Mide"."""
+    if tipo == "tabla":
+        campos(num, a, ["desde", "faltan"])
+        desde, faltan = a["desde"], a["faltan"]
+        if desde % 10 != 1 or not 1 <= desde <= 51:
+            raise ErrorDeContenido(f"día {num}: 'tabla' empieza en 1, 11, 21, 31, 41 o 51 ({desde})")
+        numeros = list(range(desde, desde + 50))
+        for v in numeros:
+            comprobar_numero(num, v, semana, "un número de la tabla")
+        if not 3 <= len(faltan) <= 8 or len(set(faltan)) != len(faltan) or any(f not in numeros for f in faltan):
+            raise ErrorDeContenido(f"día {num}: en 'tabla' faltan de 3 a 8 números de la tabla ({faltan})")
+        if n not in numeros:
+            raise ErrorDeContenido(f"día {num}: la tabla tiene que tener el número del día ({n})")
+        faltan = sorted(faltan)
+        return PLANTILLA_CAJA.substitute(
+            caja="cajaTabla",
+            enunciado="¿Qué números faltan en la tabla?",
+            instruccion=("Un adulto lee la pregunta. Cada fila es una decena: di los números fila a "
+                         "fila, y escribe en cada casilla vacía el que falta."),
+            dibujo=dibujo_tabla(desde, faltan),
+        ), ("tabla", "faltan el " + ", el ".join(str(v) for v in faltan[:-1]) + f" y el {faltan[-1]}")
+
+    if tipo == "dinero":
+        campos(num, a, ["dinero"])
+        valores = a["dinero"]
+        if not 2 <= len(valores) <= 8 or any(v not in VALORES_DINERO for v in valores):
+            raise ErrorDeContenido(
+                f"día {num}: 'dinero' lleva de 2 a 8 monedas (1 y 2 €) y billetes (5, 10 y 20 €) ({valores})")
+        total = sum(valores)
+        comprobar_numero(num, total, semana, "el dinero que hay")
+        if total > MAX_DINERO or total != n:
+            raise ErrorDeContenido(
+                f"día {num}: en 'dinero', lo que hay es el número del día ({n}), y como mucho {MAX_DINERO} € ({total})")
+        return PLANTILLA_CON_RESPUESTA.substitute(
+            caja="cajaDinero",
+            enunciado="¿Cuánto dinero hay?",
+            instruccion=("Un adulto lee la pregunta. Cuenta primero los billetes y después las "
+                         "monedas, y escribe cuántos euros hay en total."),
+            dibujo=dibujo_dinero(valores),
+            respuesta="Hay \\huecoRespuesta\\ euros",
+        ), ("dinero", f"{total} euros")
+
+    if tipo == "hora":
+        campos(num, a, ["hora"])
+        hora, minutos = a["hora"], a.get("minutos", 0)
+        if not 1 <= hora <= 12 or minutos not in (0, 30):
+            raise ErrorDeContenido(f"día {num}: 'hora' es una hora del 1 al 12, en punto o y media ({hora}:{minutos})")
+        if minutos == 30 and semana < MEDIA_DESDE:
+            raise ErrorDeContenido(f"día {num}: 'y media' no llega hasta la semana {MEDIA_DESDE} (ver MEDIA_DESDE)")
+        if hora != n:
+            raise ErrorDeContenido(f"día {num}: en 'hora', la hora es el número del día ({n}), no {hora}")
+        la = "Es la" if hora == 1 else "Son las"
+        cola = "en punto" if minutos == 0 else "y media"
+        return PLANTILLA_CON_RESPUESTA.substitute(
+            caja="cajaHora",
+            enunciado="¿Qué hora es?",
+            instruccion=("Un adulto lee la pregunta. La aguja corta dice la hora; la larga, arriba del "
+                         "todo, quiere decir «en punto», y abajo del todo, «y media»."),
+            dibujo=f"\\relojGrande{{{hora}}}{{{minutos}}}",
+            respuesta=f"{la} \\huecoRespuesta[20mm]\\ {cola}",
+        ), ("hora", f"{la.split()[1]} {hora} {cola}")
+
+    # "mide": uno o dos lápices, sobre su regla de cubitos.
+    campos(num, a, ["largos"])
+    largos = a["largos"]
+    if not 1 <= len(largos) <= 2 or len(set(largos)) != len(largos) or any(not 2 <= x <= MAX_MIDE for x in largos):
+        raise ErrorDeContenido(f"día {num}: 'mide' lleva uno o dos lápices distintos, de 2 a {MAX_MIDE} cubitos ({largos})")
+    for x in largos:
+        comprobar_numero(num, x, semana, "lo que mide un lápiz")
+    if n not in largos:
+        raise ErrorDeContenido(f"día {num}: en 'mide', un lápiz mide el número del día ({n})")
+    if len(largos) == 1:
+        return PLANTILLA_CON_RESPUESTA.substitute(
+            caja="cajaMide",
+            enunciado="¿Cuántos cubitos mide el lápiz?",
+            instruccion=("Un adulto lee la pregunta. Cuenta los cubitos que hay debajo del lápiz, "
+                         "desde la goma hasta la punta."),
+            dibujo=dibujo_mide(largos),
+            respuesta="Mide \\huecoRespuesta\\ cubitos",
+        ), ("mide", f"{largos[0]} cubitos")
+    largo = "el de arriba" if largos[0] > largos[1] else "el de abajo"
+    return PLANTILLA_CON_RESPUESTA.substitute(
+        caja="cajaMide",
+        enunciado="¿Cuántos cubitos mide cada lápiz? ¿Cuál es más largo?",
+        instruccion=("Un adulto lee la pregunta. Cuenta los cubitos que hay debajo de cada lápiz, "
+                     "desde la goma hasta la punta, y rodea el más largo."),
+        dibujo=dibujo_mide(largos),
+        respuesta=(r"{\fontsize{28}{34}\selectfont El de arriba mide \huecoRespuesta\ cubitos.\\[4mm]"
+                   r"El de abajo mide \huecoRespuesta\ cubitos.}"),
+    ), ("mide", f"{largos[0]} y {largos[1]} cubitos: {largo} es más largo")
 
 
 def render_actividad(d):
@@ -1506,6 +1674,9 @@ def render_actividad(d):
 
     if tipo in ("suma", "resta", "parte", "diez", "problema", "bloques"):
         return render_cuenta(d, tipo, num, semana, a, n)
+
+    if tipo in ("tabla", "dinero", "hora", "mide"):
+        return render_verano(d, tipo, num, semana, a, n)
 
     if tipo == "dibuja":
         campos(num, a, ["prompt"])

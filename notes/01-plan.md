@@ -142,13 +142,31 @@ barra de diez cubitos por decena), con la tabla D | U.
 
 ### Verano (semanas 40–52, días 196–260): hasta el 100, y los números de verdad
 
-Las decenas hasta el 100 y la tabla del 100; sumas y restas hasta 20; el
-dinero (euros), la hora (en punto, y media), medir (más largo, más
-corto, con palmos), en el pueblo de la abuela Rosa; repaso y diploma.
+Primero, de 10 en 10 hasta el 100 (el 60, el 70, el 80, el 90 y el
+100, el lunes), y después las decenas que faltan: del 51 al 69, y del 71
+al 99, cada grupo una semana. Luego, las cuentas hasta 20 (`MAX_CUENTA`
+del cuarto trimestre) y los números de verdad, en el pueblo de la abuela
+Rosa: el dinero, la hora y medir.
 
-Lo del verano es el plan: su fase lo concreta semana a semana (y lo
-lleva a `ESCALERA` y a las actividades nuevas) antes de escribir sus
-días.
+| Semana | Tema | Qué llega |
+|---|---|---|
+| 40 | Empieza el verano | 60, 70, 80, 90 y 100 |
+| 41 | Llegada al pueblo de la abuela Rosa | del 51 al 69 |
+| 42 | Andrés, el vecino, y su gato Bigotes | del 71 al 99; *La tabla del 100* |
+| 43 | Un día en el río del pueblo | sumar hasta 20 |
+| 44 | El huerto de la abuela | restar hasta 20 |
+| 45 | Una tormenta de verano | problemas hasta 20 |
+| 46 | La excursión a la playa | *El dinero* |
+| 47 | La verbena del pueblo | *El dinero*, y problemas con euros |
+| 48 | Dani se hace amigo de Martín | *La hora*: en punto |
+| 49 | Vuelta a la ciudad | *La hora*: y media |
+| 50 | Preparativos para la vuelta al cole | *Mide* |
+| 51 | Dani practica para leer en voz alta | repaso |
+| 52 | Vuelta al cole | repaso, y el diploma |
+
+Cada estación se concretó semana a semana (en `ESCALERA` y en las
+actividades nuevas) antes de escribir sus días: las tablas de arriba son
+lo que hay en el cuaderno.
 
 ## Las actividades (otoño)
 
@@ -220,6 +238,19 @@ de las manos de 5 en 5 (`CONTAR_DE`).
 | **Problema** | 31 | Un problema corto, que lee el adulto; un recuadro para dibujarlo y "[ ] + [ ] = [ ]" | que el problema diga sus dos números, y que la cuenta dé el número del día |
 | **Decenas y unidades** | 36 | Barras de diez cubitos y cubitos sueltos: "[ ] decenas y [ ] unidades son [ ]" | que sea el número del día, del 11 en adelante |
 
+## Las actividades del verano
+
+| Actividad | Desde | Qué se hace | Qué comprueba el script |
+|---|---|---|---|
+| **La tabla del 100** | 42 | Media tabla (cinco filas de diez) con 3–8 casillas vacías | que empiece en una decena (1, 11... 51), que todos sus números hayan llegado y que tenga el número del día |
+| **El dinero** | 46 | Billetes (5, 10, 20 €) y monedas (1, 2 €): "Hay [ ] euros" | que sea el número del día, y como mucho 20 € |
+| **La hora** | 48 | Un reloj de agujas: "Son las [ ] en punto" (o "y media", desde la semana 49: `MEDIA_DESDE`) | que la hora sea el número del día |
+| **Mide** | 50 | Uno o dos lápices sobre una regla de cubitos: cuántos mide cada uno, y cuál es más largo | que midan de 2 a 14 cubitos, distintos, y uno, el número del día |
+
+Las cuentas del verano (*Suma*, *Resta*, *Problema*) llegan hasta 20.
+Del 100 se encoge un poco su número en «El número de hoy», y el tren de
+*Completa* escribe sus números más pequeños, para que quepan.
+
 ## Cómo se comprueba
 
 - `make generate` escribe `content/generated-days.tex` y
@@ -254,4 +285,8 @@ fusionarse, y `DIAS_ESCRITOS` dice cuántos días hay ya.
    10, contar de 2 en 2, de 5 en 5 y de 10 en 10, y las decenas hasta
    el 50, con seis actividades nuevas y 18 dibujos más (el diente de
    Dani, las torrijas de la abuela, la bici, la mano...). Hecho.
-5. **El verano** (días 196–260), el diploma, y el cuaderno completo.
+5. **El verano** (días 196–260): hasta el 100, las cuentas hasta 20, la
+   tabla del 100, el dinero, la hora y medir, con cuatro actividades
+   nuevas y los dibujos del pueblo (el helado, la concha, el caracol,
+   la maleta...); el diploma, y el cuaderno completo (`DIAS_ESCRITOS =
+   None`). Hecho.

@@ -1,0 +1,447 @@
+{
+  "_comentario": "Verano (trimestre 4, días 196-260): de 10 en 10 hasta el 100, y del 51 al 99; la tabla del 100; sumar y restar hasta 20; el dinero, la hora y medir, en el pueblo de la abuela Rosa; y la vuelta al cole. Ver notes/01-plan.md.",
+  "dias": [
+    {
+      "dia": 196, "semana": 40, "tema": "Empieza el verano",
+      "numero": 100, "objeto": "estrella",
+      "frase": "Llegan las vacaciones, y Lucía y Dani cuentan hasta cien de alegría.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 197, "semana": 40, "tema": "Empieza el verano",
+      "numero": 60, "objeto": "libro",
+      "frase": "Lucía mete en su maleta tres libros de sesenta páginas.",
+      "actividad": {"tipo": "serie", "serie": [20, 30, null, 50, 60]}
+    },
+    {
+      "dia": 198, "semana": 40, "tema": "Empieza el verano",
+      "numero": 70, "objeto": "estrella",
+      "frase": "Esa noche, Lucía cuenta setenta estrellas desde la ventana.",
+      "actividad": {"tipo": "bloques"}
+    },
+    {
+      "dia": 199, "semana": 40, "tema": "Empieza el verano",
+      "numero": 80, "objeto": "coche",
+      "frase": "Por la mañana suben al coche: el pueblo está a ochenta kilómetros.",
+      "actividad": {"tipo": "recta", "desde": 0, "hasta": 100, "paso": 10, "faltan": [30, 80]}
+    },
+    {
+      "dia": 200, "semana": 40, "tema": "Empieza el verano",
+      "numero": 90, "objeto": "coche",
+      "frase": "Después de noventa minutos de viaje, Dani se queda dormido.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé contar de 10 en 10, hasta el 100.", "Sé que 100 son 10 decenas.", "Sé escribir el 60, el 70, el 80 y el 90."],
+        "prompt": "Dibuja la maleta que te llevarías tú de vacaciones."
+      }
+    },
+    {
+      "dia": 201, "semana": 41, "tema": "Llegada al pueblo de la abuela Rosa",
+      "numero": 55, "objeto": "paloma",
+      "frase": "El coche entra en el pueblo, y en la plaza hay cincuenta y cinco palomas.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 202, "semana": 41, "tema": "Llegada al pueblo de la abuela Rosa",
+      "numero": 62, "objeto": "maceta",
+      "frase": "La casa de la abuela tiene sesenta y dos macetas en el patio.",
+      "actividad": {"tipo": "bloques"}
+    },
+    {
+      "dia": 203, "semana": 41, "tema": "Llegada al pueblo de la abuela Rosa",
+      "numero": 58, "objeto": "arbol",
+      "frase": "En el patio, el limonero tiene cincuenta y ocho limones.",
+      "actividad": {"tipo": "vecinos", "numeros": [58, 61, 69]}
+    },
+    {
+      "dia": 204, "semana": 41, "tema": "Llegada al pueblo de la abuela Rosa",
+      "numero": 66, "objeto": "estrella",
+      "frase": "Esa noche, Lucía oye cantar a los grillos, y cuenta hasta sesenta y seis.",
+      "actividad": {"tipo": "compara", "numeros": [66, 56, 65], "que": "mas"}
+    },
+    {
+      "dia": 205, "semana": 41, "tema": "Llegada al pueblo de la abuela Rosa",
+      "numero": 51, "objeto": "huella",
+      "frase": "El primer día en el pueblo, Dani da cincuenta y una vueltas a la plaza.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé los números del 51 al 69.", "Sé qué número va antes, y cuál después.", "Sé leer las decenas y las unidades."],
+        "prompt": "Dibuja la casa de la abuela Rosa, con su patio."
+      }
+    },
+    {
+      "dia": 206, "semana": 42, "tema": "Andrés, el vecino, y su gato Bigotes",
+      "numero": 77, "objeto": "tomate",
+      "frase": "Andrés, el vecino, tiene un huerto con setenta y siete tomateras.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 207, "semana": 42, "tema": "Andrés, el vecino, y su gato Bigotes",
+      "numero": 85, "objeto": "gato",
+      "frase": "Bigotes, el gato de Andrés, tiene ochenta y cinco manchas naranjas.",
+      "actividad": {"tipo": "tabla", "desde": 51, "faltan": [58, 64, 73, 85, 97]}
+    },
+    {
+      "dia": 208, "semana": 42, "tema": "Andrés, el vecino, y su gato Bigotes",
+      "numero": 92, "objeto": "gato",
+      "frase": "Andrés le cuenta a Lucía que Bigotes ha cazado noventa y dos moscas.",
+      "actividad": {"tipo": "ordena", "numeros": [92, 79, 88, 71]}
+    },
+    {
+      "dia": 209, "semana": 42, "tema": "Andrés, el vecino, y su gato Bigotes",
+      "numero": 74, "objeto": "gato",
+      "frase": "Lucía le da queso a Bigotes, y Bigotes ronronea setenta y cuatro veces.",
+      "actividad": {"tipo": "bloques"}
+    },
+    {
+      "dia": 210, "semana": 42, "tema": "Andrés, el vecino, y su gato Bigotes",
+      "numero": 99, "objeto": "gato",
+      "frase": "La abuela dice que en el pueblo hay noventa y nueve gatos.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé los números del 71 al 99.", "Sé leer la tabla del 100.", "Sé contar hasta el 100."],
+        "prompt": "Dibuja a Bigotes, el gato de Andrés."
+      }
+    },
+    {
+      "dia": 211, "semana": 43, "tema": "Un día en el río del pueblo",
+      "numero": 12, "objeto": "pez",
+      "frase": "En el río del pueblo nadan doce peces.",
+      "actividad": {"tipo": "suma", "objeto": "pez", "grupos": [8, 4]}
+    },
+    {
+      "dia": 212, "semana": 43, "tema": "Un día en el río del pueblo",
+      "numero": 15, "objeto": "gota",
+      "frase": "Lucía se mete en el agua helada, y le salpican quince gotas.",
+      "actividad": {"tipo": "suma", "objeto": "gota", "grupos": [9, 6]}
+    },
+    {
+      "dia": 213, "semana": 43, "tema": "Un día en el río del pueblo",
+      "numero": 17, "objeto": "pez",
+      "frase": "Papá le enseña a Dani diecisiete peces nadando contra la corriente.",
+      "actividad": {"tipo": "suma", "objeto": "pez", "grupos": [10, 7]}
+    },
+    {
+      "dia": 214, "semana": 43, "tema": "Un día en el río del pueblo",
+      "numero": 14, "objeto": "huella",
+      "frase": "Toby se moja las patas, y deja catorce huellas en la orilla.",
+      "actividad": {"tipo": "problema", "texto": "En la orilla hay 8 huellas de Toby y 6 de Dani. ¿Cuántas huellas hay?", "operacion": [8, "+", 6]}
+    },
+    {
+      "dia": 215, "semana": 43, "tema": "Un día en el río del pueblo",
+      "numero": 20, "objeto": "pato",
+      "frase": "Por la tarde, Lucía y Papá ven veinte patos bajando por el río.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé sumar hasta 20.", "Sé que 10 + 7 = 17.", "Sé contar desde el número más grande."],
+        "prompt": "Dibuja el río del pueblo, con sus peces."
+      }
+    },
+    {
+      "dia": 216, "semana": 44, "tema": "El huerto de la abuela",
+      "numero": 11, "objeto": "tomate",
+      "frase": "En el huerto de la abuela hay once tomates rojos.",
+      "actividad": {"tipo": "resta", "objeto": "tomate", "total": 15, "quita": 4}
+    },
+    {
+      "dia": 217, "semana": 44, "tema": "El huerto de la abuela",
+      "numero": 13, "objeto": "tomate",
+      "frase": "La abuela le enseña a Lucía a coger los tomates maduros: hoy, trece.",
+      "actividad": {"tipo": "resta", "objeto": "tomate", "total": 18, "quita": 5}
+    },
+    {
+      "dia": 218, "semana": 44, "tema": "El huerto de la abuela",
+      "numero": 9, "objeto": "tomate",
+      "frase": "Para cenar, comen una ensalada con nueve tomates del huerto.",
+      "actividad": {"tipo": "problema", "texto": "En la cesta hay 16 tomates, y la abuela pone 7 en la ensalada. ¿Cuántos quedan?", "operacion": [16, "-", 7]}
+    },
+    {
+      "dia": 219, "semana": 44, "tema": "El huerto de la abuela",
+      "numero": 12, "objeto": "lechuga",
+      "frase": "Lucía planta ella sola doce lechugas, en una fila.",
+      "actividad": {"tipo": "resta", "objeto": "lechuga", "total": 20, "quita": 8}
+    },
+    {
+      "dia": 220, "semana": 44, "tema": "El huerto de la abuela",
+      "numero": 10, "objeto": "lechuga",
+      "frase": "Antes de irse, Lucía riega sus lechugas diez días seguidos.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé restar hasta 20.", "Sé que 18 − 5 = 13.", "Sé si un problema es de sumar o de restar."],
+        "prompt": "Dibuja el huerto de la abuela, con lo que más te gustaría plantar."
+      }
+    },
+    {
+      "dia": 221, "semana": 45, "tema": "Una tormenta de verano",
+      "numero": 8, "objeto": "nube",
+      "frase": "El cielo se pone gris, y aparecen ocho nubes oscuras.",
+      "actividad": {"tipo": "problema", "texto": "En el cielo hay 3 nubes blancas y 5 grises. ¿Cuántas nubes hay?", "operacion": [3, "+", 5]}
+    },
+    {
+      "dia": 222, "semana": 45, "tema": "Una tormenta de verano",
+      "numero": 3, "objeto": "rayo",
+      "frase": "Un trueno enorme hace temblar las ventanas, y Dani cuenta tres rayos.",
+      "actividad": {"tipo": "problema", "texto": "Dani ve 7 rayos, pero Lucía solo ve 4. ¿Cuántos rayos más ve Dani?", "operacion": [7, "-", 4]}
+    },
+    {
+      "dia": 223, "semana": 45, "tema": "Una tormenta de verano",
+      "numero": 6, "objeto": "rayo",
+      "frase": "Papá explica que la luz llega antes que el trueno, y Lucía cuenta hasta seis.",
+      "actividad": {"tipo": "problema", "texto": "Lucía cuenta 9 truenos, y Dani 3 menos. ¿Cuántos cuenta Dani?", "operacion": [9, "-", 3]}
+    },
+    {
+      "dia": 224, "semana": 45, "tema": "Una tormenta de verano",
+      "numero": 18, "objeto": "gota",
+      "frase": "La lluvia se calma, y en la ventana quedan dieciocho gotas.",
+      "actividad": {"tipo": "suma", "objeto": "gota", "grupos": [12, 6]}
+    },
+    {
+      "dia": 225, "semana": 45, "tema": "Una tormenta de verano",
+      "numero": 2, "objeto": "paraguas",
+      "frase": "Después de la tormenta, en la puerta hay dos paraguas mojados.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé escuchar un problema.", "Sé hacer la cuenta, de sumar o de restar.", "Sé contar lo que tarda el trueno después del rayo."],
+        "prompt": "Dibuja una tormenta de verano, con sus rayos."
+      }
+    },
+    {
+      "dia": 226, "semana": 46, "tema": "La excursión a la playa",
+      "numero": 5, "objeto": "concha",
+      "frase": "La familia va a la playa, y Lucía encuentra cinco conchas.",
+      "actividad": {"tipo": "dinero", "dinero": [2, 2, 1]}
+    },
+    {
+      "dia": 227, "semana": 46, "tema": "La excursión a la playa",
+      "numero": 8, "objeto": "helado",
+      "frase": "Papá compra helados para todos: cuestan ocho euros.",
+      "actividad": {"tipo": "dinero", "dinero": [5, 2, 1]}
+    },
+    {
+      "dia": 228, "semana": 46, "tema": "La excursión a la playa",
+      "numero": 10, "objeto": "pez",
+      "frase": "Mamá cuenta que el mar nunca se para, y Dani cuenta diez olas.",
+      "actividad": {"tipo": "dinero", "dinero": [2, 2, 2, 2, 2]}
+    },
+    {
+      "dia": 229, "semana": 46, "tema": "La excursión a la playa",
+      "numero": 12, "objeto": "cubo",
+      "frase": "Dani hace un castillo de arena enorme, con doce cubos.",
+      "actividad": {"tipo": "dinero", "dinero": [10, 2]}
+    },
+    {
+      "dia": 230, "semana": 46, "tema": "La excursión a la playa",
+      "numero": 1, "objeto": "concha",
+      "frase": "Esa noche, Lucía le escribe una postal a Sofía, y le pega una concha.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuánto vale cada moneda y cada billete.", "Sé contar dinero, hasta 20 euros.", "Sé que dos monedas de 2 son 4 euros."],
+        "prompt": "Dibuja la playa, con el castillo de arena de Dani."
+      }
+    },
+    {
+      "dia": 231, "semana": 47, "tema": "La verbena del pueblo",
+      "numero": 15, "objeto": "estrella",
+      "frase": "El pueblo celebra la verbena, y ponen quince luces en la plaza.",
+      "actividad": {"tipo": "dinero", "dinero": [10, 5]}
+    },
+    {
+      "dia": 232, "semana": 47, "tema": "La verbena del pueblo",
+      "numero": 6, "objeto": "nota",
+      "frase": "Una orquesta toca, y Andrés baila seis canciones con la abuela.",
+      "actividad": {"tipo": "dinero", "dinero": [2, 2, 1, 1]}
+    },
+    {
+      "dia": 233, "semana": 47, "tema": "La verbena del pueblo",
+      "numero": 20, "objeto": "estrella",
+      "frase": "A medianoche hay fuegos artificiales, y Lucía cuenta veinte.",
+      "actividad": {"tipo": "dinero", "dinero": [10, 5, 2, 2, 1]}
+    },
+    {
+      "dia": 234, "semana": 47, "tema": "La verbena del pueblo",
+      "numero": 9, "objeto": "churro",
+      "frase": "Después, todos comen churros: la abuela compra nueve.",
+      "actividad": {"tipo": "problema", "texto": "Los churros cuestan 4 euros, y el chocolate, 5. ¿Cuánto cuesta todo?", "operacion": [4, "+", 5]}
+    },
+    {
+      "dia": 235, "semana": 47, "tema": "La verbena del pueblo",
+      "numero": 2, "objeto": "estrella",
+      "frase": "Dani se queda dormido en la silla, a las dos de la mañana.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé pagar con monedas y billetes.", "Sé cuánto dinero hay.", "Sé hacer un problema con euros."],
+        "prompt": "Dibuja la verbena del pueblo, con sus luces."
+      }
+    },
+    {
+      "dia": 236, "semana": 48, "tema": "Dani se hace amigo de Martín",
+      "numero": 5, "objeto": "pelota",
+      "frase": "En la plaza, Dani conoce a Martín, un niño del pueblo de cinco años.",
+      "actividad": {"tipo": "hora", "hora": 5}
+    },
+    {
+      "dia": 237, "semana": 48, "tema": "Dani se hace amigo de Martín",
+      "numero": 7, "objeto": "caracol",
+      "frase": "Martín le enseña a Dani dónde se esconden los caracoles: ¡encuentran siete!",
+      "actividad": {"tipo": "hora", "hora": 7}
+    },
+    {
+      "dia": 238, "semana": 48, "tema": "Dani se hace amigo de Martín",
+      "numero": 4, "objeto": "pelota",
+      "frase": "Cada tarde, a las cuatro, los dos niños juegan bajo el limonero.",
+      "actividad": {"tipo": "hora", "hora": 4}
+    },
+    {
+      "dia": 239, "semana": 48, "tema": "Dani se hace amigo de Martín",
+      "numero": 6, "objeto": "galleta",
+      "frase": "Martín invita a Dani a merendar a su casa, a las seis.",
+      "actividad": {"tipo": "hora", "hora": 6}
+    },
+    {
+      "dia": 240, "semana": 48, "tema": "Dani se hace amigo de Martín",
+      "numero": 1, "objeto": "corazon",
+      "frase": "Los dos amigos se prometen escribirse una carta cada semana.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé leer la hora en punto.", "Sé qué aguja dice la hora.", "Sé a qué hora me levanto."],
+        "prompt": "Dibuja a Dani y a Martín jugando bajo el limonero."
+      }
+    },
+    {
+      "dia": 241, "semana": 49, "tema": "Vuelta a la ciudad",
+      "numero": 3, "objeto": "maleta",
+      "frase": "Llega el último día de agosto, y hay que hacer tres maletas.",
+      "actividad": {"tipo": "hora", "hora": 3, "minutos": 30}
+    },
+    {
+      "dia": 242, "semana": 49, "tema": "Vuelta a la ciudad",
+      "numero": 8, "objeto": "abeja",
+      "frase": "Andrés le regala a Lucía miel de sus ocho colmenas.",
+      "actividad": {"tipo": "hora", "hora": 8, "minutos": 30}
+    },
+    {
+      "dia": 243, "semana": 49, "tema": "Vuelta a la ciudad",
+      "numero": 10, "objeto": "corazon",
+      "frase": "La abuela los abraza a todos, y les da diez besos a cada uno.",
+      "actividad": {"tipo": "hora", "hora": 10}
+    },
+    {
+      "dia": 244, "semana": 49, "tema": "Vuelta a la ciudad",
+      "numero": 11, "objeto": "coche",
+      "frase": "En el viaje de vuelta, Lucía cuenta once coches rojos.",
+      "actividad": {"tipo": "hora", "hora": 11, "minutos": 30}
+    },
+    {
+      "dia": 245, "semana": 49, "tema": "Vuelta a la ciudad",
+      "numero": 9, "objeto": "huella",
+      "frase": "Por fin llegan a casa, y Toby corre por el pasillo nueve veces.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé leer la hora y media.", "Sé que la aguja larga abajo quiere decir «y media».", "Sé a qué hora me acuesto."],
+        "prompt": "Dibuja lo que más te ha gustado del verano en el pueblo."
+      }
+    },
+    {
+      "dia": 246, "semana": 50, "tema": "Preparativos para la vuelta al cole",
+      "numero": 9, "objeto": "lapiz",
+      "frase": "Mamá le compra a Lucía una mochila nueva, y nueve lápices.",
+      "actividad": {"tipo": "mide", "largos": [9]}
+    },
+    {
+      "dia": 247, "semana": 50, "tema": "Preparativos para la vuelta al cole",
+      "numero": 12, "objeto": "lapiz",
+      "frase": "Compran también cuadernos, y una caja de doce pinturas.",
+      "actividad": {"tipo": "mide", "largos": [12, 7]}
+    },
+    {
+      "dia": 248, "semana": 50, "tema": "Preparativos para la vuelta al cole",
+      "numero": 80, "objeto": "libro",
+      "frase": "Marta envía una carta: la clase tendrá una biblioteca con ochenta libros.",
+      "actividad": {"tipo": "tabla", "desde": 51, "faltan": [56, 69, 80, 93]}
+    },
+    {
+      "dia": 249, "semana": 50, "tema": "Preparativos para la vuelta al cole",
+      "numero": 5, "objeto": "estrella",
+      "frase": "Sofía llama por teléfono, y hablan durante cinco minutos.",
+      "actividad": {"tipo": "mide", "largos": [5, 10]}
+    },
+    {
+      "dia": 250, "semana": 50, "tema": "Preparativos para la vuelta al cole",
+      "numero": 1, "objeto": "mochila",
+      "frase": "Ya solo queda una semana, y Lucía deja la mochila junto a la puerta.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé medir con cubitos.", "Sé cuál es más largo y cuál más corto.", "Sé preparar mi mochila."],
+        "prompt": "Dibuja tu mochila, con lo que llevarás el primer día."
+      }
+    },
+    {
+      "dia": 251, "semana": 51, "tema": "Dani practica para leer en voz alta",
+      "numero": 14, "objeto": "libro",
+      "frase": "Cada tarde, Lucía y Dani leen juntos catorce páginas.",
+      "actividad": {"tipo": "suma", "objeto": "libro", "grupos": [9, 5]}
+    },
+    {
+      "dia": 252, "semana": 51, "tema": "Dani practica para leer en voz alta",
+      "numero": 32, "objeto": "libro",
+      "frase": "Dani le lee a Toby un cuento entero, de treinta y dos páginas.",
+      "actividad": {"tipo": "bloques"}
+    },
+    {
+      "dia": 253, "semana": 51, "tema": "Dani practica para leer en voz alta",
+      "numero": 7, "objeto": "estrella",
+      "frase": "Mamá le graba a Dani un vídeo de siete minutos, leyendo.",
+      "actividad": {"tipo": "dinero", "dinero": [5, 2]}
+    },
+    {
+      "dia": 254, "semana": 51, "tema": "Dani practica para leer en voz alta",
+      "numero": 6, "objeto": "corazon",
+      "frase": "La abuela ve el vídeo por teléfono, y lo pone otra vez: ¡seis veces!",
+      "actividad": {"tipo": "hora", "hora": 6, "minutos": 30}
+    },
+    {
+      "dia": 255, "semana": 51, "tema": "Dani practica para leer en voz alta",
+      "numero": 100, "objeto": "libro",
+      "frase": "Dani ya lee casi todo, y Lucía le da cien besos.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé sumar y restar hasta 20.", "Sé leer la hora.", "Sé contar el dinero."],
+        "prompt": "Dibuja a Dani leyéndole un cuento a Toby."
+      }
+    },
+    {
+      "dia": 256, "semana": 52, "tema": "Vuelta al cole",
+      "numero": 9, "objeto": "mochila",
+      "frase": "Empieza el nuevo curso, y Lucía se cuelga su mochila verde a las nueve.",
+      "actividad": {"tipo": "hora", "hora": 9}
+    },
+    {
+      "dia": 257, "semana": 52, "tema": "Vuelta al cole",
+      "numero": 40, "objeto": "estrella",
+      "frase": "En la puerta del colegio, Lucía busca a Sofía entre cuarenta niños.",
+      "actividad": {"tipo": "vecinos", "numeros": [40, 67, 99]}
+    },
+    {
+      "dia": 258, "semana": 52, "tema": "Vuelta al cole",
+      "numero": 20, "objeto": "estrella",
+      "frase": "Dani lee él solo en clase, y su profesora le pone veinte estrellas.",
+      "actividad": {"tipo": "suma", "objeto": "estrella", "grupos": [12, 8]}
+    },
+    {
+      "dia": 259, "semana": 52, "tema": "Vuelta al cole",
+      "numero": 4, "objeto": "libro",
+      "frase": "Lucía cuenta los cuadernos que ha llenado este año: ¡cuatro!",
+      "actividad": {"tipo": "tabla", "desde": 1, "faltan": [12, 27, 35, 44, 50]}
+    },
+    {
+      "dia": 260, "semana": 52, "tema": "Vuelta al cole",
+      "numero": 100, "objeto": "estrella",
+      "frase": "Antes de dormir, Lucía piensa que este año ha aprendido a contar hasta cien.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé los números hasta el 100.", "Sé sumar, restar, contar el dinero y leer la hora.", "Sé medir, ordenar y comparar."],
+        "prompt": "Dibuja lo que más te ha gustado de todo el año."
+      }
+    }
+  ]
+}
