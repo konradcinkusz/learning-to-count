@@ -217,3 +217,122 @@
     .. controls (0.55,0.62) and (0.22,0.6) .. (0.03,0.72) -- cycle;
   \foreach \x/\y in {-0.4/0.12, 0.36/-0.02, -0.08/-0.42, 0.46/-0.5, -0.52/-0.38, 0.02/0.3}
     {\fill (\x,\y) circle (0.035);}}
+
+% --- El invierno (semanas 14-26) -----------------------------------------
+
+% Del kit de «First Words», metidos en la caja.
+\newcommand{\objCopo}{%
+  \begin{scope}[scale=0.32] \copoFW \end{scope}}
+\newcommand{\objMuneco}{%
+  \begin{scope}[shift={(0,-0.99)}, scale=0.477] \munecoNieveFW \end{scope}}
+\newcommand{\objGorroFiesta}{%
+  \begin{scope}[shift={(0,-1.68)}, scale=0.95] \gorroFiestaFW \end{scope}}
+\newcommand{\objNota}{%
+  \begin{scope}[shift={(-0.31,-0.65)}, scale=1.2] \notaFW \end{scope}}
+\newcommand{\objOsito}{%
+  \begin{scope}[shift={(0,-0.36)}, scale=0.59] \ositoFW \end{scope}}
+\newcommand{\objFlor}{%
+  \begin{scope}[shift={(0,-1.0)}, scale=0.66] \margaritaFW{2.2} \end{scope}}
+\newcommand{\objCorona}{%
+  \begin{scope}[shift={(0,-0.5)}] \coronaFW{0.95} \end{scope}}
+\newcommand{\objCometa}{%
+  \begin{scope}[shift={(-0.03,0.23)}, scale=0.38] \cometaFW{1.2}{-3.2} \end{scope}}
+\newcommand{\objAlubia}{%
+  \begin{scope}[scale=1.02] \alubiaFW \end{scope}}
+
+% Un botón, con sus cuatro agujeros.
+\newcommand{\objBoton}{%
+  \filldraw[fill=white] (0,0) circle (0.85);
+  \draw (0,0) circle (0.62);
+  \foreach \x/\y in {-0.2/0.2, 0.2/0.2, -0.2/-0.2, 0.2/-0.2} {\filldraw[fill=white] (\x,\y) circle (0.1);}}
+
+% Un tronco para la chimenea, tumbado: el corte, con sus anillos, a la
+% derecha.
+\newcommand{\objTronco}{%
+  \filldraw[fill=white] (-0.72,0.48) -- (0.7,0.48) -- (0.7,-0.48) -- (-0.72,-0.48)
+    arc[start angle=270, end angle=90, x radius=0.24, y radius=0.48] -- cycle;
+  \filldraw[fill=white] (0.7,0) ellipse [x radius=0.26, y radius=0.48];
+  \draw (0.7,0) ellipse [x radius=0.12, y radius=0.24];
+  \draw (-0.45,0.2) -- (0.15,0.2); \draw (-0.25,-0.18) -- (0.4,-0.18);}
+
+% Una fresa: las pepitas y las hojas de arriba.
+\newcommand{\objFresa}{%
+  \filldraw[fill=white] (0,-0.95) .. controls (-0.55,-0.7) and (-0.95,-0.05) .. (-0.8,0.32)
+    .. controls (-0.65,0.66) and (0.65,0.66) .. (0.8,0.32) .. controls (0.95,-0.05) and (0.55,-0.7) .. (0,-0.95) -- cycle;
+  \filldraw[fill=white, line join=round] (-0.62,0.6) -- (-0.22,0.46) -- (0,0.78) -- (0.22,0.46)
+    -- (0.62,0.6) -- (0.28,0.34) -- (-0.28,0.34) -- cycle;
+  \draw (0,0.78) -- (0.06,0.97);
+  \foreach \x/\y in {-0.42/0.05, 0/0.12, 0.42/0.05, -0.24/-0.3, 0.24/-0.3, 0/-0.62}
+    {\fill (\x,\y) ellipse [x radius=0.05, y radius=0.08];}}
+
+% Una piruleta: el caramelo en espiral y el palo.
+\newcommand{\objPiruleta}{%
+  \filldraw[fill=white] (-0.07,-0.97) rectangle (0.07,-0.2);
+  \filldraw[fill=white] (0,0.35) circle (0.62);
+  \draw plot[domain=0:1000, samples=100, smooth, variable=\t]
+    ({0.56*\t/1000*cos(\t)}, {0.35+0.56*\t/1000*sin(\t)});}
+
+% Una paloma de papel, de las del Día de la Paz: todo triángulos.
+\newcommand{\objPaloma}{%
+  \begin{scope}[line join=round]
+  \filldraw[fill=white] (-0.97,0.2) -- (-0.72,-0.32) -- (-0.45,-0.02) -- cycle;
+  \filldraw[fill=white] (-0.95,0.12) -- (0.55,-0.42) -- (0.45,0.2) -- cycle;
+  \filldraw[fill=white] (0.45,0.2) -- (0.62,0.56) -- (0.8,0.32) -- (0.55,-0.12) -- cycle;
+  \filldraw[fill=white] (0.8,0.32) -- (0.99,0.27) -- (0.74,0.2) -- cycle;
+  \filldraw[fill=white] (-0.32,0.02) -- (0.14,0.95) -- (0.34,0.04) -- cycle;
+  \fill (0.64,0.39) circle (0.04);
+  \end{scope}}
+
+% Un ovillo de lana, con su hilo suelto.
+\newcommand{\objOvillo}{%
+  \filldraw[fill=white] (0,0.08) circle (0.8);
+  \draw (-0.66,0.52) .. controls (-0.1,0.22) and (0.3,-0.28) .. (0.42,-0.62);
+  \draw (-0.79,0.18) .. controls (-0.3,-0.08) and (0.05,-0.45) .. (0.1,-0.7);
+  \draw (-0.36,0.78) .. controls (0.1,0.42) and (0.55,-0.02) .. (0.76,-0.2);
+  \draw (0.12,0.87) .. controls (0.42,0.56) and (0.68,0.36) .. (0.8,0.22);
+  \draw (0.48,-0.56) .. controls (0.72,-0.86) and (0.92,-0.78) .. (0.97,-0.96);}
+
+% Una bufanda de rayas, estirada y un poco ondulada, con flecos en las
+% dos puntas.
+\newcommand{\objBufanda}{%
+  \begin{scope}[rotate=25]
+  \filldraw[fill=white] (-0.95,0.12) .. controls (-0.4,0.42) and (0.2,-0.18) .. (0.8,0.12)
+    -- (0.8,-0.26) .. controls (0.2,-0.56) and (-0.4,0.04) .. (-0.95,-0.26) -- cycle;
+  \begin{scope}
+    \clip (-0.95,0.12) .. controls (-0.4,0.42) and (0.2,-0.18) .. (0.8,0.12)
+      -- (0.8,-0.26) .. controls (0.2,-0.56) and (-0.4,0.04) .. (-0.95,-0.26) -- cycle;
+    \foreach \x in {-0.55,-0.2,0.15,0.5} {\draw (\x,0.6) -- (\x,-0.7);}
+  \end{scope}
+  \foreach \y in {0.06,-0.07,-0.2} {\draw (-0.95,\y) -- (-1.1,\y); \draw (0.8,\y) -- (0.95,\y);}
+  \end{scope}}
+
+% Un gorro de lana, con su pompón.
+\newcommand{\objGorro}{%
+  \filldraw[fill=white] (0,0.72) circle (0.22);
+  \filldraw[fill=white] (-0.78,-0.3) .. controls (-0.78,0.72) and (0.78,0.72) .. (0.78,-0.3) -- cycle;
+  \filldraw[fill=white, rounded corners=1mm] (-0.9,-0.7) rectangle (0.9,-0.28);
+  \foreach \x in {-0.6,-0.3,0,0.3,0.6} {\draw (\x,-0.7) -- (\x,-0.28);}}
+
+% Una maceta de barro.
+\newcommand{\objMaceta}{%
+  \filldraw[fill=white] (-0.62,0.3) -- (0.62,0.3) -- (0.45,-0.92) -- (-0.45,-0.92) -- cycle;
+  \filldraw[fill=white, rounded corners=0.5mm] (-0.8,0.3) rectangle (0.8,0.62);}
+
+% Un brote: dos hojas nuevas saliendo de la tierra.
+\newcommand{\objBrote}{%
+  \filldraw[fill=white] (-0.92,-0.92) .. controls (-0.6,-0.42) and (0.6,-0.42) .. (0.92,-0.92) -- cycle;
+  \draw (0,-0.58) .. controls (0.06,-0.1) and (-0.05,0.18) .. (0,0.38);
+  \filldraw[fill=white] (0,0.36) .. controls (-0.2,0.86) and (-0.76,0.86) .. (-0.86,0.54)
+    .. controls (-0.55,0.3) and (-0.2,0.3) .. (0,0.36) -- cycle;
+  \filldraw[fill=white] (0,0.36) .. controls (0.2,0.86) and (0.76,0.86) .. (0.86,0.54)
+    .. controls (0.55,0.3) and (0.2,0.3) .. (0,0.36) -- cycle;}
+
+% Una pipa de girasol, con sus rayas, un poco torcida.
+\newcommand{\objPipa}{%
+  \begin{scope}[rotate=-30]
+  \filldraw[fill=white] (0,0.95) .. controls (0.58,0.5) and (0.52,-0.62) .. (0,-0.95)
+    .. controls (-0.52,-0.62) and (-0.58,0.5) .. (0,0.95) -- cycle;
+  \draw (0,0.78) -- (0,-0.8);
+  \draw (-0.2,0.5) .. controls (-0.3,0) .. (-0.18,-0.62);
+  \draw (0.2,0.5) .. controls (0.3,0) .. (0.18,-0.62);
+  \end{scope}}

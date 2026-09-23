@@ -33,6 +33,11 @@ PATRON_CLAVE = re.compile(r"\\newlabel\{clave\}\{\{[^{}]*\}\{(\d+)\}")
 # trimestre siguiente es de 2 páginas a propósito, no un desbordamiento.
 SALTOS_ESPERADOS = {65: 2, 130: 2, 195: 2}
 
+# Antes del día 1 van la portada, "Cómo usar este cuaderno" y el mapa del
+# curso, una página cada uno: si "Cómo usar" (que crece con cada
+# actividad nueva) se desborda, el día 1 ya no cae en la página 4.
+PAGINA_DIA_1 = 4
+
 
 def leer_paginas(ruta_aux):
     texto = ruta_aux.read_text(encoding="utf-8", errors="replace")
@@ -80,6 +85,12 @@ def main():
             problemas.append(f"falta el día {esperado} (o los días no son consecutivos)")
             esperado = dia
         esperado += 1
+
+    if dias_ordenados[0] == 1 and paginas[1] != PAGINA_DIA_1:
+        problemas.append(
+            f"el día 1 está en la página {paginas[1]}, no en la {PAGINA_DIA_1} -- "
+            "la portada, \"Cómo usar\" o el mapa del curso se han desbordado"
+        )
 
     for a, b in zip(dias_ordenados, dias_ordenados[1:]):
         salto = paginas[b] - paginas[a]

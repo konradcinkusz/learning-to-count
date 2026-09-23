@@ -31,8 +31,13 @@ Cada página sigue siempre la misma estructura:
 
 \subsection*{Las actividades}
 
+% En dos columnas: cada trimestre trae actividades nuevas, y la lista
+% tiene que seguir cabiendo en esta página (tools/check_pages.py
+% comprueba que el día 1 está en la página 4).
 {\small
-\begin{itemize}[leftmargin=6mm, itemsep=1pt, topsep=2pt]
+\begin{multicols}{2}
+\raggedright
+\begin{itemize}[leftmargin=5mm, itemsep=1pt, topsep=0pt]
 \item \textbf{\lblTraza} (los lunes, cuando llega un número nuevo):
   repasar el número con el dedo por encima de los puntos, luego con un
   lápiz, y después escribirlo solo en la línea. Los puntos son el
@@ -52,11 +57,25 @@ Cada página sigue siempre la misma estructura:
   punto hasta el punto de su número.
 \item \textbf{\lblCompleta}: decir en voz alta los números del tren, uno
   a uno, y escribir en los vagones vacíos los que faltan.
+\item \textbf{\lblDecena} (del 11 al 20): una bandeja llena, que son 10,
+  y otra al lado; se sigue contando desde el 10.
+\item \textbf{\lblCompara}: rodear el grupo que tiene más, o menos, o
+  los dos que tienen las mismas; o el número más grande, o el más
+  pequeño.
+\item \textbf{\lblVecinos}: escribir el número que va antes y el que va
+  después, en las casas de los lados.
+\item \textbf{\lblRecta}: decir los números de la recta, de izquierda a
+  derecha, y escribir los que faltan.
+\item \textbf{\lblOrdena}: escribir los números en orden, del más
+  pequeño al más grande (o al revés).
+\item \textbf{\lblJunta}: juntar dos grupos y contar cuántas son en
+  total: la suma, antes de los signos + e =.
 \item \textbf{\lblDibuja}: dibujar las cosas que dice, ni más ni menos.
 \item \textbf{\lblRepasa} (los viernes): lo que ya sabe hacer esa
   semana, para marcarlo, y un dibujo. Cada diez páginas hay un pequeño
   cartel de celebración.
-\end{itemize}}
+\end{itemize}
+\end{multicols}}
 
 \subsection*{Cómo ayudar}
 
@@ -71,7 +90,6 @@ Cada página sigue siempre la misma estructura:
   cosas de casa: cucharas, botones, zapatos.
 \item Al final de cada trimestre hay una medalla, y al final del
   cuaderno, un diploma y una \textbf{clave de respuestas} para las
-  páginas de \lblRodea, \lblCuenta, \lblBusca, \lblUne\ y
-  \lblCompleta.
+  páginas que tienen una respuesta.
 \end{itemize}}
 \newpage
