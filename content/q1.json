@@ -68,6 +68,380 @@
         "checklist": ["Sé cuál es el 2.", "Sé trazar el 2.", "Sé contar hasta 2."],
         "prompt": "Dibuja a Toby jugando con sus 2 pelotas."
       }
+    },
+    {
+      "dia": 11, "semana": 3, "tema": "El colegio de Lucía",
+      "numero": 3, "objeto": "lapiz",
+      "frase": "Lucía lleva tres lápices nuevos en su mochila azul.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 12, "semana": 3, "tema": "El colegio de Lucía",
+      "numero": 3, "objeto": "libro",
+      "frase": "Su profesora, Marta, trae a clase tres libros de cuentos.",
+      "actividad": {"tipo": "colorea", "objeto": "libro", "total": 6}
+    },
+    {
+      "dia": 13, "semana": 3, "tema": "El colegio de Lucía",
+      "numero": 3, "objeto": "mochila",
+      "frase": "En las perchas de la clase cuelgan tres mochilas, y la de Lucía es la azul.",
+      "actividad": {"tipo": "rodea", "objeto": "lapiz", "grupos": [2, 1, 3]}
+    },
+    {
+      "dia": 14, "semana": 3, "tema": "El colegio de Lucía",
+      "numero": 3, "objeto": "estrella",
+      "frase": "Marta pone tres estrellas en el dibujo de Lucía.",
+      "actividad": {"tipo": "une", "objeto": "estrella", "grupos": [3, 1, 2]}
+    },
+    {
+      "dia": 15, "semana": 3, "tema": "El colegio de Lucía",
+      "numero": 3, "objeto": "corazon",
+      "frase": "Al volver del colegio, Lucía le da a Mamá tres besos.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 3.", "Sé trazar el 3.", "Sé contar hasta 3."],
+        "prompt": "Dibuja tu clase, con 3 amigos."
+      }
+    },
+    {
+      "dia": 16, "semana": 4, "tema": "El barrio y el parque",
+      "numero": 4, "objeto": "arbol",
+      "frase": "En el parque del barrio hay cuatro árboles muy altos.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 17, "semana": 4, "tema": "El barrio y el parque",
+      "numero": 4, "objeto": "pelota",
+      "frase": "Lucía y Dani van al parque con Toby, y llevan cuatro pelotas.",
+      "actividad": {"tipo": "cuenta", "objeto": "pato", "opciones": [3, 4, 2]}
+    },
+    {
+      "dia": 18, "semana": 4, "tema": "El barrio y el parque",
+      "numero": 4, "objeto": "toby",
+      "frase": "En el parque hay cuatro perros jugando, y uno es Toby.",
+      "actividad": {"tipo": "colorea", "objeto": "globo", "total": 6}
+    },
+    {
+      "dia": 19, "semana": 4, "tema": "El barrio y el parque",
+      "numero": 4, "objeto": "galleta",
+      "frase": "Para merendar en el parque, Papá lleva cuatro galletas.",
+      "actividad": {"tipo": "serie", "serie": [1, 2, null, 4]}
+    },
+    {
+      "dia": 20, "semana": 4, "tema": "El barrio y el parque",
+      "numero": 4, "objeto": "huella",
+      "frase": "Al volver a casa, Toby deja cuatro huellas de barro en la puerta.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 4.", "Sé trazar el 4.", "Sé contar hasta 4."],
+        "prompt": "Dibuja tu parque favorito, con 4 árboles."
+      }
+    },
+    {
+      "dia": 21, "semana": 5, "tema": "La comida en casa",
+      "numero": 5, "objeto": "manzana",
+      "frase": "En el frutero de la cocina hay cinco manzanas.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 22, "semana": 5, "tema": "La comida en casa",
+      "numero": 5, "objeto": "huevo",
+      "frase": "Mamá casca cinco huevos para hacer la tortilla de patata.",
+      "actividad": {"tipo": "colorea", "objeto": "galleta", "total": 8}
+    },
+    {
+      "dia": 23, "semana": 5, "tema": "La comida en casa",
+      "numero": 5, "objeto": "caramelo",
+      "frase": "De postre, la abuela Rosa trae cinco caramelos de limón.",
+      "actividad": {"tipo": "rodea", "objeto": "manzana", "grupos": [5, 3, 4]}
+    },
+    {
+      "dia": 24, "semana": 5, "tema": "La comida en casa",
+      "numero": 5, "objeto": "hueso",
+      "frase": "Toby espera debajo de la mesa, y tiene cinco huesos escondidos en su cama.",
+      "actividad": {"tipo": "busca", "veces": 6, "otros": [1, 2, 3, 4]}
+    },
+    {
+      "dia": 25, "semana": 5, "tema": "La comida en casa",
+      "numero": 5, "objeto": "corazon",
+      "frase": "En casa de Lucía viven cinco: Papá, Mamá, Lucía, Dani y Toby.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 5.", "Sé trazar el 5.", "Sé contar hasta 5."],
+        "prompt": "Dibuja la mesa de la cocina, con 5 platos."
+      }
+    },
+    {
+      "dia": 26, "semana": 6, "tema": "Llega el otoño",
+      "numero": 4, "objeto": "hoja",
+      "frase": "Del árbol de la calle ya se han caído cuatro hojas naranjas.",
+      "actividad": {"tipo": "une", "objeto": "hoja", "grupos": [4, 2, 5, 1]}
+    },
+    {
+      "dia": 27, "semana": 6, "tema": "Llega el otoño",
+      "numero": 2, "objeto": "nube",
+      "frase": "Por las tardes, el viento frío trae dos nubes grises.",
+      "actividad": {"tipo": "serie", "serie": [null, 2, 3, null, 5]}
+    },
+    {
+      "dia": 28, "semana": 6, "tema": "Llega el otoño",
+      "numero": 3, "objeto": "ardilla",
+      "frase": "Con el otoño, en el parque se ven tres ardillas buscando comida.",
+      "actividad": {"tipo": "colorea", "objeto": "hoja", "total": 7}
+    },
+    {
+      "dia": 29, "semana": 6, "tema": "Llega el otoño",
+      "numero": 5, "objeto": "hoja",
+      "frase": "Dani salta en un montón de hojas, y se le quedan cinco hojas en el pelo.",
+      "actividad": {"tipo": "cuenta", "objeto": "seta", "opciones": [3, 5, 4]}
+    },
+    {
+      "dia": 30, "semana": 6, "tema": "Llega el otoño",
+      "numero": 1, "objeto": "arbol",
+      "frase": "El otoño ya se nota en el barrio: hay un árbol todo naranja.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé los números del 1 al 5.", "Sé contar hasta 5.", "Sé trazar el 1, el 2, el 3, el 4 y el 5."],
+        "prompt": "Dibuja un árbol de otoño, con 5 hojas en el suelo."
+      }
+    },
+    {
+      "dia": 31, "semana": 7, "tema": "Los juguetes de Dani",
+      "numero": 6, "objeto": "coche",
+      "frase": "Dani tiene una caja con seis coches pequeños.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 32, "semana": 7, "tema": "Los juguetes de Dani",
+      "numero": 6, "objeto": "pelota",
+      "frase": "En la caja de los juguetes también hay seis pelotas de colores.",
+      "actividad": {"tipo": "colorea", "objeto": "pelota", "total": 9}
+    },
+    {
+      "dia": 33, "semana": 7, "tema": "Los juguetes de Dani",
+      "numero": 6, "objeto": "coche",
+      "frase": "A veces, Dani deja sus seis coches por todo el salón.",
+      "actividad": {"tipo": "rodea", "objeto": "trex", "grupos": [5, 4, 6]}
+    },
+    {
+      "dia": 34, "semana": 7, "tema": "Los juguetes de Dani",
+      "numero": 6, "objeto": "trex",
+      "frase": "Lucía ayuda a Dani a guardar sus seis dinosaurios antes de cenar.",
+      "actividad": {"tipo": "une", "objeto": "coche", "grupos": [6, 3, 5, 2]}
+    },
+    {
+      "dia": 35, "semana": 7, "tema": "Los juguetes de Dani",
+      "numero": 6, "objeto": "estrella",
+      "frase": "Dani pega seis estrellas en su caja de juguetes.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 6.", "Sé trazar el 6.", "Sé contar hasta 6."],
+        "prompt": "Dibuja la caja de juguetes de Dani, con 6 juguetes."
+      }
+    },
+    {
+      "dia": 36, "semana": 8, "tema": "Castañas y Todos los Santos",
+      "numero": 0, "objeto": "cesta",
+      "frase": "La familia se come todas las castañas, y en la cesta no queda ninguna.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 37, "semana": 8, "tema": "Castañas y Todos los Santos",
+      "numero": 0, "objeto": "cesta",
+      "frase": "Papá asa las castañas fuera, y la cesta se queda vacía: cero castañas.",
+      "actividad": {"tipo": "rodea", "objeto": "castana", "grupos": [0, 3, 2]}
+    },
+    {
+      "dia": 38, "semana": 8, "tema": "Castañas y Todos los Santos",
+      "numero": 0, "objeto": "cesta",
+      "frase": "¡Cuidado, que queman! Todavía no se puede coger ninguna castaña.",
+      "actividad": {"tipo": "cuenta", "objeto": "castana", "opciones": [0, 1, 2]}
+    },
+    {
+      "dia": 39, "semana": 8, "tema": "Castañas y Todos los Santos",
+      "numero": 0, "objeto": "plato",
+      "frase": "Dani se come tantas castañas que en su plato no queda nada.",
+      "actividad": {"tipo": "busca", "veces": 5, "otros": [1, 2, 3, 4, 5, 6]}
+    },
+    {
+      "dia": 40, "semana": 8, "tema": "Castañas y Todos los Santos",
+      "numero": 0, "objeto": "cesta",
+      "frase": "Esa noche, toda la casa huele a castañas, pero ya no queda ninguna.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 0.", "Sé trazar el 0.", "Sé que 0 es cuando no hay nada."],
+        "prompt": "Dibuja la cesta de las castañas, vacía: 0 castañas."
+      }
+    },
+    {
+      "dia": 41, "semana": 9, "tema": "El cumpleaños de Lucía",
+      "numero": 7, "objeto": "vela",
+      "frase": "Mañana Lucía cumple siete años, y su tarta llevará siete velas.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 42, "semana": 9, "tema": "El cumpleaños de Lucía",
+      "numero": 7, "objeto": "globo",
+      "frase": "Hoy es el cumpleaños de Lucía, y Papá cuelga siete globos en el salón.",
+      "actividad": {"tipo": "colorea", "objeto": "globo", "total": 10}
+    },
+    {
+      "dia": 43, "semana": 9, "tema": "El cumpleaños de Lucía",
+      "numero": 7, "objeto": "vela",
+      "frase": "Mamá le prepara una tarta de fresa, su favorita, con siete velas.",
+      "actividad": {"tipo": "cuenta", "objeto": "regalo", "opciones": [7, 5, 6]}
+    },
+    {
+      "dia": 44, "semana": 9, "tema": "El cumpleaños de Lucía",
+      "numero": 7, "objeto": "regalo",
+      "frase": "Sofía y Marta vienen a merendar, y Lucía abre siete regalos.",
+      "actividad": {"tipo": "une", "objeto": "vela", "grupos": [7, 4, 6]}
+    },
+    {
+      "dia": 45, "semana": 9, "tema": "El cumpleaños de Lucía",
+      "numero": 7, "objeto": "caramelo",
+      "frase": "Al final de la fiesta, Sofía se lleva a casa siete caramelos.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 7.", "Sé trazar el 7.", "Sé contar hasta 7."],
+        "prompt": "Dibuja la tarta de Lucía, con sus 7 velas."
+      }
+    },
+    {
+      "dia": 46, "semana": 10, "tema": "Los animales del barrio",
+      "numero": 8, "objeto": "arana",
+      "frase": "En el muro del jardín del vecino Pedro viven ocho arañas pequeñas.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 47, "semana": 10, "tema": "Los animales del barrio",
+      "numero": 8, "objeto": "pato",
+      "frase": "En el estanque del parque nadan ocho patos.",
+      "actividad": {"tipo": "rodea", "objeto": "pez", "grupos": [7, 8, 6]}
+    },
+    {
+      "dia": 48, "semana": 10, "tema": "Los animales del barrio",
+      "numero": 8, "objeto": "gato",
+      "frase": "Luna, la gata de Pedro, toma el sol en el muro con sus amigos: ocho gatos.",
+      "actividad": {"tipo": "colorea", "objeto": "mariposa", "total": 10}
+    },
+    {
+      "dia": 49, "semana": 10, "tema": "Los animales del barrio",
+      "numero": 8, "objeto": "pajaro",
+      "frase": "En el parque, ocho pájaros cantan cada mañana temprano.",
+      "actividad": {"tipo": "serie", "serie": [5, 6, 7, null]}
+    },
+    {
+      "dia": 50, "semana": 10, "tema": "Los animales del barrio",
+      "numero": 8, "objeto": "pez",
+      "frase": "A Lucía le gustan todos los animales, hasta los ocho peces de la fuente.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 8.", "Sé trazar el 8.", "Sé contar hasta 8."],
+        "prompt": "Dibuja una araña, con sus 8 patas."
+      }
+    },
+    {
+      "dia": 51, "semana": 11, "tema": "Un día de lluvia",
+      "numero": 9, "objeto": "gota",
+      "frase": "Hoy llueve mucho, y en la ventana hay nueve gotas.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 52, "semana": 11, "tema": "Un día de lluvia",
+      "numero": 9, "objeto": "nube",
+      "frase": "Lucía se pone las botas y el impermeable amarillo, y cuenta nueve nubes grises.",
+      "actividad": {"tipo": "cuenta", "objeto": "paraguas", "opciones": [8, 9, 7]}
+    },
+    {
+      "dia": 53, "semana": 11, "tema": "Un día de lluvia",
+      "numero": 9, "objeto": "coche",
+      "frase": "Dani prefiere quedarse en casa jugando con nueve coches.",
+      "actividad": {"tipo": "colorea", "objeto": "huella", "total": 10}
+    },
+    {
+      "dia": 54, "semana": 11, "tema": "Un día de lluvia",
+      "numero": 9, "objeto": "paraguas",
+      "frase": "En la puerta del colegio hay nueve paraguas mojados.",
+      "actividad": {"tipo": "busca", "veces": 5, "otros": [6, 7, 8]}
+    },
+    {
+      "dia": 55, "semana": 11, "tema": "Un día de lluvia",
+      "numero": 9, "objeto": "nube",
+      "frase": "Por la tarde, el viento se lleva las nueve nubes, y sale el sol.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 9.", "Sé trazar el 9.", "Sé contar hasta 9."],
+        "prompt": "Dibuja a Lucía con su paraguas, y 9 gotas de lluvia."
+      }
+    },
+    {
+      "dia": 56, "semana": 12, "tema": "Ir al mercado con Mamá",
+      "numero": 10, "objeto": "huevo",
+      "frase": "El sábado, en el mercado, Mamá compra diez huevos.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 57, "semana": 12, "tema": "Ir al mercado con Mamá",
+      "numero": 10, "objeto": "mandarina",
+      "frase": "En el mercado huele a mandarinas, y Mamá compra diez.",
+      "actividad": {"tipo": "cuenta", "objeto": "manzana", "opciones": [10, 8, 9]}
+    },
+    {
+      "dia": 58, "semana": 12, "tema": "Ir al mercado con Mamá",
+      "numero": 10, "objeto": "estrella",
+      "frase": "Mamá compra turrón, y diez estrellas para el árbol de Navidad.",
+      "actividad": {"tipo": "une", "objeto": "huevo", "grupos": [10, 7, 9]}
+    },
+    {
+      "dia": 59, "semana": 12, "tema": "Ir al mercado con Mamá",
+      "numero": 10, "objeto": "regalo",
+      "frase": "Dani pide diez juguetes nuevos, pero Mamá le dice que espere a los Reyes.",
+      "actividad": {"tipo": "dibuja", "prompt": "Dibuja 10 manzanas en la cesta de Mamá."}
+    },
+    {
+      "dia": 60, "semana": 12, "tema": "Ir al mercado con Mamá",
+      "numero": 10, "objeto": "caramelo",
+      "frase": "En el puesto de la fruta, a Lucía y a Dani les regalan diez caramelos.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 10.", "Sé trazar el 10.", "Sé contar hasta 10."],
+        "prompt": "Dibuja el puesto de la fruta del mercado, con 10 frutas."
+      }
+    },
+    {
+      "dia": 61, "semana": 13, "tema": "Nochebuena",
+      "numero": 10, "objeto": "estrella",
+      "frase": "Para la Nochebuena, Lucía y Dani pegan diez estrellas en la ventana.",
+      "actividad": {"tipo": "serie", "serie": [6, 7, null, 9, null]}
+    },
+    {
+      "dia": 62, "semana": 13, "tema": "Nochebuena",
+      "numero": 7, "objeto": "bola",
+      "frase": "Lucía y Dani cuelgan siete bolas rojas y doradas en el árbol.",
+      "actividad": {"tipo": "une", "objeto": "regalo", "grupos": [7, 3, 9, 5]}
+    },
+    {
+      "dia": 63, "semana": 13, "tema": "Nochebuena",
+      "numero": 9, "objeto": "regalo",
+      "frase": "La abuela Rosa viene a pasar la Nochebuena, y trae nueve regalos.",
+      "actividad": {"tipo": "colorea", "objeto": "bola", "total": 10}
+    },
+    {
+      "dia": 64, "semana": 13, "tema": "Nochebuena",
+      "numero": 8, "objeto": "vela",
+      "frase": "Todos cenan juntos, y en la mesa hay ocho velas encendidas.",
+      "actividad": {"tipo": "cuenta", "objeto": "galleta", "opciones": [6, 8, 10]}
+    },
+    {
+      "dia": 65, "semana": 13, "tema": "Nochebuena",
+      "numero": 0, "objeto": "cesta",
+      "frase": "Después de la cena, en la cesta de los turrones no queda ninguno.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé los números del 0 al 10.", "Sé contar hasta 10.", "Sé trazar todos los números, del 0 al 10."],
+        "prompt": "Dibuja el árbol de Navidad de Lucía, con 10 bolas."
+      }
     }
   ]
 }

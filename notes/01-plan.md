@@ -54,7 +54,15 @@ una fila y dos más — la manera de ver de un vistazo cuánto es un número
 hasta el 10); esas cosas dibujadas, tantas como el número, y debajo una
 **frase de la historia** que lee el adulto: *Lucía tiene un perro, y se
 llama Toby.* La frase tiene que decir el número del día (con letra: *un,
-una, uno, dos...*): el script lo comprueba.
+una, uno, dos...*; el 0, *cero, ningún, ninguna, ninguno* o *nada*): el
+script lo comprueba.
+
+El día del **0**, lo dibujado es un recipiente vacío — la cesta en la
+que no queda ninguna castaña, el plato en el que no queda nada
+(`CONTENEDORES` en el script) —, y el marco de diez, sin ningún punto.
+El **10** es el primer número de dos cifras: su columna se ensancha lo
+que haga falta (`\numeroDeHoy`), y sus cosas se dibujan un poco más
+pequeñas para que quepan.
 
 ## La escalera, semana a semana
 
@@ -115,17 +123,26 @@ de los viernes, y solo de los viernes.
 |---|---|---|
 | **Traza** | Repasar el número con el dedo por los puntos, luego con un lápiz, y escribirlo en tres renglones con un número de muestra | que el número haya llegado; que haya contorno para cada cifra (el 10 son dos) |
 | **Colorea** | Colorear exactamente N de las cosas; las demás, en blanco | que N haya llegado; que haya más cosas que N, y como mucho 10 |
-| **Rodea** | Entre 2–4 grupos, rodear el que tiene N | que haya exactamente un grupo de N, todos distintos, de 1 a 6 cosas (más ya no se ve de un vistazo); los grupos van como los puntos de un dado |
-| **Cuenta** | Contar un grupo, señalando cada cosa, y rodear su número entre 2–4 | que la respuesta esté entre las opciones, y que todas hayan llegado |
-| **Busca** | Rodear el número cada vez que sale, en una cuadrícula con otros números y formas | que los otros números hayan llegado; la cuadrícula la baraja el script con el número del día (siempre la misma) |
-| **Dibuja** | Dibujar N cosas | que el enunciado diga N |
+| **Rodea** | Entre 2–4 grupos, rodear el que tiene N | que haya exactamente un grupo de N, todos distintos, de 1 a 10 cosas; hasta el 6 van como los puntos de un dado, y del 7 al 10 como en el marco de diez (así se ven de un vistazo); el grupo vacío, solo el día que se rodea el 0 |
+| **Cuenta** | Contar un grupo, señalando cada cosa, y rodear su número entre 2–4 | que la respuesta esté entre las opciones, y que todas hayan llegado; el grupo va en una bandeja, que el día del 0 está vacía |
+| **Busca** | Rodear el número cada vez que sale, en una cuadrícula con otros números y formas | que los otros números hayan llegado; la cuadrícula la baraja el script con el número del día (siempre la misma); el día del 0, sin círculos, que se confunden con él |
+| **Une** | Contar cada grupo (2–4, uno debajo de otro) y trazar una línea hasta su número | que los grupos sean distintos, de hasta 10, que hayan llegado y que uno sea el número del día; los números los desordena el script — ninguno enfrente de su grupo —, con el número del día |
+| **Completa** | Un tren de 4–7 vagones con números seguidos, de uno en uno, hacia arriba o hacia atrás: escribir los 1–2 que faltan | que la serie vaya de uno en uno, que todos sus números hayan llegado y que pase por el número del día |
+| **Dibuja** | Dibujar N cosas | que el enunciado diga N (y N, al menos 1) |
 | **Repasa** | Lo que ya sabe hacer esa semana, para marcarlo, y un dibujo; cada diez páginas, el cartel "¡N páginas hechas!" | el cartel lo pone el script |
 
-Los enunciados de *Colorea*, *Rodea*, *Cuenta* y *Busca* los compone el
-script con el número y las cosas del día ("Colorea 2 pelotas.",
-"¿Cuántos huesos hay?"), con su género y su número: no se escriben a
-mano. Las respuestas de la clave, igual: *Rodea* (qué grupo), *Cuenta*
-(el número) y *Busca* (cuántas veces sale), calculadas.
+Los enunciados de *Colorea*, *Rodea*, *Cuenta*, *Busca*, *Une* y
+*Completa* los compone el script con el número y las cosas del día
+("Colorea 2 pelotas.", "¿Cuántos huesos hay?", "Rodea donde no hay
+ninguna castaña."), con su género y su número: no se escriben a mano.
+Las respuestas de la clave, igual: *Rodea* (qué grupo), *Cuenta* (el
+número), *Busca* (cuántas veces sale), *Une* (el número de cada grupo,
+de arriba abajo) y *Completa* (los que faltan), calculadas.
+
+En el otoño, las semanas con número nuevo tienen, entre el lunes y el
+viernes, tres de las demás; las dos de repaso (la 6, del 1 al 5, y la
+13, del 0 al 10) no tienen *Traza*, y el número de cada día es uno de
+los que ya han llegado.
 
 ## Cómo se comprueba
 
@@ -145,9 +162,11 @@ mano. Las respuestas de la clave, igual: *Rodea* (qué grupo), *Cuenta*
 Como *Aprendo a leer*: un PR por fase, cada uno en verde antes de
 fusionarse, y `DIAS_ESCRITOS` dice cuántos días hay ya.
 
-1. **El motor, el diseño y las semanas 1–2** (el 1 y el 2): este PR.
+1. **El motor, el diseño y las semanas 1–2** (el 1 y el 2). Hecho.
 2. **El otoño** (días 11–65): del 3 al 10 y el 0, con las cosas nuevas
-   que haga falta dibujar (castañas, velas, una araña, huevos...).
+   que había que dibujar (castañas, la cesta, velas, una araña, huevos
+   en su huevera — solos, se confundían con el 0 —...) y dos
+   actividades nuevas, *Une* y *Completa*. Hecho.
 3. **El invierno** (días 66–130): la decena, hasta el 20, comparar, las
    primeras sumas — con sus actividades nuevas.
 4. **La primavera** (días 131–195).

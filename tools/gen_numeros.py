@@ -51,7 +51,7 @@ SEMANAS_POR_TRIMESTRE = 13
 # uno en verde antes de fusionarse), cuántos días tiene ya escritos: se
 # exigen exactamente esos, del 1 en adelante y sin huecos. None = el
 # cuaderno está entero, con sus 260 días.
-DIAS_ESCRITOS = 10
+DIAS_ESCRITOS = 65
 
 NOMBRE_MEDALLA = {1: "Otoño", 2: "Invierno", 3: "Primavera"}
 ULTIMO_DIA_TRIMESTRE = {1: 65, 2: 130, 3: 195, 4: 260}
@@ -108,9 +108,10 @@ ESCALERA = {
     13: [],   # repaso del 0 al 10, en Nochebuena
 }
 
-# Un grupo de cosas que hay que distinguir de un vistazo (los grupos de
-# "rodea") no pasa de 6: más que eso ya no se ve, se cuenta.
-MAX_GRUPO = 6
+# Un grupo de cosas va como los puntos de un dado hasta el 6 -- así se ve
+# de un vistazo cuántas son --, y del 7 al 10 como en el marco de diez:
+# una fila de cinco y lo que falta debajo. Más de 10, no cabe en un grupo.
+MAX_GRUPO = 10
 
 
 def conocidos(semana):
@@ -156,7 +157,37 @@ OBJETOS = {
     "corazon": (r"\objCorazon", "corazón", "corazones", "m"),
     "caramelo": (r"\objCaramelo", "caramelo", "caramelos", "m"),
     "pez": (r"\objPez", "pez", "peces", "m"),
+    "lapiz": (r"\objLapiz", "lápiz", "lápices", "m"),
+    "libro": (r"\objLibro", "libro", "libros", "m"),
+    "galleta": (r"\objGalleta", "galleta", "galletas", "f"),
+    "seta": (r"\objSeta", "seta", "setas", "f"),
+    "castana": (r"\objCastana", "castaña", "castañas", "f"),
+    "cesta": (r"\objCesta", "cesta", "cestas", "f"),
+    "vela": (r"\objVela", "vela", "velas", "f"),
+    "regalo": (r"\objRegalo", "regalo", "regalos", "m"),
+    "arana": (r"\objArana", "araña", "arañas", "f"),
+    "paraguas": (r"\objParaguas", "paraguas", "paraguas", "m"),
+    "bola": (r"\objBola", "bola", "bolas", "f"),
+    "arbol": (r"\objArbol", "árbol", "árboles", "m"),
+    "pato": (r"\objPato", "pato", "patos", "m"),
+    "coche": (r"\objCoche", "coche", "coches", "m"),
+    "trex": (r"\objTrex", "dinosaurio", "dinosaurios", "m"),
+    "mariposa": (r"\objMariposa", "mariposa", "mariposas", "f"),
+    "gota": (r"\objGota", "gota", "gotas", "f"),
+    "nube": (r"\objNube", "nube", "nubes", "f"),
+    "huevo": (r"\objHuevo", "huevo", "huevos", "m"),
+    "pajaro": (r"\objPajaro", "pájaro", "pájaros", "m"),
+    "gato": (r"\objGato", "gato", "gatos", "m"),
+    "mochila": (r"\objMochila", "mochila", "mochilas", "f"),
+    "ardilla": (r"\objArdilla", "ardilla", "ardillas", "f"),
+    "plato": (r"\objPlato", "plato", "platos", "m"),
+    "mandarina": (r"\objMandarina", "mandarina", "mandarinas", "f"),
 }
+
+# Lo que se dibuja vacío en "El número de hoy" el día que el número es el
+# 0: la cesta en la que no queda ninguna castaña, el plato en el que no
+# queda nada.
+CONTENEDORES = {"cesta", "plato"}
 
 
 def nombre_objeto(objeto, n):
@@ -234,11 +265,81 @@ def fila(objeto, n, escala, por_fila=5, paso=2.5):
     )
 
 
-def grupo(objeto, n, paso=2.3):
-    """Las piezas de un grupo de n cosas (n <= MAX_GRUPO), como los puntos
-    de un dado: de un vistazo se ve cuántas son."""
+def posiciones(n, paso):
+    """Dónde va cada cosa de un grupo de n, en unidades de la caja de una
+    cosa, y el ancho y el alto de lo que ocupan: hasta 6, los puntos de un
+    dado; del 7 al 10, el marco de diez (una fila de cinco, y debajo el
+    resto, desde la izquierda). El grupo de 0 no tiene nada, pero ocupa lo
+    mismo que uno de 6: su marco se ve vacío."""
+    if n <= 6:
+        return [(x * paso, y * paso) for x, y in POSICIONES_DADO.get(n, [])], 2 * paso + 2, 2 * paso + 2
+    fila_1 = [((i - 2) * paso, paso / 2) for i in range(5)]
+    fila_2 = [((i - 2) * paso, -paso / 2) for i in range(n - 5)]
+    return fila_1 + fila_2, 4 * paso + 2, paso + 2
+
+
+def posiciones_en_filas(n, paso, sitios_fila=5):
+    """Como en el marco de diez, para todos: filas de cinco desde la
+    izquierda (hasta 5, una fila; del 6 al 10, dos), y el mismo ancho
+    siempre -- el de `sitios_fila` cosas --, para que todos los grupos de
+    "une" se alineen."""
+    filas = max(1, -(-n // 5))
+    x0 = (sitios_fila - 1) / 2
+    sitios = [((i % 5 - x0) * paso, ((filas - 1) / 2 - i // 5) * paso) for i in range(n)]
+    return sitios, (sitios_fila - 1) * paso + 2, (filas - 1) * paso + 2
+
+
+# Entre las cosas de un grupo y su marco a trazos.
+MARGEN_GRUPO = 0.2
+
+
+def grupo(objeto, n, paso=2.3, colocar=posiciones):
+    """Un grupo de n cosas (n <= MAX_GRUPO) dentro de su marco a trazos,
+    centrado en el origen: (tikz, ancho, alto), con el marco."""
     macro = OBJETOS[objeto][0]
-    return "".join(_cosa(macro, x * paso, y * paso) for x, y in POSICIONES_DADO[n])
+    sitios, ancho, alto = colocar(n, paso)
+    ancho, alto = ancho + 2 * MARGEN_GRUPO, alto + 2 * MARGEN_GRUPO
+    return marco(ancho, alto) + "".join(_cosa(macro, x, y) for x, y in sitios), ancho, alto
+
+
+def marco(ancho, alto, x=0.0, y=0.0):
+    """El borde a trazos de un grupo (o de la bandeja de "cuenta")."""
+    return (
+        f"\\draw[dashed, line width=0.8pt, rounded corners=4mm, colorGris] "
+        f"({x - ancho / 2:.2f},{y - alto / 2:.2f}) rectangle ({x + ancho / 2:.2f},{y + alto / 2:.2f});"
+    )
+
+
+def disponer(bloques, ancho_cm, alto_cm, hueco, maxima):
+    """Coloca bloques [(tikz, ancho, alto)], centrados, en una fila -- o en
+    dos, si así salen más grandes --, y devuelve (tikz, escala): lo de
+    dentro de un tikzpicture a esa escala, con los bloques en orden de
+    lectura (de izquierda a derecha, y de arriba abajo)."""
+    opciones = [[bloques]]
+    if len(bloques) >= 3:
+        mitad = (len(bloques) + 1) // 2
+        opciones.append([bloques[:mitad], bloques[mitad:]])
+    mejor = None
+    for filas in opciones:
+        ancho = max(sum(b[1] for b in f) + hueco * (len(f) - 1) for f in filas)
+        alto = sum(max(b[2] for b in f) for f in filas) + hueco * (len(filas) - 1)
+        escala = min(maxima, ancho_cm / ancho, alto_cm / alto)
+        # Dos filas, solo si así las cosas salen bastante más grandes: en
+        # una fila, los grupos se comparan mejor.
+        if mejor is None or escala > mejor[0] * 1.15:
+            mejor = (escala, filas, alto)
+    escala, filas, alto = mejor
+    piezas, y = [], alto / 2
+    for f in filas:
+        alto_fila = max(b[2] for b in f)
+        x = -(sum(b[1] for b in f) + hueco * (len(f) - 1)) / 2
+        for tikz, ancho_b, _ in f:
+            piezas.append(
+                f"\\begin{{scope}}[shift={{({x + ancho_b / 2:.2f},{y - alto_fila / 2:.2f})}}]{tikz}\\end{{scope}}"
+            )
+            x += ancho_b + hueco
+        y -= alto_fila + hueco
+    return "\n".join(piezas), round(escala, 3)
 
 
 # --------------------------------------------------------------------
@@ -342,7 +443,7 @@ PLANTILLA_CUENTA = Template(r"""\begin{cajaCuenta}[centrado abajo]
 \instruccion{$instruccion}
 \tcblower
 \begin{center}
-\begin{tikzpicture}[objeto, scale=1]
+\begin{tikzpicture}[objeto, scale=$escala]
 $grupo
 \end{tikzpicture}
 
@@ -362,6 +463,28 @@ $filas
 \end{tabular}}
 \end{center}
 \end{cajaBusca}""")
+
+PLANTILLA_UNE = Template(r"""\begin{cajaUne}[centrado abajo]
+\enunciado{$enunciado}
+\instruccion{$instruccion}
+\tcblower
+\begin{center}
+\begin{tikzpicture}[objeto]
+$dibujo
+\end{tikzpicture}
+\end{center}
+\end{cajaUne}""")
+
+PLANTILLA_SERIE = Template(r"""\begin{cajaCompleta}[centrado abajo]
+\enunciado{$enunciado}
+\instruccion{$instruccion}
+\tcblower
+\begin{center}
+\begin{tikzpicture}[objeto]
+$tren
+\end{tikzpicture}
+\end{center}
+\end{cajaCompleta}""")
 
 PLANTILLA_DIBUJA = Template(r"""\begin{cajaDibuja}
 \enunciado{$enunciado}
@@ -391,7 +514,8 @@ PLANTILLA_MEDALLA = Template(r"""\begin{center}
 """)
 
 # Las formas que acompañan a los números en "busca": se ven distintas a
-# primera vista, así que lo que hay que mirar son los números.
+# primera vista, así que lo que hay que mirar son los números. La
+# primera es el círculo, que el día que se busca el 0 no sale.
 FORMAS_BUSCA = [
     r"\tikz[baseline=-4.2mm]\draw[line width=1.8pt] (0,0) circle (3.8mm);",
     r"\tikz[baseline=-4.2mm]\draw[line width=1.8pt, line join=round] (-4mm,-3.4mm) -- (4mm,-3.4mm) -- (0,3.8mm) -- cycle;",
@@ -399,6 +523,96 @@ FORMAS_BUSCA = [
 ]
 
 ORDINALES = {1: "el primero", 2: "el segundo", 3: "el tercero", 4: "el cuarto"}
+
+# "Une": los grupos a la izquierda, uno debajo de otro, cada uno con un
+# punto a su derecha; los números a la derecha, desordenados, cada uno
+# con su punto -- de punto a punto se traza la línea. En cm.
+ANCHO_GRUPOS_UNE_CM = 8.6
+ALTO_UNE_CM = 11.0
+HUECO_UNE_CM = 3.8        # lo que recorre la línea, como poco
+FUENTE_NUMERO = r"\fontsize{40}{40}\selectfont\bfseries"
+
+
+def dibujo_une(objeto, grupos, orden):
+    """Los grupos (en filas de cinco, como en el marco de diez: así se
+    alinean) y, frente a cada uno, un número de `orden`."""
+    paso, hueco = 2.3, 1.0
+    sitios_fila = min(5, max(grupos))
+
+    def colocar(n, paso):
+        return posiciones_en_filas(n, paso, sitios_fila)
+
+    bloques = [grupo(objeto, g, paso, colocar=colocar) for g in grupos]
+    ancho = max(b[1] for b in bloques)
+    alto = sum(b[2] for b in bloques) + hueco * (len(bloques) - 1)
+    s = min(1.0, ANCHO_GRUPOS_UNE_CM / ancho, ALTO_UNE_CM / alto)
+    x_punto = ancho * s + 0.3
+    x_numero = x_punto + HUECO_UNE_CM
+    piezas, y = [], 0.0
+    for (tikz, _, alto_b), numero in zip(bloques, orden):
+        yc = y - alto_b * s / 2
+        piezas.append(
+            f"\\begin{{scope}}[shift={{({ancho * s / 2:.2f},{yc:.2f})}}, scale={s:.3f}]{tikz}\\end{{scope}}"
+            f"\\fill ({x_punto:.2f},{yc:.2f}) circle (1.3mm);"
+            f"\\fill ({x_numero:.2f},{yc:.2f}) circle (1.3mm);"
+            f"\\node[anchor=west, font={FUENTE_NUMERO}] at ({x_numero + 0.3:.2f},{yc:.2f}) {{{numero}}};"
+        )
+        y -= (alto_b + hueco) * s
+    return "\n".join(piezas)
+
+
+# La locomotora de "serie", en unidades del vagón (un vagón de 2,4 cm
+# mide 2,4 x 2,4): las ruedas antes que la caldera, que las tapa por
+# arriba; el humo va hacia atrás, porque el tren va hacia la izquierda.
+LOCOMOTORA = (
+    r"\filldraw[fill=white] (0.7,0) circle (0.3); \filldraw[fill=white] (1.5,0) circle (0.3);"
+    r"\filldraw[fill=white] (2.6,0.15) circle (0.45);"
+    r"\filldraw[fill=white] (0,0.12) rectangle (0.2,0.6);"
+    r"\filldraw[fill=white, rounded corners=1mm] (0.2,0.12) rectangle (2.0,1.35);"
+    r"\filldraw[fill=white] (2.0,0.12) rectangle (3.2,2.3);"
+    r"\filldraw[fill=white] (2.3,1.3) rectangle (2.9,1.9);"
+    r"\filldraw[fill=white] (1.85,2.3) rectangle (3.35,2.5);"
+    r"\filldraw[fill=white] (0.45,1.35) rectangle (0.85,2.0);"
+    r"\filldraw[fill=white] (0.35,2.0) rectangle (0.95,2.2);"
+    r"\draw (1.05,2.55) circle (0.17); \draw (1.45,2.82) circle (0.22); \draw (1.97,3.0) circle (0.26);"
+)
+ANCHO_LOCOMOTORA = 3.35
+ANCHO_TREN_CM = 14.8
+
+
+def dibujo_serie(valores):
+    """Un tren: la locomotora y un vagón por número, vacíos los que faltan
+    (None). Si son muchos vagones, sin locomotora, para que quepan."""
+    k, hueco = len(valores), 0.45
+    con_locomotora = k <= 5
+    if con_locomotora:
+        ancho = (ANCHO_TREN_CM - k * hueco) / (ANCHO_LOCOMOTORA / 2.4 + k)
+    else:
+        ancho = (ANCHO_TREN_CM + hueco) / k - hueco
+    ancho = min(2.6, ancho)
+    u = ancho / 2.4
+    tam = 44 if ancho >= 2.2 else 38 if ancho >= 1.8 else 32
+    fuente = f"\\fontsize{{{tam}}}{{{tam}}}\\selectfont\\bfseries"
+    piezas, x = [], 0.0
+    if con_locomotora:
+        piezas.append(f"\\begin{{scope}}[scale={u:.3f}]{LOCOMOTORA}\\end{{scope}}")
+        x = ANCHO_LOCOMOTORA * u + hueco
+        piezas.append(f"\\draw ({3.2 * u:.2f},{0.45 * u:.2f}) -- ({x:.2f},{0.45 * u:.2f});")
+    total = x + k * ancho + (k - 1) * hueco
+    piezas.insert(0, f"\\draw (-0.3,{-0.3 * u:.2f}) -- ({total + 0.3:.2f},{-0.3 * u:.2f});")
+    for i, v in enumerate(valores):
+        if i:
+            piezas.append(f"\\draw ({x - hueco:.2f},{0.45 * u:.2f}) -- ({x:.2f},{0.45 * u:.2f});")
+        for rueda in (0.27, 0.73):
+            piezas.append(f"\\filldraw[fill=white] ({x + rueda * ancho:.2f},0) circle ({0.3 * u:.2f});")
+        piezas.append(
+            f"\\filldraw[fill=white, rounded corners=2mm] ({x:.2f},{0.12 * u:.2f}) "
+            f"rectangle ({x + ancho:.2f},{0.12 * u + ancho:.2f});"
+        )
+        if v is not None:
+            piezas.append(f"\\node[font={fuente}] at ({x + ancho / 2:.2f},{0.12 * u + ancho / 2:.2f}) {{{v}}};")
+        x += ancho + hueco
+    return "\n".join(piezas)
 
 
 # --------------------------------------------------------------------
@@ -438,10 +652,10 @@ def render_actividad(d):
         cuantas = a.get("cuantas", n)
         comprobar_numero(num, cuantas, semana, "lo que se colorea")
         total = a["total"]
-        if not cuantas < total <= 10:
+        if not 1 <= cuantas < total <= 10:
             raise ErrorDeContenido(
                 f"día {num}: 'colorea' tiene que tener más cosas que las que se "
-                f"colorean, y como mucho 10 (colorea {cuantas} de {total})"
+                f"colorean (al menos una), y como mucho 10 (colorea {cuantas} de {total})"
             )
         resto = ("Las demás, déjalas en blanco." if genero(a["objeto"]) == "f"
                  else "Los demás, déjalos en blanco.")
@@ -466,32 +680,38 @@ def render_actividad(d):
                 f"día {num}: en 'rodea' tiene que haber exactamente un grupo de "
                 f"{cuantas} ({grupos})"
             )
-        if max(grupos) > MAX_GRUPO or min(grupos) < 1:
+        if max(grupos) > MAX_GRUPO or min(grupos) < 0:
             raise ErrorDeContenido(
-                f"día {num}: un grupo de 'rodea' va de 1 a {MAX_GRUPO} cosas ({grupos})"
+                f"día {num}: un grupo de 'rodea' va de 1 a {MAX_GRUPO} cosas, o ninguna "
+                f"el día que se rodea el 0 ({grupos})"
             )
-        piezas = []
-        ancho, hueco = 6.8, 1.6
-        escala = round(min(0.7, 15.0 / (len(grupos) * ancho + (len(grupos) - 1) * hueco)), 3)
-        for i, g in enumerate(grupos):
-            x = (i - (len(grupos) - 1) / 2) * (ancho + hueco)
-            piezas.append(
-                f"\\draw[dashed, line width=0.8pt, rounded corners=4mm, colorGris] "
-                f"({x - ancho / 2:.2f},{-ancho / 2:.2f}) rectangle ({x + ancho / 2:.2f},{ancho / 2:.2f});"
-                f"\\begin{{scope}}[shift={{({x:.2f},0)}}]{grupo(a['objeto'], g, paso=2.2)}\\end{{scope}}"
+        # Un grupo vacío solo tiene sentido si es el que se busca: "Rodea
+        # donde no hay ninguna castaña."
+        if 0 in grupos and cuantas != 0:
+            raise ErrorDeContenido(
+                f"día {num}: en 'rodea', el grupo vacío solo puede ser el que se rodea ({grupos})"
             )
+        dibujo, escala = disponer(
+            [grupo(a["objeto"], g, paso=2.2) for g in grupos],
+            ancho_cm=15.0, alto_cm=10.0, hueco=1.6, maxima=0.7,
+        )
         cosa = nombre_objeto(a["objeto"], cuantas)
-        solo = "sola" if genero(a["objeto"]) == "f" else "solo"
-        enunciado = (f"Rodea donde hay {cuantas} {cosa}." if cuantas != 1
-                     else f"Rodea donde hay {cuantas} {cosa} {solo}.")
+        femenino = genero(a["objeto"]) == "f"
+        if cuantas == 0:
+            ninguna = f"{'ninguna' if femenino else 'ningún'} {nombre_objeto(a['objeto'], 1)}"
+            enunciado, respuesta = f"Rodea donde no hay {ninguna}.", ninguna
+        elif cuantas == 1:
+            enunciado = f"Rodea donde hay 1 {cosa} {'sola' if femenino else 'solo'}."
+            respuesta = f"1 {cosa}"
+        else:
+            enunciado, respuesta = f"Rodea donde hay {cuantas} {cosa}.", f"{cuantas} {cosa}"
         posicion = grupos.index(cuantas) + 1
-        clave = f"{ORDINALES[posicion]} ({cuantas} {cosa})"
         return PLANTILLA_RODEA.substitute(
             enunciado=enunciado,
             instruccion="Un adulto lee la pregunta. Rodea con el lápiz todo el grupo.",
             escala=escala,
-            grupos="\n".join(piezas),
-        ), ("rodea", clave)
+            grupos=dibujo,
+        ), ("rodea", f"{ORDINALES[posicion]} ({respuesta})")
 
     if tipo == "cuenta":
         campos(num, a, ["objeto", "opciones"])
@@ -510,13 +730,17 @@ def render_actividad(d):
             raise ErrorDeContenido(f"día {num}: 'cuenta' dibuja como mucho {MAX_GRUPO} cosas")
         plural = nombre_objeto(a["objeto"], 2)
         cuantos = "Cuántas" if genero(a["objeto"]) == "f" else "Cuántos"
+        # La bandeja (el marco del grupo) se dibuja siempre: el día del 0,
+        # es lo único que hay.
+        dibujo, ancho, alto = grupo(a["objeto"], cuantas)
         return PLANTILLA_CUENTA.substitute(
             enunciado=f"¿{cuantos} {plural} hay?",
             instruccion=("Un adulto lee la pregunta. Cuenta señalando cada una con "
                          "el dedo, y rodea el número." if genero(a["objeto"]) == "f" else
                          "Un adulto lee la pregunta. Cuenta señalando cada uno con "
                          "el dedo, y rodea el número."),
-            grupo=grupo(a["objeto"], cuantas),
+            escala=round(min(1.0, 13.0 / ancho, 8.0 / alto), 3),
+            grupo=dibujo,
             opciones=r"\hspace{14mm}".join(str(o) for o in opciones),
         ), ("cuenta", str(cuantas))
 
@@ -538,7 +762,9 @@ def render_actividad(d):
         # El orden lo decide el número del día: el mismo JSON da siempre
         # la misma cuadrícula.
         rng = random.Random(num)
-        relleno = [str(o) for o in a["otros"]] + FORMAS_BUSCA
+        # El círculo se confunde con el 0: el día que se busca el 0, fuera.
+        formas_busca = FORMAS_BUSCA[1:] if buscar == 0 else FORMAS_BUSCA
+        relleno = [str(o) for o in a["otros"]] + formas_busca
         cuadricula = [str(buscar)] * veces + [
             relleno[i % len(relleno)] for i in range(casillas - veces)
         ]
@@ -551,10 +777,73 @@ def render_actividad(d):
             columnas=columnas, filas=filas,
         ), ("busca", f"el {buscar} sale {veces} veces")
 
+    if tipo == "une":
+        campos(num, a, ["objeto", "grupos"])
+        comprobar_objeto(num, a["objeto"])
+        grupos = a["grupos"]
+        for g in grupos:
+            comprobar_numero(num, g, semana, "uno de los grupos")
+        if not 2 <= len(grupos) <= 4 or len(set(grupos)) != len(grupos) or max(grupos) > MAX_GRUPO:
+            raise ErrorDeContenido(
+                f"día {num}: 'une' lleva de 2 a 4 grupos, todos distintos y de "
+                f"hasta {MAX_GRUPO} cosas ({grupos})"
+            )
+        if n not in grupos:
+            raise ErrorDeContenido(f"día {num}: en 'une', uno de los grupos es el número del día ({n})")
+        # Los números, desordenados: ninguno enfrente de su grupo. Los
+        # baraja el número del día, así que siempre salen igual.
+        rng, orden = random.Random(num), list(grupos)
+        while any(o == g for o, g in zip(orden, grupos)):
+            rng.shuffle(orden)
+        return PLANTILLA_UNE.substitute(
+            enunciado="Une cada grupo con su número.",
+            instruccion=("Un adulto lee la pregunta. Cuenta cada grupo, y traza una "
+                         "línea desde su punto hasta el punto de su número."),
+            dibujo=dibujo_une(a["objeto"], grupos, orden),
+        ), ("une", "de arriba abajo: " + ", ".join(str(g) for g in grupos))
+
+    if tipo == "serie":
+        campos(num, a, ["serie"])
+        serie = a["serie"]
+        huecos = [i for i, v in enumerate(serie) if v is None]
+        dados = [(i, v) for i, v in enumerate(serie) if v is not None]
+        if not 4 <= len(serie) <= 7 or not 1 <= len(huecos) <= 2 or len(dados) < 2:
+            raise ErrorDeContenido(
+                f"día {num}: 'serie' lleva de 4 a 7 números, y faltan 1 o 2 ({serie})"
+            )
+        # De uno en uno, hacia arriba o hacia atrás: lo dicen los que se ven.
+        (i0, v0), (i1, v1) = dados[0], dados[1]
+        paso = (v1 - v0) / (i1 - i0)
+        completa = [v0 + paso * (i - i0) for i in range(len(serie))]
+        if paso not in (1, -1) or any(serie[i] != completa[i] for i, _ in dados):
+            raise ErrorDeContenido(
+                f"día {num}: 'serie' va de uno en uno, hacia arriba o hacia atrás ({serie})"
+            )
+        completa = [int(v) for v in completa]
+        for v in completa:
+            if v < 0:
+                raise ErrorDeContenido(f"día {num}: 'serie' no baja del 0 ({serie})")
+            comprobar_numero(num, v, semana, "un número de la serie")
+        if n not in completa:
+            raise ErrorDeContenido(f"día {num}: la serie tiene que pasar por el número del día ({n})")
+        faltan = [completa[i] for i in huecos]
+        uno = len(faltan) == 1
+        hacia = "" if paso == 1 else ", hacia atrás"
+        return PLANTILLA_SERIE.substitute(
+            enunciado="¿Qué número falta?" if uno else "¿Qué números faltan?",
+            instruccion=(f"Un adulto lee la pregunta. Di los números del tren uno a uno{hacia}, "
+                         + ("y escribe en el vagón vacío el que falta." if uno
+                            else "y escribe en los vagones vacíos los que faltan.")),
+            tren=dibujo_serie(serie),
+        ), ("completa", ("falta el " if uno else "faltan el ")
+            + " y el ".join(str(v) for v in faltan))
+
     if tipo == "dibuja":
         campos(num, a, ["prompt"])
         cuantas = a.get("cuantas", n)
         comprobar_numero(num, cuantas, semana, "lo que se dibuja")
+        if cuantas < 1:
+            raise ErrorDeContenido(f"día {num}: 'dibuja' dibuja al menos una cosa")
         if not re.search(rf"\b({cuantas}|{'|'.join(formas(cuantas))})\b", a["prompt"].lower()):
             raise ErrorDeContenido(
                 f"día {num}: el enunciado de 'dibuja' tiene que decir cuántas cosas se "
@@ -610,6 +899,11 @@ def validar_dias(dias):
         n = d["numero"]
         comprobar_numero(num, n, semana, "el número del día")
         comprobar_objeto(num, d["objeto"])
+        if n == 0 and d["objeto"] not in CONTENEDORES:
+            raise ErrorDeContenido(
+                f"día {num}: el día del 0, «El número de hoy» dibuja un recipiente "
+                f"vacío (uno de {sorted(CONTENEDORES)}), no «{d['objeto']}»"
+            )
         if n > 10:
             raise ErrorDeContenido(f"día {num}: el número del día va del 0 al 10 en otoño")
         if not any(re.search(rf"\b{re.escape(f)}\b", d["frase"].lower()) for f in formas(n)):
@@ -655,11 +949,17 @@ def generar(dias):
         trimestre = trimestre_de(semana)
         n = d["numero"]
         actividad, clave = render_actividad(d)
+        # Las cosas del número de hoy, tantas como el número -- el 0 es el
+        # recipiente vacío --, en el sitio que deja el número (el 10 ocupa
+        # más que una cifra: ver \numeroDeHoy).
+        ancho = 7.2 if n < 10 else 6.4
+        cosas = (fila(d["objeto"], 1, escala=escala_para(1, ancho, 2.4, 0.85), paso=2.4) if n == 0
+                 else fila(d["objeto"], n, escala=escala_para(n, ancho, 2.4, 0.85), paso=2.4))
         piezas.append(PLANTILLA_DIA.substitute(
             dia=num, semana=semana, trimestre=trimestre,
             tema=escapar(d["tema"]),
             numero=n, nombre=NOMBRES[n],
-            cosas=fila(d["objeto"], n, escala=escala_para(n, 7.2, 2.4, 0.85), paso=2.4),
+            cosas=cosas,
             frase=escapar(d["frase"]),
             actividad=actividad,
         ))
