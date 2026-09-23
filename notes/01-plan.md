@@ -116,10 +116,29 @@ semana (`DESDE_SEMANA`).
 
 ### Primavera (semanas 27–39, días 131–195): sumar y restar hasta 10, hasta el 50
 
-Sumas hasta 10, ya con los signos + e =; partir un número en dos (5 = 2
-+ 3) y las parejas que suman 10; quitar: la resta, hasta 10; problemas
-que lee el adulto; contar de 2 en 2, de 5 en 5 y de 10 en 10; las
-decenas hasta el 50.
+Ocho semanas sin números nuevos, para las cuentas hasta 10 — ya con sus
+signos, y cada día el resultado es el número del día —, y después las
+decenas: el 30, el 40 y el 50 (de 10 en 10), y cada semana una decena
+entera, que llega el lunes (una semana con más números nuevos que días
+de `LLEGADA` los recibe todos el lunes). Del 21 en adelante, «El número
+de hoy» ya no dibuja las cosas: dibuja sus decenas y sus unidades (una
+barra de diez cubitos por decena), con la tabla D | U.
+
+| Semana | Tema | Qué llega |
+|---|---|---|
+| 27 | Toby se pierde en el parque | *Suma*: 3 + 2 = [ ] |
+| 28 | A Dani se le cae un diente | *Parte en dos*: 5 son 2 y [ ] |
+| 29 | El Día del Libro | *Hasta el 10*: 7 + [ ] = 10 |
+| 30 | Empieza la Semana Santa | *Resta*: 5 − 2 = [ ] (las torrijas de la abuela) |
+| 31 | El huerto del colegio | *Problema*: los lee el adulto |
+| 32 | Lucía aprende a montar en bici | de 2 en 2 (las ruedas) |
+| 33 | Lucía se apunta a natación | de 5 en 5 (los dedos de las manos) |
+| 34 | El día de la madre | repaso: sumar, restar, problemas |
+| 35 | Dani ya reconoce casi todas las letras | 30, 40 y 50: de 10 en 10 |
+| 36 | Se acerca el fin de curso | del 21 al 29; *Decenas y unidades* |
+| 37 | La oruga se convierte en mariposa | del 31 al 39 |
+| 38 | La feria del libro de fin de curso | del 41 al 49 |
+| 39 | Último día de colegio | repaso, y la medalla de primavera |
 
 ### Verano (semanas 40–52, días 196–260): hasta el 100, y los números de verdad
 
@@ -127,9 +146,9 @@ Las decenas hasta el 100 y la tabla del 100; sumas y restas hasta 20; el
 dinero (euros), la hora (en punto, y media), medir (más largo, más
 corto, con palmos), en el pueblo de la abuela Rosa; repaso y diploma.
 
-Lo de primavera en adelante es el plan: cada fase lo concreta semana a
-semana (y lo lleva a `ESCALERA` y a las actividades nuevas) antes de
-escribir sus días.
+Lo del verano es el plan: su fase lo concreta semana a semana (y lo
+lleva a `ESCALERA` y a las actividades nuevas) antes de escribir sus
+días.
 
 ## Las actividades (otoño)
 
@@ -183,6 +202,24 @@ Los días con dos números nuevos, el lunes y el miércoles son *Traza*
 jueves usan el último número que ha llegado, y el viernes, *Repasa*,
 cualquiera de los dos.
 
+## Las actividades de la primavera
+
+Las cuentas llevan ya sus signos (el menos, `−`, es el de verdad, el de
+Andika), llegan como mucho a 10 (`MAX_CUENTA`), y su resultado es
+siempre el número del día. *Completa* y *La recta* pueden ir de 2 en 2
+(desde la semana 32), de 5 en 5 (33) y de 10 en 10 (35) — `PASOS_DESDE`
+—, y *Cuenta* puede contar las ruedas de las bicis de 2 en 2 o los dedos
+de las manos de 5 en 5 (`CONTAR_DE`).
+
+| Actividad | Desde | Qué se hace | Qué comprueba el script |
+|---|---|---|---|
+| **Suma** | 27 | Dos grupos con un + en medio: "3 + 2 = [ ]" | que el resultado sea el número del día, y como mucho 10 |
+| **Parte en dos** | 28 | Una fila de cosas, partida por una raya: "5 son 2 y [ ]" | que las dos partes tengan una cosa o más |
+| **Hasta el 10** | 29 | Un marco de diez grande, con puntos: se dibujan los que faltan, "7 + [ ] = 10" | que lo que falta sea el número del día |
+| **Resta** | 30 | Se tachan las que se quitan: "5 − 2 = [ ]" | que no se quite más de lo que hay |
+| **Problema** | 31 | Un problema corto, que lee el adulto; un recuadro para dibujarlo y "[ ] + [ ] = [ ]" | que el problema diga sus dos números, y que la cuenta dé el número del día |
+| **Decenas y unidades** | 36 | Barras de diez cubitos y cubitos sueltos: "[ ] decenas y [ ] unidades son [ ]" | que sea el número del día, del 11 en adelante |
+
 ## Cómo se comprueba
 
 - `make generate` escribe `content/generated-days.tex` y
@@ -192,8 +229,9 @@ cualquiera de los dos.
 - `tools/checklog.py` lee el log de LuaLaTeX (errores, cajas overfull) y
   `tools/check_pages.py` comprueba en el `.aux` que cada día ocupa
   exactamente una página — los dos, de *Aprendo a leer* —, y además que
-  el día 1 cae en la página 4: "Cómo usar este cuaderno" crece con cada
-  actividad nueva, y tiene que seguir cabiendo en una página.
+  el día 1 cae en la página 5: "Las actividades" (la página que las
+  explica, una a una, para el adulto) crece con cada estación, y tiene
+  que seguir cabiendo en una página.
 - El CI (`.github/workflows/build.yml`) hace las dos cosas en cada push y
   cada PR, en color y en blanco y negro; Pages publica los dos PDF en
   cada push a `main`.
@@ -212,5 +250,8 @@ fusionarse, y `DIAS_ESCRITOS` dice cuántos días hay ya.
    comparar, antes y después, la recta, ordenar y las primeras sumas,
    con seis actividades nuevas y 21 dibujos más (copos, un muñeco de
    nieve, palomas de papel, ovillos, semillas...). Hecho.
-4. **La primavera** (días 131–195).
+4. **La primavera** (días 131–195): las cuentas con sus signos hasta
+   10, contar de 2 en 2, de 5 en 5 y de 10 en 10, y las decenas hasta
+   el 50, con seis actividades nuevas y 18 dibujos más (el diente de
+   Dani, las torrijas de la abuela, la bici, la mano...). Hecho.
 5. **El verano** (días 196–260), el diploma, y el cuaderno completo.

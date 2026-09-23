@@ -186,6 +186,25 @@
 \newtcolorbox{cajaJunta}[1][]{cajadia, #1,
   colback=colorDibujaClaro, colframe=colorDibuja, colbacktitle=colorDibuja,
   title=\lblJunta}
+% Las de la primavera.
+\newtcolorbox{cajaSuma}[1][]{cajadia, #1,
+  colback=colorDibujaClaro, colframe=colorDibuja, colbacktitle=colorDibuja,
+  title=\lblSuma}
+\newtcolorbox{cajaResta}[1][]{cajadia, #1,
+  colback=colorCompletaClaro, colframe=colorCompleta, colbacktitle=colorCompleta,
+  title=\lblResta}
+\newtcolorbox{cajaParte}[1][]{cajadia, #1,
+  colback=colorRelacionaClaro, colframe=colorRelaciona, colbacktitle=colorRelaciona,
+  title=\lblParte}
+\newtcolorbox{cajaDiez}[1][]{cajadia, #1,
+  colback=colorRespondeClaro, colframe=colorResponde, colbacktitle=colorResponde,
+  title=\lblDiez}
+\newtcolorbox{cajaProblema}[1][]{cajadia, #1,
+  colback=colorLecturaClaro, colframe=colorLectura, colbacktitle=colorLectura,
+  title=\lblProblema}
+\newtcolorbox{cajaBloques}[1][]{cajadia, #1,
+  colback=colorRespondeClaro, colframe=colorResponde, colbacktitle=colorResponde,
+  title=\lblBloques}
 \newtcolorbox{cajaDibuja}[1][]{cajadia, #1,
   colback=colorDibujaClaro, colframe=colorDibuja, colbacktitle=colorDibuja,
   title=\lblDibuja}
@@ -206,9 +225,10 @@
     \node[anchor=base west, inner sep=0pt, text=colorGris!55,
       font=\fontsize{44}{44}\selectfont\bfseries] at (2mm,0) {#1};
   \end{tikzpicture}\par\vspace{12mm}}
-% El hueco en el que se escribe la respuesta: "10 y 3 son [ ]".
-\newcommand{\huecoRespuesta}{\raisebox{-5mm}{\tikz\draw[line width=1.1pt,
-  rounded corners=2mm, fill=white] (0,0) rectangle (26mm,18mm);}}
+% El hueco en el que se escribe la respuesta: "10 y 3 son [ ]" (#1, el
+% ancho: más estrecho para una cifra sola).
+\newcommand{\huecoRespuesta}[1][26mm]{\raisebox{-5mm}{\tikz\draw[line width=1.1pt,
+  rounded corners=2mm, fill=white] (0,0) rectangle (#1,18mm);}}
 % Lo que no cabe en su sitio, encogido hasta que quepa (#1, el ancho):
 % los nombres largos, como "diecisiete", en la caja de arriba.
 \newsavebox{\cajaAjustada}
@@ -286,13 +306,27 @@
       \fi
     }
   \end{tikzpicture}}
-% Del 11 al 20, dos marcos, uno encima de otro: el primero, lleno.
+% Del 11 al 20, dos marcos, uno encima de otro: el primero, lleno; del
+% 21 en adelante, ya no marcos, sino la tabla de las decenas (D) y las
+% unidades (U).
 \newcommand{\marcosDiez}[1]{%
-  \ifnum#1>10\relax
+  \ifnum#1>20\relax
+    \tablaDU{#1}%
+  \else\ifnum#1>10\relax
     \marcoDiez{10}\par\vspace{1.5mm}\marcoDiez{\numexpr#1-10\relax}%
   \else
     \marcoDiez{#1}%
-  \fi}
+  \fi\fi}
+% La tabla de decenas y unidades: (#1 - 5)/10, redondeado, es la cifra de
+% las decenas (\numexpr redondea, no trunca).
+\newcommand{\tablaDU}[1]{%
+  \begin{tikzpicture}[x=12mm, y=10mm, line width=0.9pt]
+    \draw (0,0) rectangle (1,1) (1,0) rectangle (2,1) (0,1) rectangle (1,1.55) (1,1) rectangle (2,1.55);
+    \node[font=\bfseries] at (0.5,1.28) {D};
+    \node[font=\bfseries] at (1.5,1.28) {U};
+    \node[font=\LARGE\bfseries] at (0.5,0.5) {\the\numexpr(#1-5)/10\relax};
+    \node[font=\LARGE\bfseries] at (1.5,0.5) {\the\numexpr#1-10*((#1-5)/10)\relax};
+  \end{tikzpicture}}
 
 % La caja de arriba: el número grande, su nombre, el marco de diez y las
 % cosas que se cuentan ese día (#3: un tikzpicture que compone
