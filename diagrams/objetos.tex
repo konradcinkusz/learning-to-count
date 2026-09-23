@@ -336,3 +336,95 @@
   \draw (-0.2,0.5) .. controls (-0.3,0) .. (-0.18,-0.62);
   \draw (0.2,0.5) .. controls (0.3,0) .. (0.18,-0.62);
   \end{scope}}
+
+% --- La primavera (semanas 27-39) ----------------------------------------
+
+% Del kit de «First Words», metidos en la caja.
+\newcommand{\objRueda}{%
+  \begin{scope}[scale=0.7] \ruedaFW \end{scope}}
+\newcommand{\objBici}{%
+  \begin{scope}[shift={(0,-0.48)}, scale=0.29] \biciFW \end{scope}}
+\newcommand{\objOruga}{%
+  \begin{scope}[shift={(0.4,-0.35)}, scale=0.58] \orugaFW \end{scope}}
+\newcommand{\objGafas}{%
+  \begin{scope}[shift={(0,0.22)}, scale=1.15] \gafasSueltasFW \end{scope}}
+\newcommand{\objArbusto}{%
+  \begin{scope}[shift={(0,-0.5)}] \arbustoFW{0.9} \end{scope}
+  \draw (-1,-0.5) -- (1,-0.5);}
+\newcommand{\objTarta}{%
+  \begin{scope}[shift={(0,-0.9)}, scale=0.44] \tartaFW{3} \end{scope}}
+\newcommand{\objRosa}{%
+  \begin{scope}[shift={(0,-0.1)}, scale=1.5] \rosaFW \end{scope}
+  \draw (0,-0.62) -- (0,-0.98);}
+\newcommand{\objAbeja}{%
+  \begin{scope}[scale=0.6] \abejaFW \end{scope}}
+\newcommand{\objPollito}{%
+  \begin{scope}[scale=0.6] \pollitoFW \end{scope}}
+
+% Un diente de leche, con sus dos raíces.
+\newcommand{\objDiente}{%
+  \filldraw[fill=white] (-0.62,0.35) .. controls (-0.75,0.95) and (-0.25,1.0) .. (0,0.8)
+    .. controls (0.25,1.0) and (0.75,0.95) .. (0.62,0.35)
+    .. controls (0.55,-0.1) and (0.5,-0.55) .. (0.35,-0.9) .. controls (0.25,-0.98) and (0.15,-0.9) .. (0.12,-0.7)
+    .. controls (0.08,-0.4) and (-0.08,-0.4) .. (-0.12,-0.7) .. controls (-0.15,-0.9) and (-0.25,-0.98) .. (-0.35,-0.9)
+    .. controls (-0.5,-0.55) and (-0.55,-0.1) .. (-0.62,0.35) -- cycle;
+  \draw (-0.32,0.5) .. controls (-0.2,0.62) .. (-0.05,0.6);}
+
+% Una moneda, con su borde y el símbolo del euro.
+\newcommand{\objMoneda}{%
+  \filldraw[fill=white] (0,0) circle (0.85);
+  \draw (0,0) circle (0.7);
+  \node[font=\bfseries\Large] at (0,0) {\texteuro};}
+
+% Una mano abierta, con sus cinco dedos: los dedos antes que la palma,
+% que les tapa la base.
+\newcommand{\objMano}{%
+  \foreach \x/\alto in {-0.39/0.62, -0.13/0.8, 0.13/0.76, 0.38/0.58}
+    {\filldraw[fill=white, rounded corners=1.1mm] (\x-0.12,-0.2) rectangle (\x+0.12,\alto+0.2);}
+  \filldraw[fill=white, rounded corners=1.1mm, rotate around={-50:(0.45,-0.35)}] (0.33,-0.35) rectangle (0.57,0.3);
+  \filldraw[fill=white, rounded corners=2.5mm] (-0.53,-0.98) rectangle (0.52,0.08);}
+
+% Una torrija: la rebanada, con el azúcar por encima.
+\newcommand{\objTorrija}{%
+  \filldraw[fill=white, rounded corners=3mm] (-0.9,-0.6) -- (-0.9,0.35)
+    .. controls (-0.9,0.85) and (0.9,0.85) .. (0.9,0.35) -- (0.9,-0.6) -- cycle;
+  \draw[rounded corners=2mm] (-0.72,-0.44) -- (-0.72,0.3) .. controls (-0.72,0.66) and (0.72,0.66) .. (0.72,0.3) -- (0.72,-0.44) -- cycle;
+  \foreach \x/\y in {-0.4/0.2, 0/0.35, 0.35/0.1, -0.2/-0.15, 0.25/-0.25, -0.45/-0.3}
+    {\fill (\x,\y) circle (0.035);}}
+
+% Una zanahoria, con sus hojas.
+\newcommand{\objZanahoria}{%
+  \begin{scope}[rotate=-30]
+  \foreach \a in {-25,0,25} {\draw (0,0.55) -- ++(90+\a:0.45);}
+  \filldraw[fill=white] (-0.3,0.55) .. controls (-0.3,0) and (-0.08,-0.7) .. (0,-1.0)
+    .. controls (0.08,-0.7) and (0.3,0) .. (0.3,0.55) -- cycle;
+  \draw (-0.22,0.2) -- (-0.05,0.2); \draw (0.05,-0.15) -- (0.19,-0.15); \draw (-0.14,-0.45) -- (-0.02,-0.45);
+  \end{scope}}
+
+% Un tomate, con su estrella de hojas arriba.
+\newcommand{\objTomate}{%
+  \filldraw[fill=white] (0,-0.15) ellipse [x radius=0.92, y radius=0.75];
+  \filldraw[fill=white, line join=round] (0,0.62) -- (-0.45,0.72) -- (-0.14,0.5) -- (-0.3,0.3)
+    -- (0,0.44) -- (0.3,0.3) -- (0.14,0.5) -- (0.45,0.72) -- cycle;
+  \draw (0,0.62) -- (0.04,0.85);}
+
+% Una regadera, con su asa y la alcachofa.
+\newcommand{\objRegadera}{%
+  \draw[line width=1.6pt] (-0.62,0.3) .. controls (-0.7,0.95) and (0.2,0.95) .. (0.12,0.3);
+  \filldraw[fill=white] (0.2,-0.05) -- (0.9,0.55) -- (0.98,0.45) -- (0.3,-0.25) -- cycle;
+  \filldraw[fill=white] (0.85,0.62) -- (1.0,0.72) -- (1.02,0.36) -- (0.95,0.38) -- cycle;
+  \filldraw[fill=white, rounded corners=1.5mm] (-0.8,-0.85) rectangle (0.35,0.35);}
+
+% Una tarjeta de las letras, con la A.
+\newcommand{\objTarjeta}{%
+  \filldraw[fill=white, rounded corners=1.5mm] (-0.7,-0.92) rectangle (0.7,0.92);
+  \node[font=\bfseries\huge] at (0,0) {A};}
+
+% Un pan: la barra, con sus cortes.
+\newcommand{\objPan}{%
+  \begin{scope}[rotate=20]
+  \filldraw[fill=white] (-0.95,0) .. controls (-0.95,0.45) and (-0.6,0.5) .. (0,0.5)
+    .. controls (0.6,0.5) and (0.95,0.45) .. (0.95,0) .. controls (0.95,-0.45) and (0.6,-0.5) .. (0,-0.5)
+    .. controls (-0.6,-0.5) and (-0.95,-0.45) .. (-0.95,0) -- cycle;
+  \foreach \x in {-0.5,-0.05,0.4} {\draw (\x-0.12,-0.28) -- (\x+0.2,0.28);}
+  \end{scope}}

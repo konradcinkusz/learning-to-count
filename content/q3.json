@@ -1,0 +1,447 @@
+{
+  "_comentario": "Primavera (trimestre 3, días 131-195): sumar (+), partir un número en dos, las parejas del 10, restar (−) y los problemas, hasta 10; contar de 2 en 2, de 5 en 5 y de 10 en 10; y las decenas hasta el 50, una decena entera cada semana. Ver notes/01-plan.md.",
+  "dias": [
+    {
+      "dia": 131, "semana": 27, "tema": "Toby se pierde en el parque",
+      "numero": 5, "objeto": "arbusto",
+      "frase": "Toby corre por el parque, y desaparece detrás de cinco matorrales.",
+      "actividad": {"tipo": "suma", "objeto": "arbol", "grupos": [3, 2]}
+    },
+    {
+      "dia": 132, "semana": 27, "tema": "Toby se pierde en el parque",
+      "numero": 4, "objeto": "huella",
+      "frase": "Lucía y Dani buscan a Toby, y en el camino ven cuatro huellas.",
+      "actividad": {"tipo": "suma", "objeto": "huella", "grupos": [2, 2]}
+    },
+    {
+      "dia": 133, "semana": 27, "tema": "Toby se pierde en el parque",
+      "numero": 7, "objeto": "nota",
+      "frase": "Lucía silba la canción de Toby siete veces, y se oye un ladrido.",
+      "actividad": {"tipo": "suma", "objeto": "nota", "grupos": [4, 3]}
+    },
+    {
+      "dia": 134, "semana": 27, "tema": "Toby se pierde en el parque",
+      "numero": 8, "objeto": "corazon",
+      "frase": "Papá saca a Toby de entre las rocas, y todos le dan ocho abrazos.",
+      "actividad": {"tipo": "suma", "objeto": "corazon", "grupos": [5, 3]}
+    },
+    {
+      "dia": 135, "semana": 27, "tema": "Toby se pierde en el parque",
+      "numero": 10, "objeto": "estrella",
+      "frase": "Desde ese día, Toby lleva una correa nueva con diez estrellas.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé sumar con los dibujos.", "Sé qué quiere decir el signo +.", "Sé que 5 + 5 = 10."],
+        "prompt": "Dibuja a toda la familia abrazando a Toby."
+      }
+    },
+    {
+      "dia": 136, "semana": 28, "tema": "A Dani se le cae un diente",
+      "numero": 5, "objeto": "manzana",
+      "frase": "Dani se come cinco trozos de manzana, y nota que un diente se mueve.",
+      "actividad": {"tipo": "parte", "objeto": "manzana", "parte": 2}
+    },
+    {
+      "dia": 137, "semana": 28, "tema": "A Dani se le cae un diente",
+      "numero": 6, "objeto": "diente",
+      "frase": "Esa noche se le cae el diente, y Dani se mira los de arriba: le quedan seis.",
+      "actividad": {"tipo": "parte", "objeto": "diente", "parte": 4}
+    },
+    {
+      "dia": 138, "semana": 28, "tema": "A Dani se le cae un diente",
+      "numero": 3, "objeto": "moneda",
+      "frase": "Lucía le cuenta que un ratoncito le trajo tres monedas por sus dientes.",
+      "actividad": {"tipo": "parte", "objeto": "moneda", "parte": 1}
+    },
+    {
+      "dia": 139, "semana": 28, "tema": "A Dani se le cae un diente",
+      "numero": 8, "objeto": "moneda",
+      "frase": "Dani mete su moneda en la hucha, con otras siete: ¡ya tiene ocho!",
+      "actividad": {"tipo": "parte", "objeto": "moneda", "parte": 7}
+    },
+    {
+      "dia": 140, "semana": 28, "tema": "A Dani se le cae un diente",
+      "numero": 20, "objeto": "diente",
+      "frase": "La abuela le cuenta que a ella se le cayeron veinte dientes de leche.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé partir un número en dos.", "Sé que 5 son 2 y 3.", "Sé que 8 son 7 y 1."],
+        "prompt": "Dibuja a Dani con su moneda nueva."
+      }
+    },
+    {
+      "dia": 141, "semana": 29, "tema": "El Día del Libro",
+      "numero": 3, "objeto": "libro",
+      "frase": "Cada niño trae un libro de casa, y en la mesa de Lucía ya hay tres.",
+      "actividad": {"tipo": "diez", "puntos": 7}
+    },
+    {
+      "dia": 142, "semana": 29, "tema": "El Día del Libro",
+      "numero": 6, "objeto": "estrella",
+      "frase": "En la biblioteca, Lucía ve una estantería nueva con seis estrellas pintadas.",
+      "actividad": {"tipo": "diez", "puntos": 4}
+    },
+    {
+      "dia": 143, "semana": 29, "tema": "El Día del Libro",
+      "numero": 2, "objeto": "libro",
+      "frase": "La bibliotecaria le enseña a Lucía dos cuentos fáciles, con dibujos.",
+      "actividad": {"tipo": "diez", "puntos": 8}
+    },
+    {
+      "dia": 144, "semana": 29, "tema": "El Día del Libro",
+      "numero": 5, "objeto": "corazon",
+      "frase": "Lucía envuelve el libro para Dani, y le pega cinco corazones.",
+      "actividad": {"tipo": "diez", "puntos": 5}
+    },
+    {
+      "dia": 145, "semana": 29, "tema": "El Día del Libro",
+      "numero": 1, "objeto": "libro",
+      "frase": "Dani abre el libro con cuidado, y los dos leen juntos una página.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuántos faltan para 10.", "Sé que 7 y 3 son 10.", "Sé las parejas que suman 10."],
+        "prompt": "Dibuja tu libro favorito."
+      }
+    },
+    {
+      "dia": 146, "semana": 30, "tema": "Empieza la Semana Santa",
+      "numero": 7, "objeto": "pan",
+      "frase": "La abuela Rosa trae siete panes del día anterior, para hacer torrijas.",
+      "actividad": {"tipo": "resta", "objeto": "pan", "total": 9, "quita": 2}
+    },
+    {
+      "dia": 147, "semana": 30, "tema": "Empieza la Semana Santa",
+      "numero": 4, "objeto": "torrija",
+      "frase": "Mojan el pan en leche con canela, y la abuela fríe cuatro torrijas.",
+      "actividad": {"tipo": "resta", "objeto": "torrija", "total": 6, "quita": 2}
+    },
+    {
+      "dia": 148, "semana": 30, "tema": "Empieza la Semana Santa",
+      "numero": 6, "objeto": "torrija",
+      "frase": "Toda la cocina huele a canela, y ya hay seis torrijas en el plato.",
+      "actividad": {"tipo": "resta", "objeto": "torrija", "total": 10, "quita": 4}
+    },
+    {
+      "dia": 149, "semana": 30, "tema": "Empieza la Semana Santa",
+      "numero": 3, "objeto": "torrija",
+      "frase": "Dani se come tantas torrijas que en el plato solo quedan tres.",
+      "actividad": {"tipo": "resta", "objeto": "torrija", "total": 8, "quita": 5}
+    },
+    {
+      "dia": 150, "semana": 30, "tema": "Empieza la Semana Santa",
+      "numero": 2, "objeto": "huevo",
+      "frase": "El domingo, Lucía apunta la receta: leche, pan, canela y dos huevos.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé quitar, y contar las que quedan.", "Sé qué quiere decir el signo −.", "Sé que 8 − 5 = 3."],
+        "prompt": "Dibuja la cocina de la abuela, oliendo a canela."
+      }
+    },
+    {
+      "dia": 151, "semana": 31, "tema": "El huerto del colegio",
+      "numero": 7, "objeto": "zanahoria",
+      "frase": "En el huerto nuevo del colegio crecen siete zanahorias.",
+      "actividad": {"tipo": "problema", "texto": "En el huerto hay 9 zanahorias, y Lucía arranca 2. ¿Cuántas quedan en la tierra?", "operacion": [9, "-", 2]}
+    },
+    {
+      "dia": 152, "semana": 31, "tema": "El huerto del colegio",
+      "numero": 5, "objeto": "hoja",
+      "frase": "Lucía trasplanta su planta de judía, y ya tiene cinco hojas.",
+      "actividad": {"tipo": "problema", "texto": "Lucía tiene 3 plantas en su maceta, y Marta le da 2 más. ¿Cuántas tiene ahora?", "operacion": [3, "+", 2]}
+    },
+    {
+      "dia": 153, "semana": 31, "tema": "El huerto del colegio",
+      "numero": 8, "objeto": "regadera",
+      "frase": "Cada mañana, los niños riegan el huerto con ocho regaderas.",
+      "actividad": {"tipo": "resta", "objeto": "regadera", "total": 10, "quita": 2}
+    },
+    {
+      "dia": 154, "semana": 31, "tema": "El huerto del colegio",
+      "numero": 6, "objeto": "tomate",
+      "frase": "Cada niño pone un palito con su nombre, y Dani cuenta seis tomates.",
+      "actividad": {"tipo": "problema", "texto": "En la mata hay 4 tomates rojos y 2 verdes. ¿Cuántos tomates hay?", "operacion": [4, "+", 2]}
+    },
+    {
+      "dia": 155, "semana": 31, "tema": "El huerto del colegio",
+      "numero": 3, "objeto": "tomate",
+      "frase": "El viernes, Lucía se lleva a casa tres tomates del huerto.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé restar con los dibujos.", "Sé escuchar un problema y hacer la cuenta.", "Sé cuándo se suma y cuándo se resta."],
+        "prompt": "Dibuja el huerto del colegio, con sus plantas."
+      }
+    },
+    {
+      "dia": 156, "semana": 32, "tema": "Lucía aprende a montar en bici",
+      "numero": 2, "objeto": "rueda",
+      "frase": "Papá quita los ruedines, y la bici de Lucía se queda con dos ruedas.",
+      "actividad": {"tipo": "serie", "serie": [2, 4, null, 8, 10]}
+    },
+    {
+      "dia": 157, "semana": 32, "tema": "Lucía aprende a montar en bici",
+      "numero": 4, "objeto": "bici",
+      "frase": "En el parque hay cuatro bicis aparcadas, y una es la de Lucía.",
+      "actividad": {"tipo": "recta", "desde": 0, "hasta": 20, "paso": 2, "faltan": [6, 12, 16]}
+    },
+    {
+      "dia": 158, "semana": 32, "tema": "Lucía aprende a montar en bici",
+      "numero": 3, "objeto": "bici",
+      "frase": "Lucía, Sofía y Dani dan una vuelta: tres bicis por el parque.",
+      "actividad": {"tipo": "cuenta", "objeto": "bici", "de": 2, "opciones": [4, 6, 8]}
+    },
+    {
+      "dia": 159, "semana": 32, "tema": "Lucía aprende a montar en bici",
+      "numero": 10, "objeto": "huella",
+      "frase": "Toby corre al lado de la bici, y deja diez huellas en la arena.",
+      "actividad": {"tipo": "serie", "serie": [20, 18, null, 14, null, 10]}
+    },
+    {
+      "dia": 160, "semana": 32, "tema": "Lucía aprende a montar en bici",
+      "numero": 1, "objeto": "bici",
+      "frase": "Papá le regala a Lucía un timbre nuevo para la bici.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé contar de 2 en 2.", "Sé que 2 bicis tienen 4 ruedas.", "Sé sumar hasta 10."],
+        "prompt": "Dibuja a Lucía montando en bici, sin ruedines."
+      }
+    },
+    {
+      "dia": 161, "semana": 33, "tema": "Lucía se apunta a natación",
+      "numero": 5, "objeto": "pez",
+      "frase": "En la pared de la piscina hay cinco peces pintados.",
+      "actividad": {"tipo": "serie", "serie": [5, 10, null, 20]}
+    },
+    {
+      "dia": 162, "semana": 33, "tema": "Lucía se apunta a natación",
+      "numero": 3, "objeto": "mano",
+      "frase": "En la clase de natación, tres niños levantan la mano.",
+      "actividad": {"tipo": "cuenta", "objeto": "mano", "de": 5, "opciones": [10, 15, 20]}
+    },
+    {
+      "dia": 163, "semana": 33, "tema": "Lucía se apunta a natación",
+      "numero": 15, "objeto": "estrella",
+      "frase": "Javier, el profesor, pone quince estrellas en el tablón de la piscina.",
+      "actividad": {"tipo": "recta", "desde": 0, "hasta": 20, "paso": 5, "faltan": [5, 15]}
+    },
+    {
+      "dia": 164, "semana": 33, "tema": "Lucía se apunta a natación",
+      "numero": 4, "objeto": "mano",
+      "frase": "Lucía y Sofía chapotean en el agua con sus cuatro manos.",
+      "actividad": {"tipo": "cuenta", "objeto": "mano", "de": 5, "opciones": [10, 20, 15]}
+    },
+    {
+      "dia": 165, "semana": 33, "tema": "Lucía se apunta a natación",
+      "numero": 1, "objeto": "estrella",
+      "frase": "Lucía ya nada sola, y Javier le regala una pegatina de estrella.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé contar de 5 en 5.", "Sé que dos manos tienen 10 dedos.", "Sé contar hasta 20, de 5 en 5."],
+        "prompt": "Dibuja a Lucía nadando en la piscina."
+      }
+    },
+    {
+      "dia": 166, "semana": 34, "tema": "El día de la madre",
+      "numero": 4, "objeto": "corazon",
+      "frase": "Lucía y Dani le preparan a Mamá un regalo con cuatro corazones.",
+      "actividad": {"tipo": "suma", "objeto": "corazon", "grupos": [3, 1]}
+    },
+    {
+      "dia": 167, "semana": 34, "tema": "El día de la madre",
+      "numero": 5, "objeto": "flor",
+      "frase": "Papá les ayuda a comprar cinco flores para Mamá.",
+      "actividad": {"tipo": "resta", "objeto": "flor", "total": 7, "quita": 2}
+    },
+    {
+      "dia": 168, "semana": 34, "tema": "El día de la madre",
+      "numero": 9, "objeto": "galleta",
+      "frase": "El domingo, Mamá desayuna en la cama con nueve galletas.",
+      "actividad": {"tipo": "problema", "texto": "Papá pone 6 galletas en la bandeja, y Dani pone 3 más. ¿Cuántas galletas hay?", "operacion": [6, "+", 3]}
+    },
+    {
+      "dia": 169, "semana": 34, "tema": "El día de la madre",
+      "numero": 8, "objeto": "corazon",
+      "frase": "Mamá dice que es el regalo más bonito, y les da ocho besos.",
+      "actividad": {"tipo": "parte", "objeto": "corazon", "parte": 3}
+    },
+    {
+      "dia": 170, "semana": 34, "tema": "El día de la madre",
+      "numero": 6, "objeto": "plato",
+      "frase": "Por la tarde, comen en el jardín de la abuela: seis platos en la mesa.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé sumar hasta 10.", "Sé restar hasta 10.", "Sé hacer un problema."],
+        "prompt": "Dibuja un regalo para alguien a quien quieres mucho."
+      }
+    },
+    {
+      "dia": 171, "semana": 35, "tema": "Dani ya reconoce casi todas las letras",
+      "numero": 30, "objeto": "tarjeta",
+      "frase": "Dani juega con Lucía a las letras, y ya acierta treinta tarjetas.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 172, "semana": 35, "tema": "Dani ya reconoce casi todas las letras",
+      "numero": 40, "objeto": "tarjeta",
+      "frase": "Lucía le enseña cuarenta tarjetas, una detrás de otra.",
+      "actividad": {"tipo": "serie", "serie": [10, 20, null, 40, 50]}
+    },
+    {
+      "dia": 173, "semana": 35, "tema": "Dani ya reconoce casi todas las letras",
+      "numero": 50, "objeto": "libro",
+      "frase": "Dani junta las letras de un cuento de cincuenta páginas.",
+      "actividad": {"tipo": "recta", "desde": 0, "hasta": 50, "paso": 10, "faltan": [20, 40]}
+    },
+    {
+      "dia": 174, "semana": 35, "tema": "Dani ya reconoce casi todas las letras",
+      "numero": 30, "objeto": "corazon",
+      "frase": "Papá le dice a Dani que será un gran lector, y le da treinta besos.",
+      "actividad": {"tipo": "compara", "numeros": [30, 50, 40], "que": "menos"}
+    },
+    {
+      "dia": 175, "semana": 35, "tema": "Dani ya reconoce casi todas las letras",
+      "numero": 40, "objeto": "libro",
+      "frase": "Lucía piensa que pronto leerán juntos: ¡cuarenta cuentos!",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé contar de 10 en 10, hasta el 50.", "Sé que 30 son 3 decenas.", "Sé escribir el 30, el 40 y el 50."],
+        "prompt": "Dibuja a Dani leyendo su primer cuento."
+      }
+    },
+    {
+      "dia": 176, "semana": 36, "tema": "Se acerca el fin de curso",
+      "numero": 29, "objeto": "estrella",
+      "frase": "Marta anuncia la fiesta de fin de curso: faltan veintinueve días.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 177, "semana": 36, "tema": "Se acerca el fin de curso",
+      "numero": 23, "objeto": "nota",
+      "frase": "Sofía y Lucía ensayan un baile con veintitrés pasos.",
+      "actividad": {"tipo": "bloques"}
+    },
+    {
+      "dia": 178, "semana": 36, "tema": "Se acerca el fin de curso",
+      "numero": 21, "objeto": "estrella",
+      "frase": "Dani abrirá la fiesta, delante de veintiún compañeros.",
+      "actividad": {"tipo": "vecinos", "numeros": [21, 28]}
+    },
+    {
+      "dia": 179, "semana": 36, "tema": "Se acerca el fin de curso",
+      "numero": 27, "objeto": "tarta",
+      "frase": "Mamá hará su tarta de chocolate para veintisiete niños.",
+      "actividad": {"tipo": "serie", "serie": [24, 25, null, 27, null]}
+    },
+    {
+      "dia": 180, "semana": 36, "tema": "Se acerca el fin de curso",
+      "numero": 22, "objeto": "nota",
+      "frase": "Ya solo falta una semana, y Lucía ha ensayado veintidós veces.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé los números del 21 al 29.", "Sé que 23 son 2 decenas y 3 unidades.", "Sé contar hasta el 30."],
+        "prompt": "Dibuja la fiesta de fin de curso."
+      }
+    },
+    {
+      "dia": 181, "semana": 37, "tema": "La oruga se convierte en mariposa",
+      "numero": 34, "objeto": "oruga",
+      "frase": "En clase cuidan una oruga, y ya le han cambiado las hojas treinta y cuatro veces.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 182, "semana": 37, "tema": "La oruga se convierte en mariposa",
+      "numero": 31, "objeto": "oruga",
+      "frase": "Lucía mira el bote de la oruga treinta y una veces.",
+      "actividad": {"tipo": "bloques"}
+    },
+    {
+      "dia": 183, "semana": 37, "tema": "La oruga se convierte en mariposa",
+      "numero": 36, "objeto": "mariposa",
+      "frase": "Marta cuenta que hay mariposas que viven treinta y seis días.",
+      "actividad": {"tipo": "compara", "numeros": [36, 32, 39], "que": "mas"}
+    },
+    {
+      "dia": 184, "semana": 37, "tema": "La oruga se convierte en mariposa",
+      "numero": 38, "objeto": "mariposa",
+      "frase": "Sale una mariposa naranja y negra, y Lucía le cuenta treinta y ocho manchas.",
+      "actividad": {"tipo": "ordena", "numeros": [38, 31, 35, 33]}
+    },
+    {
+      "dia": 185, "semana": 37, "tema": "La oruga se convierte en mariposa",
+      "numero": 39, "objeto": "mariposa",
+      "frase": "La mariposa se va volando, y Lucía cuenta hasta treinta y nueve.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé los números del 31 al 39.", "Sé cuántas decenas tiene un número.", "Sé ordenar números hasta el 40."],
+        "prompt": "Dibuja la oruga, y la mariposa en la que se convierte."
+      }
+    },
+    {
+      "dia": 186, "semana": 38, "tema": "La feria del libro de fin de curso",
+      "numero": 45, "objeto": "libro",
+      "frase": "En la feria del libro hay cuarenta y cinco cuentos en la mesa.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 187, "semana": 38, "tema": "La feria del libro de fin de curso",
+      "numero": 42, "objeto": "libro",
+      "frase": "Lucía ayuda a Dani a elegir un cuento de cuarenta y dos páginas.",
+      "actividad": {"tipo": "bloques"}
+    },
+    {
+      "dia": 188, "semana": 38, "tema": "La feria del libro de fin de curso",
+      "numero": 48, "objeto": "libro",
+      "frase": "Lucía calcula que tardaría cuarenta y ocho años en leerlos todos.",
+      "actividad": {"tipo": "vecinos", "numeros": [48, 41, 45]}
+    },
+    {
+      "dia": 189, "semana": 38, "tema": "La feria del libro de fin de curso",
+      "numero": 44, "objeto": "libro",
+      "frase": "Cada compañero cuenta su cuento: en total, cuarenta y cuatro minutos.",
+      "actividad": {"tipo": "recta", "desde": 40, "hasta": 50, "faltan": [43, 46, 49]}
+    },
+    {
+      "dia": 190, "semana": 38, "tema": "La feria del libro de fin de curso",
+      "numero": 49, "objeto": "libro",
+      "frase": "Esa noche, Lucía le lee a Dani cuarenta y nueve páginas.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé los números del 41 al 49.", "Sé que 45 son 4 decenas y 5 unidades.", "Sé contar hasta el 50."],
+        "prompt": "Dibuja tu cuento favorito, y a ti leyéndolo."
+      }
+    },
+    {
+      "dia": 191, "semana": 39, "tema": "Último día de colegio",
+      "numero": 10, "objeto": "globo",
+      "frase": "Hoy es el último día de colegio, y en la clase hay diez globos.",
+      "actividad": {"tipo": "suma", "objeto": "globo", "grupos": [6, 4]}
+    },
+    {
+      "dia": 192, "semana": 39, "tema": "Último día de colegio",
+      "numero": 20, "objeto": "estrella",
+      "frase": "Marta reparte las notas, y un diploma a cada uno de los veinte niños.",
+      "actividad": {"tipo": "bloques"}
+    },
+    {
+      "dia": 193, "semana": 39, "tema": "Último día de colegio",
+      "numero": 50, "objeto": "estrella",
+      "frase": "De camino a casa, Lucía piensa en todo lo que ha aprendido: ¡cincuenta cosas!",
+      "actividad": {"tipo": "serie", "serie": [50, 40, null, 20, null]}
+    },
+    {
+      "dia": 194, "semana": 39, "tema": "Último día de colegio",
+      "numero": 1, "objeto": "estrella",
+      "frase": "Mamá saca una foto de Lucía de hace un año.",
+      "actividad": {"tipo": "problema", "texto": "Hace un año, Lucía tenía 6 años. Ahora tiene 7. ¿Cuántos años más tiene?", "operacion": [7, "-", 6]}
+    },
+    {
+      "dia": 195, "semana": 39, "tema": "Último día de colegio",
+      "numero": 40, "objeto": "estrella",
+      "frase": "Esa noche cenan en el jardín de la abuela Rosa, bajo cuarenta estrellas.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé sumar y restar hasta 10.", "Sé los números hasta el 50.", "Sé contar de 2 en 2, de 5 en 5 y de 10 en 10."],
+        "prompt": "Dibuja lo que más te ha gustado de este curso."
+      }
+    }
+  ]
+}

@@ -51,7 +51,7 @@ SEMANAS_POR_TRIMESTRE = 13
 # uno en verde antes de fusionarse), cuántos días tiene ya escritos: se
 # exigen exactamente esos, del 1 en adelante y sin huecos. None = el
 # cuaderno está entero, con sus 260 días.
-DIAS_ESCRITOS = 130
+DIAS_ESCRITOS = 195
 
 NOMBRE_MEDALLA = {1: "Otoño", 2: "Invierno", 3: "Primavera"}
 ULTIMO_DIA_TRIMESTRE = {1: 65, 2: 130, 3: 195, 4: 260}
@@ -110,11 +110,21 @@ ESCALERA = {
     # dos..." --, y después, sin números nuevos, comparar, antes y
     # después, la recta, ordenar y juntar (DESDE_SEMANA, más abajo).
     14: [11, 12], 15: [13, 14], 16: [15, 16], 17: [17, 18], 18: [19, 20],
+    # Primavera: sumar, partir y restar hasta 10, sin números nuevos; y
+    # después, de 10 en 10 hasta el 50 (las decenas), y cada semana, una
+    # decena entera: los veinti-, los treinta y..., los cuarenta y...
+    35: [30, 40, 50],
+    36: list(range(21, 30)), 37: list(range(31, 40)), 38: list(range(41, 50)),
 }
 # El día de la semana (0 = lunes) en que llega cada número nuevo: el
 # primero, el lunes; el segundo, si lo hay, el miércoles. Hasta ese día,
-# el número todavía no ha llegado.
+# el número todavía no ha llegado. Una semana con más números nuevos que
+# días de LLEGADA (una decena entera) los recibe todos el lunes.
 LLEGADA = [0, 2]
+
+
+def dia_de_llegada(nuevos, i):
+    return LLEGADA[i] if len(nuevos) <= len(LLEGADA) else 0
 DIAS_SEMANA = ["lunes", "martes", "miércoles", "jueves", "viernes"]
 
 # Las actividades que llegan con el invierno, y la semana en que llegan:
@@ -126,7 +136,24 @@ DESDE_SEMANA = {
     "recta": 21,    # la recta numérica
     "ordena": 22,   # de menor a mayor
     "junta": 23,    # la suma, con dibujos y sin signos: 3 y 2 son 5
+    # Las de la primavera.
+    "suma": 27,     # ya con los signos: 3 + 2 = [ ]
+    "parte": 28,    # partir un número en dos: 5 son 2 y [ ]
+    "diez": 29,     # las parejas que suman 10: 7 + [ ] = 10
+    "resta": 30,    # quitar: 5 - 2 = [ ]
+    "problema": 31, # un problema que lee el adulto
+    "bloques": 36,  # decenas y unidades: 2 decenas y 3 unidades son 23
 }
+
+# Lo que se cuenta de 2 en 2 o de 5 en 5 en "Cuenta" ("de"): las ruedas
+# de las bicis y los dedos de las manos.
+CONTAR_DE = {"bici": (2, "ruedas", "f"), "mano": (5, "dedos", "m")}
+
+# De cuánto en cuánto pueden ir "Completa" (el tren) y "La recta", y desde
+# qué semana: de uno en uno, siempre; de 2 en 2 (las ruedas de la bici),
+# de 5 en 5 (los dedos de la mano) y de 10 en 10, en primavera.
+PASOS_DESDE = {1: 1, 2: 32, 5: 33, 10: 35}
+NOMBRE_PASO = {1: "uno", 2: "dos", 5: "cinco", 10: "diez"}
 
 # Un grupo de cosas va como los puntos de un dado hasta el 6 -- así se ve
 # de un vistazo cuántas son --, del 7 al 10 como en el marco de diez (una
@@ -140,7 +167,7 @@ def conocidos(semana, dia_semana=DIAS_POR_SEMANA - 1):
     terminarla)."""
     previos = {n for s in range(1, semana) for n in ESCALERA.get(s, [])}
     nuevos = ESCALERA.get(semana, [])
-    return previos | {n for i, n in enumerate(nuevos) if LLEGADA[i] <= dia_semana}
+    return previos | {n for i, n in enumerate(nuevos) if dia_de_llegada(nuevos, i) <= dia_semana}
 
 
 def trimestre_de(semana):
@@ -246,6 +273,24 @@ OBJETOS = {
     "maceta": (r"\objMaceta", "maceta", "macetas", "f"),
     "brote": (r"\objBrote", "brote", "brotes", "m"),
     "pipa": (r"\objPipa", "pipa", "pipas", "f"),
+    "rueda": (r"\objRueda", "rueda", "ruedas", "f"),
+    "bici": (r"\objBici", "bici", "bicis", "f"),
+    "oruga": (r"\objOruga", "oruga", "orugas", "f"),
+    "gafas": (r"\objGafas", "gafas de nadar", "gafas de nadar", "f"),
+    "arbusto": (r"\objArbusto", "matorral", "matorrales", "m"),
+    "tarta": (r"\objTarta", "tarta", "tartas", "f"),
+    "rosa": (r"\objRosa", "rosa", "rosas", "f"),
+    "abeja": (r"\objAbeja", "abeja", "abejas", "f"),
+    "pollito": (r"\objPollito", "pollito", "pollitos", "m"),
+    "diente": (r"\objDiente", "diente", "dientes", "m"),
+    "moneda": (r"\objMoneda", "moneda", "monedas", "f"),
+    "mano": (r"\objMano", "mano", "manos", "f"),
+    "torrija": (r"\objTorrija", "torrija", "torrijas", "f"),
+    "zanahoria": (r"\objZanahoria", "zanahoria", "zanahorias", "f"),
+    "tomate": (r"\objTomate", "tomate", "tomates", "m"),
+    "regadera": (r"\objRegadera", "regadera", "regaderas", "f"),
+    "tarjeta": (r"\objTarjeta", "tarjeta", "tarjetas", "f"),
+    "pan": (r"\objPan", "pan", "panes", "m"),
 }
 
 # Lo que se dibuja vacío en "El número de hoy" el día que el número es el
@@ -559,19 +604,18 @@ $tren
 \end{center}
 \end{cajaCompleta}""")
 
-# "Diez y más" y "Junta": los dos grupos con una "y" en medio y, debajo,
-# lo que se escribe: "10 y 3 son [ ]".
-PLANTILLA_DOS_GRUPOS = Template(r"""\begin{$caja}[centrado abajo]
+# "Diez y más", "Junta", "Suma", "Resta", "Parte", "Diez", "Bloques" y
+# "Problema": el dibujo y, debajo, lo que se completa ("10 y 3 son [ ]",
+# "5 − 2 = [ ]"): \huecoRespuesta es el hueco.
+PLANTILLA_CON_RESPUESTA = Template(r"""\begin{$caja}[centrado abajo]
 \enunciado{$enunciado}
 \instruccion{$instruccion}
 \tcblower
 \begin{center}
-\begin{tikzpicture}[objeto, scale=$escala]
 $dibujo
-\end{tikzpicture}
 
 \vspace{12mm}
-{\fontsize{40}{44}\selectfont\bfseries $a y $b son \huecoRespuesta}
+{\fontsize{40}{44}\selectfont\bfseries $respuesta}
 \end{center}
 \end{$caja}""")
 
@@ -739,9 +783,13 @@ def dibujo_serie(valores):
     return "\n".join(piezas)
 
 
-def dibujo_dos_grupos(objeto, a, b):
+def tikz(dibujo, escala):
+    return f"\\begin{{tikzpicture}}[objeto, scale={escala}]\n{dibujo}\n\\end{{tikzpicture}}"
+
+
+def dibujo_dos_grupos(objeto, a, b, signo="y"):
     """Dos grupos, uno al lado del otro, con una "y" en medio ("Diez y
-    más", "Junta"): (tikz, escala)."""
+    más", "Junta") -- o un "+" ("Suma"): (tikz, escala)."""
     ga, gb = grupo(objeto, a), grupo(objeto, b)
     hueco = 3.0
     ancho = ga[1] + hueco + gb[1]
@@ -750,8 +798,52 @@ def dibujo_dos_grupos(objeto, a, b):
     return (
         f"\\begin{{scope}}[shift={{({xa:.2f},0)}}]{ga[0]}\\end{{scope}}"
         f"\\begin{{scope}}[shift={{({xb:.2f},0)}}]{gb[0]}\\end{{scope}}"
-        f"\\node[font={FUENTE_NUMERO}] at ({-ancho / 2 + ga[1] + hueco / 2:.2f},0) {{y}};"
+        f"\\node[font={FUENTE_NUMERO}] at ({-ancho / 2 + ga[1] + hueco / 2:.2f},0) {{{signo}}};"
     ), escala
+
+
+def dibujo_partido(objeto, total, parte):
+    """"Parte": las cosas en una fila, y una raya a trazos que la parte en
+    dos, después de las `parte` primeras: (tikz, escala)."""
+    macro, paso = OBJETOS[objeto][0], 2.4
+    ancho = (total - 1) * paso + 2 + 2 * MARGEN_GRUPO + 0.8
+    x0 = -(total - 1) * paso / 2
+    piezas = [marco(ancho, 2 + 2 * MARGEN_GRUPO + 0.4)]
+    piezas += [_cosa(macro, x0 + i * paso + (0.8 if i >= parte else 0) - 0.4, 0) for i in range(total)]
+    xr = x0 + (parte - 0.5) * paso
+    piezas.append(f"\\draw[dashed, line width=1.4pt] ({xr:.2f},-1.6) -- ({xr:.2f},1.6);")
+    return "".join(piezas), round(min(0.8, 14.5 / ancho), 3)
+
+
+def dibujo_diez(puntos):
+    """"Diez": un marco de diez grande, con sus puntos, para dibujar los
+    que faltan. En cm."""
+    celda = 2.2
+    piezas = []
+    for i in range(10):
+        x, y = (i % 5) * celda, (0 if i < 5 else -celda)
+        piezas.append(f"\\filldraw[fill=white, line width=1.4pt] ({x:.2f},{y:.2f}) rectangle ++({celda},{celda});")
+        if i < puntos:
+            piezas.append(f"\\fill[colorLectura] ({x + celda / 2:.2f},{y + celda / 2:.2f}) circle ({0.34 * celda:.2f});")
+    return "\\begin{tikzpicture}\n" + "\n".join(piezas) + "\n\\end{tikzpicture}"
+
+
+def dibujo_bloques(numero, celda):
+    """Las decenas y las unidades: una barra de diez cubitos por decena, y
+    los cubitos sueltos al lado, en columnas de cinco. En cm, centrado."""
+    decenas, unidades = divmod(numero, 10)
+    sep = celda * 0.7
+    piezas = []
+    for d in range(decenas):
+        x = d * (celda + sep)
+        for i in range(10):
+            piezas.append(f"\\filldraw[fill=white] ({x:.2f},{i * celda:.2f}) rectangle ++({celda:.2f},{celda:.2f});")
+    x0 = decenas * (celda + sep) + (sep if decenas else 0)
+    for u in range(unidades):
+        x = x0 + (u // 5) * (celda + sep * 0.5)
+        piezas.append(f"\\filldraw[fill=white] ({x:.2f},{(u % 5) * celda:.2f}) rectangle ++({celda:.2f},{celda:.2f});")
+    return ("\\begin{tikzpicture}[line width=0.9pt, baseline=(current bounding box.center)]"
+            + "".join(piezas) + "\\end{tikzpicture}")
 
 
 def dibujo_vecinos(numeros):
@@ -777,17 +869,18 @@ def dibujo_vecinos(numeros):
     return f"\\begin{{tikzpicture}}[objeto, scale={s}]\n" + "\n".join(piezas) + "\n\\end{tikzpicture}"
 
 
-def dibujo_recta(desde, hasta, faltan):
-    """La recta numérica de `desde` a `hasta`: una raya por número, y
-    debajo el número -- o, si falta, un hueco para escribirlo. En cm."""
-    paso = min(1.6, 13.2 / (hasta - desde))
-    largo = (hasta - desde) * paso
+def dibujo_recta(marcas, faltan):
+    """La recta numérica: una raya por cada número de `marcas`, y debajo
+    el número -- o, si falta, un hueco para escribirlo. En cm."""
+    # Con pocas marcas (de 5 en 5, de 10 en 10), más separadas.
+    paso = min(1.6 if len(marcas) > 9 else 2.4, 13.2 / (len(marcas) - 1))
+    largo = (len(marcas) - 1) * paso
     # Con dos números de dos cifras seguidos, más pequeños: si no, se tocan.
-    tam = 22 if sum(v >= 10 for v in range(desde, hasta + 1)) >= 2 else 28
+    tam = 22 if sum(v >= 10 for v in marcas) >= 2 else 28
     fuente = f"\\fontsize{{{tam}}}{{{tam}}}\\selectfont\\bfseries"
     medio = min(0.62, (paso - 0.2) / 2)    # medio hueco
     piezas = [f"\\draw[-{{Stealth[length=3mm]}}, line width=1.4pt] (-0.5,0) -- ({largo + 0.8:.2f},0);"]
-    for i, v in enumerate(range(desde, hasta + 1)):
+    for i, v in enumerate(marcas):
         x = i * paso
         piezas.append(f"\\draw[line width=1.4pt] ({x:.2f},-0.3) -- ({x:.2f},0.3);")
         if v in faltan:
@@ -838,12 +931,169 @@ def comprobar_numero(dia, n, semana, que):
         )
 
 
+def comprobar_paso(dia, semana, paso, que):
+    if semana < PASOS_DESDE[paso]:
+        raise ErrorDeContenido(
+            f"día {dia}: '{que}' de {paso} en {paso} no llega hasta la semana "
+            f"{PASOS_DESDE[paso]} (ver PASOS_DESDE)"
+        )
+
+
 def comprobar_objeto(dia, objeto):
     if objeto not in OBJETOS:
         raise ErrorDeContenido(
             f"día {dia}: no hay dibujo para «{objeto}» (ver OBJETOS y "
             "diagrams/objetos.tex)"
         )
+
+
+# Las cuentas de la primavera, con sus signos: cada día, el resultado es
+# el número del día. En primavera, hasta 10 (MAX_CUENTA).
+MAX_CUENTA = {3: 10, 4: 20}
+SIGNOS = {"+": "+", "-": "−"}      # el menos de verdad (U+2212), el de Andika
+
+
+def en_texto(texto, n):
+    """¿Dice `texto` el número n, con cifras o con letra?"""
+    t = texto.lower()
+    return bool(re.search(rf"(?<!\d){n}(?!\d)", t)) or any(
+        re.search(rf"\b{re.escape(f)}\b", t) for f in formas(n))
+
+
+def render_cuenta(d, tipo, num, semana, a, n):
+    """(tex, clave) de "Suma", "Resta", "Parte", "Diez", "Problema" y
+    "Bloques"."""
+    maximo = MAX_CUENTA.get(trimestre_de(semana), 10)
+
+    def hasta(total, que):
+        if total > maximo:
+            raise ErrorDeContenido(f"día {num}: '{tipo}' llega como mucho a {maximo} este trimestre ({que})")
+        if total != n:
+            raise ErrorDeContenido(f"día {num}: en '{tipo}', el resultado es el número del día ({n}), no {total}")
+
+    if tipo == "suma":
+        campos(num, a, ["objeto", "grupos"])
+        comprobar_objeto(num, a["objeto"])
+        grupos = a["grupos"]
+        if len(grupos) != 2 or min(grupos) < 0 or max(grupos) < 1:
+            raise ErrorDeContenido(f"día {num}: 'suma' suma dos grupos ({grupos})")
+        for g in grupos:
+            comprobar_numero(num, g, semana, "uno de los sumandos")
+        total = sum(grupos)
+        hasta(total, f"{grupos[0]} + {grupos[1]}")
+        femenino = genero(a["objeto"]) == "f"
+        dibujo, escala = dibujo_dos_grupos(a["objeto"], *grupos, signo="+")
+        return PLANTILLA_CON_RESPUESTA.substitute(
+            caja="cajaSuma",
+            enunciado=f"¿{'Cuántas' if femenino else 'Cuántos'} {nombre_objeto(a['objeto'], 2)} hay en total?",
+            instruccion=("Un adulto lee la pregunta. El signo + quiere decir que se juntan: "
+                         "cuenta todo, y escribe el resultado."),
+            dibujo=tikz(dibujo, escala),
+            respuesta=f"{grupos[0]} + {grupos[1]} = \\huecoRespuesta",
+        ), ("suma", f"{grupos[0]} + {grupos[1]} = {total}")
+
+    if tipo == "resta":
+        campos(num, a, ["objeto", "total", "quita"])
+        comprobar_objeto(num, a["objeto"])
+        total, quita = a["total"], a["quita"]
+        if not 1 <= quita <= total:
+            raise ErrorDeContenido(f"día {num}: 'resta' quita de 1 al total ({total} − {quita})")
+        for v in (total, quita):
+            comprobar_numero(num, v, semana, "un número de la resta")
+        if total > maximo:
+            raise ErrorDeContenido(f"día {num}: 'resta' empieza como mucho en {maximo} este trimestre ({total})")
+        hasta(total - quita, f"{total} − {quita}")
+        femenino = genero(a["objeto"]) == "f"
+        dibujo, ancho, alto = grupo(a["objeto"], total)
+        return PLANTILLA_CON_RESPUESTA.substitute(
+            caja="cajaResta",
+            enunciado=(f"Tacha {quita} {nombre_objeto(a['objeto'], quita)}. "
+                       f"¿{'Cuántas' if femenino else 'Cuántos'} quedan?"),
+            instruccion=(f"Un adulto lee la pregunta. Tacha con una raya {'las' if femenino else 'los'} "
+                         f"que se quitan, cuenta {'las' if femenino else 'los'} que quedan, y escribe el resultado."),
+            dibujo=tikz(dibujo, round(min(0.9, 13.0 / ancho, 7.0 / alto), 3)),
+            respuesta=f"{total} {SIGNOS['-']} {quita} = \\huecoRespuesta",
+        ), ("resta", f"{total} {SIGNOS['-']} {quita} = {total - quita}")
+
+    if tipo == "parte":
+        campos(num, a, ["objeto", "parte"])
+        comprobar_objeto(num, a["objeto"])
+        total, parte = a.get("total", n), a["parte"]
+        if not 1 <= parte < total or total > maximo:
+            raise ErrorDeContenido(
+                f"día {num}: 'parte' parte de 2 a {maximo} cosas en dos grupos, de una o más ({total}, {parte})")
+        for v in (total, parte, total - parte):
+            comprobar_numero(num, v, semana, "un número de 'parte'")
+        if total != n:
+            raise ErrorDeContenido(f"día {num}: en 'parte', lo que se parte es el número del día ({n})")
+        femenino = genero(a["objeto"]) == "f"
+        dibujo, escala = dibujo_partido(a["objeto"], total, parte)
+        return PLANTILLA_CON_RESPUESTA.substitute(
+            caja="cajaParte",
+            enunciado=f"{total} son {parte} y... ¿{'cuántas' if femenino else 'cuántos'} más?",
+            instruccion=(f"Un adulto lee la pregunta. La raya parte el grupo en dos: a un lado hay "
+                         f"{parte}; cuenta {'las' if femenino else 'los'} del otro lado, y escribe "
+                         f"{'cuántas' if femenino else 'cuántos'} son."),
+            dibujo=tikz(dibujo, escala),
+            respuesta=f"{total} son {parte} y \\huecoRespuesta",
+        ), ("parte", f"{total} son {parte} y {total - parte}")
+
+    if tipo == "diez":
+        campos(num, a, ["puntos"])
+        puntos = a["puntos"]
+        if not 1 <= puntos <= 9:
+            raise ErrorDeContenido(f"día {num}: en 'diez', el marco tiene de 1 a 9 puntos ({puntos})")
+        if 10 - puntos != n:
+            raise ErrorDeContenido(f"día {num}: en 'diez', lo que falta es el número del día ({n}), no {10 - puntos}")
+        return PLANTILLA_CON_RESPUESTA.substitute(
+            caja="cajaDiez",
+            enunciado="¿Cuántos faltan para llegar a 10?",
+            instruccion=("Un adulto lee la pregunta. Dibuja en el marco los puntos que faltan para "
+                         "llenarlo, cuenta los que has dibujado, y escribe el número."),
+            dibujo=dibujo_diez(puntos),
+            respuesta=f"{puntos} + \\huecoRespuesta\\ = 10",
+        ), ("diez", f"{puntos} + {10 - puntos} = 10")
+
+    if tipo == "problema":
+        campos(num, a, ["texto", "operacion"])
+        x, signo, y = a["operacion"]
+        if signo not in SIGNOS:
+            raise ErrorDeContenido(f"día {num}: en 'problema', la cuenta es una suma o una resta ({signo!r})")
+        resultado = x + y if signo == "+" else x - y
+        if resultado < 0:
+            raise ErrorDeContenido(f"día {num}: en 'problema', la resta no baja del 0 ({x} − {y})")
+        for v in (x, y, resultado):
+            comprobar_numero(num, v, semana, "un número del problema")
+        hasta(resultado, f"{x} {SIGNOS[signo]} {y}")
+        for v in (x, y):
+            if not en_texto(a["texto"], v):
+                raise ErrorDeContenido(f"día {num}: el problema tiene que decir el {v}: «{a['texto']}»")
+        return PLANTILLA_CON_RESPUESTA.substitute(
+            caja="cajaProblema",
+            enunciado=escapar(a["texto"]),
+            instruccion=("Un adulto lee el problema, despacio. Dibújalo en el recuadro, si ayuda, "
+                         "y escribe la cuenta y el resultado."),
+            dibujo=r"\tikz\draw[dashed, line width=0.8pt, rounded corners=4mm, colorGris] (0,0) rectangle (13,5.5);",
+            respuesta=f"\\huecoRespuesta\\ {SIGNOS[signo]} \\huecoRespuesta\\ = \\huecoRespuesta",
+        ), ("problema", f"{x} {SIGNOS[signo]} {y} = {resultado}")
+
+    # "bloques": decenas y unidades.
+    numero = a.get("numero", n)
+    comprobar_numero(num, numero, semana, "el número de los bloques")
+    if not 11 <= numero <= 100 or numero != n:
+        raise ErrorDeContenido(
+            f"día {num}: 'bloques' es un número de 11 en adelante, el del día ({n}), no {numero}")
+    decenas, unidades = divmod(numero, 10)
+    return PLANTILLA_CON_RESPUESTA.substitute(
+        caja="cajaBloques",
+        enunciado="¿Qué número es?",
+        instruccion=("Un adulto lee la pregunta. Cada barra es una decena: diez cubitos. Cuenta las "
+                     "barras y los cubitos sueltos, y escribe cuántos hay de cada, y el número."),
+        dibujo=dibujo_bloques(numero, 0.55),
+        respuesta=(r"{\fontsize{30}{36}\selectfont \huecoRespuesta[18mm]\ decenas y "
+                   r"\huecoRespuesta[18mm]\ unidades}\\[5mm] son \huecoRespuesta"),
+    ), ("bloques", f"{decenas} {'decena' if decenas == 1 else 'decenas'} y {unidades} "
+        f"{'unidad' if unidades == 1 else 'unidades'} son {numero}")
 
 
 def render_actividad(d):
@@ -941,30 +1191,47 @@ def render_actividad(d):
         cuantas = a.get("cuantas", n)
         comprobar_numero(num, cuantas, semana, "lo que se cuenta")
         opciones = a["opciones"]
+        # De 2 en 2 (las ruedas de las bicis) o de 5 en 5 (los dedos de las
+        # manos): se cuentan las ruedas o los dedos, no las bicis o las manos.
+        de = a.get("de", 1)
+        if de != 1:
+            if CONTAR_DE.get(a["objeto"], (None,))[0] != de:
+                raise ErrorDeContenido(
+                    f"día {num}: 'cuenta' de {de} en {de}: " + "; ".join(
+                        f"de {p} en {p}, {que} de {nombre_objeto(o, 2)}" for o, (p, que, _) in CONTAR_DE.items())
+                )
+            comprobar_paso(num, semana, de, "cuenta")
+        respuesta = cuantas * de
         for o in opciones:
             comprobar_numero(num, o, semana, "una de las opciones")
-        if cuantas not in opciones or len(set(opciones)) != len(opciones) or not 2 <= len(opciones) <= 4:
+        if respuesta not in opciones or len(set(opciones)) != len(opciones) or not 2 <= len(opciones) <= 4:
             raise ErrorDeContenido(
                 f"día {num}: 'cuenta' lleva de 2 a 4 opciones distintas, y una es "
-                f"{cuantas} ({opciones})"
+                f"{respuesta} ({opciones})"
             )
         if cuantas > MAX_GRUPO:
             raise ErrorDeContenido(f"día {num}: 'cuenta' dibuja como mucho {MAX_GRUPO} cosas")
-        plural = nombre_objeto(a["objeto"], 2)
-        cuantos = "Cuántas" if genero(a["objeto"]) == "f" else "Cuántos"
+        if de == 1:
+            plural, femenino = nombre_objeto(a["objeto"], 2), genero(a["objeto"]) == "f"
+            instruccion = (f"Un adulto lee la pregunta. Cuenta señalando {'cada una' if femenino else 'cada uno'} "
+                           "con el dedo, y rodea el número.")
+        else:
+            _, plural, g = CONTAR_DE[a["objeto"]]
+            femenino = g == "f"
+            instruccion = (f"Un adulto lee la pregunta. Cada {nombre_objeto(a['objeto'], 1)} tiene "
+                           f"{NOMBRE_PASO[de]} {plural}: cuenta de {NOMBRE_PASO[de]} en {NOMBRE_PASO[de]}, "
+                           f"señalando {'cada una' if genero(a['objeto']) == 'f' else 'cada uno'}, y rodea el número.")
+        cuantos = "Cuántas" if femenino else "Cuántos"
         # La bandeja (el marco del grupo) se dibuja siempre: el día del 0,
         # es lo único que hay.
         dibujo, ancho, alto = grupo(a["objeto"], cuantas)
         return PLANTILLA_CUENTA.substitute(
             enunciado=f"¿{cuantos} {plural} hay?",
-            instruccion=("Un adulto lee la pregunta. Cuenta señalando cada una con "
-                         "el dedo, y rodea el número." if genero(a["objeto"]) == "f" else
-                         "Un adulto lee la pregunta. Cuenta señalando cada uno con "
-                         "el dedo, y rodea el número."),
+            instruccion=instruccion,
             escala=round(min(1.0, 13.0 / ancho, 8.0 / alto), 3),
             grupo=dibujo,
             opciones=r"\hspace{14mm}".join(str(o) for o in opciones),
-        ), ("cuenta", str(cuantas))
+        ), ("cuenta", str(respuesta))
 
     if tipo == "busca":
         campos(num, a, ["veces", "otros"])
@@ -1034,14 +1301,17 @@ def render_actividad(d):
             raise ErrorDeContenido(
                 f"día {num}: 'serie' lleva de 4 a 7 números, y faltan 1 o 2 ({serie})"
             )
-        # De uno en uno, hacia arriba o hacia atrás: lo dicen los que se ven.
+        # De uno en uno (o de 2 en 2, de 5 en 5, de 10 en 10: PASOS_DESDE),
+        # hacia arriba o hacia atrás: lo dicen los que se ven.
         (i0, v0), (i1, v1) = dados[0], dados[1]
         paso = (v1 - v0) / (i1 - i0)
         completa = [v0 + paso * (i - i0) for i in range(len(serie))]
-        if paso not in (1, -1) or any(serie[i] != completa[i] for i, _ in dados):
+        if abs(paso) not in PASOS_DESDE or any(serie[i] != completa[i] for i, _ in dados):
             raise ErrorDeContenido(
-                f"día {num}: 'serie' va de uno en uno, hacia arriba o hacia atrás ({serie})"
+                f"día {num}: 'serie' va de uno en uno (o de 2 en 2, de 5 en 5, de 10 en 10), "
+                f"hacia arriba o hacia atrás ({serie})"
             )
+        comprobar_paso(num, semana, int(abs(paso)), "serie")
         completa = [int(v) for v in completa]
         for v in completa:
             if v < 0:
@@ -1051,10 +1321,11 @@ def render_actividad(d):
             raise ErrorDeContenido(f"día {num}: la serie tiene que pasar por el número del día ({n})")
         faltan = [completa[i] for i in huecos]
         uno = len(faltan) == 1
-        hacia = "" if paso == 1 else ", hacia atrás"
+        hacia = "" if paso > 0 else ", hacia atrás"
+        de = "uno a uno" if abs(paso) == 1 else f"de {NOMBRE_PASO[int(abs(paso))]} en {NOMBRE_PASO[int(abs(paso))]}"
         return PLANTILLA_SERIE.substitute(
             enunciado="¿Qué número falta?" if uno else "¿Qué números faltan?",
-            instruccion=(f"Un adulto lee la pregunta. Di los números del tren uno a uno{hacia}, "
+            instruccion=(f"Un adulto lee la pregunta. Di los números del tren {de}{hacia}, "
                          + ("y escribe en el vagón vacío el que falta." if uno
                             else "y escribe en los vagones vacíos los que faltan.")),
             tren=dibujo_serie(serie),
@@ -1092,10 +1363,11 @@ def render_actividad(d):
         if total != n:
             raise ErrorDeContenido(f"día {num}: en '{tipo}', el total es el número del día ({n}), no {total}")
         dibujo, escala = dibujo_dos_grupos(a["objeto"], *grupos)
-        return PLANTILLA_DOS_GRUPOS.substitute(
+        return PLANTILLA_CON_RESPUESTA.substitute(
             caja="cajaDecena" if tipo == "decena" else "cajaJunta",
-            enunciado=enunciado, instruccion=instruccion, escala=escala, dibujo=dibujo,
-            a=grupos[0], b=grupos[1],
+            enunciado=enunciado, instruccion=instruccion,
+            dibujo=tikz(dibujo, escala),
+            respuesta=f"{grupos[0]} y {grupos[1]} son \\huecoRespuesta",
         ), (tipo, f"{grupos[0]} y {grupos[1]} son {total}")
 
     if tipo == "compara":
@@ -1179,25 +1451,34 @@ def render_actividad(d):
     if tipo == "recta":
         campos(num, a, ["desde", "hasta", "faltan"])
         desde, hasta, faltan = a["desde"], a["hasta"], a["faltan"]
-        if not 4 <= hasta - desde <= 10:
+        paso = a.get("paso", 1)
+        if paso not in PASOS_DESDE or (hasta - desde) % paso:
+            raise ErrorDeContenido(
+                f"día {num}: 'recta' va de 1 en 1, de 2 en 2, de 5 en 5 o de 10 en 10, "
+                f"y de {desde} se llega a {hasta} ({paso})"
+            )
+        comprobar_paso(num, semana, paso, "recta")
+        marcas = list(range(desde, hasta + 1, paso))
+        if not 5 <= len(marcas) <= 11:
             raise ErrorDeContenido(f"día {num}: 'recta' lleva de 5 a 11 números ({desde}-{hasta})")
         if (not 1 <= len(faltan) <= 3 or len(set(faltan)) != len(faltan)
-                or any(not desde < f <= hasta for f in faltan)):
+                or any(f not in marcas[1:] for f in faltan)):
             raise ErrorDeContenido(
                 f"día {num}: en 'recta' faltan de 1 a 3 números de la recta, y el primero se ve ({faltan})"
             )
-        for v in range(desde, hasta + 1):
+        for v in marcas:
             comprobar_numero(num, v, semana, "un número de la recta")
-        if not desde <= n <= hasta:
+        if n not in marcas:
             raise ErrorDeContenido(f"día {num}: la recta tiene que pasar por el número del día ({n})")
         faltan = sorted(faltan)
         uno = len(faltan) == 1
+        de = "uno a uno" if paso == 1 else f"de {NOMBRE_PASO[paso]} en {NOMBRE_PASO[paso]}"
         return PLANTILLA_CAJA.substitute(
             caja="cajaRecta",
             enunciado="¿Qué número falta en la recta?" if uno else "¿Qué números faltan en la recta?",
-            instruccion=("Un adulto lee la pregunta. Di los números de la recta uno a uno, de "
+            instruccion=(f"Un adulto lee la pregunta. Di los números de la recta {de}, de "
                          "izquierda a derecha, y escribe en cada hueco el que falta."),
-            dibujo=dibujo_recta(desde, hasta, faltan),
+            dibujo=dibujo_recta(marcas, faltan),
         ), ("recta", ("falta el " if uno else "faltan el ") + " y el ".join(str(v) for v in faltan))
 
     if tipo == "ordena":
@@ -1222,6 +1503,9 @@ def render_actividad(d):
                          f"siguiendo las flechas: primero, el más {de}."),
             dibujo=dibujo_ordena(numeros),
         ), ("ordena", ", ".join(str(x) for x in ordenados))
+
+    if tipo in ("suma", "resta", "parte", "diez", "problema", "bloques"):
+        return render_cuenta(d, tipo, num, semana, a, n)
 
     if tipo == "dibuja":
         campos(num, a, ["prompt"])
@@ -1301,7 +1585,17 @@ def validar_dias(dias):
         nuevos = ESCALERA.get(semana, [])
         dia_semana = (num - 1) % DIAS_POR_SEMANA
         tipo = d["actividad"].get("tipo")
-        if nuevos:
+        if nuevos and len(nuevos) > len(LLEGADA):
+            # Una decena entera: llega el lunes, que se traza uno de sus
+            # números, y toda la semana el número del día es uno de ellos.
+            if n not in nuevos:
+                raise ErrorDeContenido(
+                    f"día {num}: el número del día, en la semana {semana}, es uno de "
+                    f"{nuevos[0]}-{nuevos[-1]}, no el {n}"
+                )
+            if dia_semana == 0 and tipo != "traza":
+                raise ErrorDeContenido(f"día {num}: el lunes que llegan {nuevos[0]}-{nuevos[-1]}, se traza uno")
+        elif nuevos:
             llegados = [x for i, x in enumerate(nuevos) if LLEGADA[i] <= dia_semana]
             if dia_semana == DIAS_POR_SEMANA - 1:
                 if n not in nuevos:
@@ -1353,7 +1647,10 @@ def generar(dias):
             # Del 11 al 20, no más altas que los dos marcos de diez.
             filas = -(-n // 5)
             escala = min(escala, round(4.4 / ((filas - 1 + SEPARACION_DECENA) * 2.4 + 2), 3))
-        cosas = fila(d["objeto"], max(n, 1), escala=escala, paso=2.4)
+        # Del 21 en adelante, ya no se dibujan las cosas, sino sus decenas y
+        # sus unidades: una barra por cada diez.
+        cosas = (dibujo_bloques(n, 0.3) if n > 20
+                 else fila(d["objeto"], max(n, 1), escala=escala, paso=2.4))
         piezas.append(PLANTILLA_DIA.substitute(
             dia=num, semana=semana, trimestre=trimestre,
             tema=escapar(d["tema"]),
