@@ -428,3 +428,111 @@
     .. controls (-0.6,-0.5) and (-0.95,-0.45) .. (-0.95,0) -- cycle;
   \foreach \x in {-0.5,-0.05,0.4} {\draw (\x-0.12,-0.28) -- (\x+0.2,0.28);}
   \end{scope}}
+
+% --- El verano (semanas 40-52) -------------------------------------------
+
+% Del kit de «First Words», metidos en la caja.
+\newcommand{\objRayo}{%
+  \begin{scope}[shift={(0,-0.93)}, scale=0.62] \rayoFW \end{scope}}
+\newcommand{\objLechuga}{%
+  \begin{scope}[shift={(0,-0.58)}, scale=0.85] \colFW \end{scope}}
+\newcommand{\objMaleta}{%
+  \begin{scope}[shift={(0,-0.94)}, scale=0.8] \maletaFW{1.8}{1.9} \end{scope}}
+
+% Un helado de cucurucho, con dos bolas.
+\newcommand{\objHelado}{%
+  \filldraw[fill=white, line join=round] (-0.45,0.05) -- (0,-0.98) -- (0.45,0.05) -- cycle;
+  \draw (-0.3,-0.1) -- (0.15,-0.6); \draw (0.3,-0.1) -- (-0.15,-0.6);
+  \draw (-0.1,0.02) -- (0.24,-0.4); \draw (0.1,0.02) -- (-0.24,-0.4);
+  \filldraw[fill=white] (0,0.3) circle (0.42);
+  \filldraw[fill=white] (0,0.72) circle (0.3);
+  \filldraw[fill=white] (-0.5,0.05) .. controls (-0.3,0.2) and (0.3,0.2) .. (0.5,0.05) .. controls (0.3,-0.05) and (-0.3,-0.05) .. (-0.5,0.05) -- cycle;}
+
+% Una concha de la playa, de abanico, con sus rayas.
+\newcommand{\objConcha}{%
+  \filldraw[fill=white] (0,-0.6) .. controls (-0.95,-0.35) and (-1.0,0.75) .. (0,0.85)
+    .. controls (1.0,0.75) and (0.95,-0.35) .. (0,-0.6) -- cycle;
+  \begin{scope}
+    \clip (0,-0.6) .. controls (-0.95,-0.35) and (-1.0,0.75) .. (0,0.85)
+      .. controls (1.0,0.75) and (0.95,-0.35) .. (0,-0.6) -- cycle;
+    \foreach \a in {-50,-25,0,25,50} {\draw (0,-0.6) -- ++(90+\a:1.6);}
+  \end{scope}
+  \filldraw[fill=white] (-0.3,-0.55) -- (0.3,-0.55) -- (0.22,-0.85) -- (-0.22,-0.85) -- cycle;}
+
+% Un cubo de playa, con su asa.
+\newcommand{\objCubo}{%
+  \draw[line width=1.4pt] (-0.62,0.45) .. controls (-0.55,1.05) and (0.55,1.05) .. (0.62,0.45);
+  \filldraw[fill=white] (-0.75,0.5) -- (0.75,0.5) -- (0.55,-0.92) -- (-0.55,-0.92) -- cycle;
+  \draw (-0.72,0.3) -- (0.72,0.3);}
+
+% Un churro, de estrella, un poco curvo.
+\newcommand{\objChurro}{%
+  \begin{scope}[rotate=35]
+  \filldraw[fill=white, rounded corners=1.2mm] (-0.95,-0.2) .. controls (-0.3,-0.35) and (0.3,-0.35) .. (0.95,-0.2)
+    -- (0.95,0.2) .. controls (0.3,0.05) and (-0.3,0.05) .. (-0.95,0.2) -- cycle;
+  \draw (-0.9,0) .. controls (-0.3,-0.15) and (0.3,-0.15) .. (0.9,0);
+  \end{scope}}
+
+% Un caracol, con su concha en espiral y los cuernos.
+\newcommand{\objCaracol}{%
+  \filldraw[fill=white] (-0.98,-0.55) -- (0.65,-0.55) .. controls (0.9,-0.55) and (0.95,-0.2) .. (0.8,0.05)
+    -- (0.7,0.35) -- (0.55,0.35) -- (0.5,-0.25) -- (-0.98,-0.35) -- cycle;
+  \draw (0.62,0.3) -- (0.55,0.85); \draw (0.72,0.3) -- (0.9,0.8);
+  \fill (0.55,0.85) circle (0.05); \fill (0.9,0.8) circle (0.05);
+  \filldraw[fill=white] (-0.2,0.05) circle (0.58);
+  \draw plot[domain=0:900, samples=90, smooth, variable=\t]
+    ({-0.2+0.5*\t/900*cos(\t)}, {0.05+0.5*\t/900*sin(\t)});}
+
+% Un reloj de pared, pequeño.
+\newcommand{\objReloj}{%
+  \filldraw[fill=white] (0,0) circle (0.88);
+  \foreach \a in {0,30,...,330} {\draw (\a:0.7) -- (\a:0.8);}
+  \draw[line width=1.6pt] (0,0) -- (0,0.55); \draw[line width=1.6pt] (0,0) -- (0.4,0);
+  \fill (0,0) circle (0.07);}
+
+% --- Las piezas de las actividades del verano ---------------------------
+
+% Una moneda de euro, de #1 euros (1 o 2): la de 2, más grande y con
+% el borde doble.
+\newcommand{\monedaEuro}[1]{%
+  \ifnum#1=2
+    \filldraw[fill=white, line width=1.1pt] (0,0) circle (0.95); \draw[line width=1.1pt] (0,0) circle (0.72);
+  \else
+    \filldraw[fill=white, line width=1.1pt] (0,0) circle (0.8);
+  \fi
+  \node[font=\fontsize{20}{20}\selectfont\bfseries] at (0,0) {#1\,€};}
+% Un billete de #1 euros (5, 10, 20).
+\newcommand{\billete}[1]{%
+  \filldraw[fill=white, line width=1.1pt, rounded corners=1.5mm] (-1.7,-0.85) rectangle (1.7,0.85);
+  \draw[line width=0.8pt] (-1.5,-0.65) rectangle (1.5,0.65);
+  \draw[line width=0.8pt] (-0.95,0) circle (0.42);
+  \node[font=\fontsize{22}{22}\selectfont\bfseries] at (0.55,0) {#1\,€};}
+
+% Un reloj grande, para "¿Qué hora es?": #1 la hora (1-12), #2 los
+% minutos (0 o 30). La aguja corta, la de las horas; la larga, la de los
+% minutos. En cm.
+\newcommand{\relojGrande}[2]{%
+  \begin{tikzpicture}[line width=1.2pt]
+    \filldraw[fill=white, line width=1.6pt] (0,0) circle (3.8);
+    \foreach \m in {0,...,59} {\draw[line width=0.6pt] (90-\m*6:3.55) -- (90-\m*6:3.7);}
+    \foreach \h in {1,...,12} {
+      \draw[line width=1.4pt] (90-\h*30:3.35) -- (90-\h*30:3.7);
+      \node[font=\fontsize{22}{22}\selectfont\bfseries] at (90-\h*30:2.85) {\h};}
+    \pgfmathsetmacro\angHora{90-30*(#1+#2/60)}
+    \pgfmathsetmacro\angMin{90-6*#2}
+    \draw[line width=4pt, line cap=round] (0,0) -- (\angHora:1.6);
+    \draw[line width=2.6pt, line cap=round] (0,0) -- (\angMin:2.35);
+    \fill (0,0) circle (0.14);
+  \end{tikzpicture}}
+
+% Un lápiz tumbado, de #1 cm de largo (la goma a la izquierda, en x = 0),
+% para "Mide": en cm, sin escalar.
+\newcommand{\lapizLargo}[1]{%
+  \filldraw[fill=white, line width=1.1pt] (0,-0.28) rectangle (0.45,0.28);
+  \filldraw[fill=white, line width=1.1pt] (0.45,-0.28) rectangle ({#1-0.9},0.28);
+  \draw[line width=0.8pt] (0.45,0) -- ({#1-0.9},0);
+  \filldraw[fill=white, line width=1.1pt, line join=round] ({#1-0.9},-0.28) -- (#1,0) -- ({#1-0.9},0.28) -- cycle;
+  \filldraw[line width=1.1pt] ({#1-0.3},-0.09) -- (#1,0) -- ({#1-0.3},0.09) -- cycle;}
+% La regla de cubitos de "Mide": #1 cubitos de 1 cm, desde x = 0.
+\newcommand{\reglaCubitos}[1]{%
+  \foreach \i in {1,...,#1} {\draw[line width=0.8pt, fill=white] ({\i-1},0) rectangle (\i,1);}}
