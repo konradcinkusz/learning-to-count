@@ -159,6 +159,12 @@
 \newtcolorbox{cajaBusca}[1][]{cajadia, #1,
   colback=colorCompletaClaro, colframe=colorCompleta, colbacktitle=colorCompleta,
   title=\lblBusca}
+\newtcolorbox{cajaUne}[1][]{cajadia, #1,
+  colback=colorRelacionaClaro, colframe=colorRelaciona, colbacktitle=colorRelaciona,
+  title=\lblUne}
+\newtcolorbox{cajaCompleta}[1][]{cajadia, #1,
+  colback=colorRespondeClaro, colframe=colorResponde, colbacktitle=colorResponde,
+  title=\lblCompleta}
 \newtcolorbox{cajaDibuja}[1][]{cajadia, #1,
   colback=colorDibujaClaro, colframe=colorDibuja, colbacktitle=colorDibuja,
   title=\lblDibuja}
@@ -254,11 +260,17 @@
 % La caja de arriba: el número grande, su nombre, el marco de diez y las
 % cosas que se cuentan ese día (#3: un tikzpicture que compone
 % tools/gen_numeros.py), y debajo la frase de la historia, que lee el
-% adulto.
+% adulto. La columna del número mide 28 mm, o lo que mida el número si
+% tiene dos cifras (el 10): no se encoge, y lo que se estrecha es la de
+% las cosas (tools/gen_numeros.py las dibuja más pequeñas).
+\newlength{\anchoNumeroDeHoy}
+\newcommand{\fuenteNumeroDeHoy}{\fontsize{92}{92}\selectfont\bfseries}
 \newcommand{\numeroDeHoy}[4]{%
+  \settowidth{\anchoNumeroDeHoy}{\fuenteNumeroDeHoy #1}%
+  \ifdim\anchoNumeroDeHoy<28mm \setlength{\anchoNumeroDeHoy}{28mm}\fi
   \begin{cajaNumero}
-  \begin{tabularx}{\linewidth}{@{}>{\centering\arraybackslash}m{28mm}@{\hspace{3mm}}>{\centering\arraybackslash}m{42mm}@{\hspace{3mm}}>{\centering\arraybackslash}X@{}}
-  {\fontsize{92}{92}\selectfont\bfseries\color{colorLectura}#1} &
+  \begin{tabularx}{\linewidth}{@{}>{\centering\arraybackslash}m{\anchoNumeroDeHoy}@{\hspace{3mm}}>{\centering\arraybackslash}m{42mm}@{\hspace{3mm}}>{\centering\arraybackslash}X@{}}
+  {\fuenteNumeroDeHoy\color{colorLectura}#1} &
   {\fontsize{30}{34}\selectfont\bfseries #2}\par\vspace{3mm}\marcoDiez{#1} &
   #3 \\
   \end{tabularx}
