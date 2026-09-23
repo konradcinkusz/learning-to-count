@@ -1,0 +1,58 @@
+Licencia del CONTENIDO -- Creative Commons BY-NC-SA 4.0
+===========================================================================
+
+Copyright (c) 2026 Konrad Cinkusz
+
+Esta licencia cubre el CONTENIDO de este repositorio, distinto del código
+y las herramientas (que están bajo MIT, ver LICENSE-CODE):
+
+  - content/q*.json -- los días del cuaderno: qué se cuenta, qué se traza
+    y qué se dibuja cada día, las frases de la historia, los nombres de
+    los personajes (Lucía, Dani, Toby, Mamá, Papá, la abuela Rosa) y los
+    temas de cada semana, que son los de "Aprendo a leer"
+  - content/generated-*.tex -- lo que se genera de lo anterior
+  - frontmatter/ -- portada, "cómo usar este cuaderno", mapa del curso
+  - backmatter/diploma.tex
+  - notes/ -- el plan del curso
+
+NO cubre (esos quedan bajo MIT, ver LICENSE-CODE): preamble.tex,
+lang/es.tex, main*.tex, body.tex, tools/, Makefile, .github/, diagrams/
+(las técnicas de dibujo lineal son reutilizables como técnica, no como
+"historia"), ni content/numeros-trazo.json (el contorno de los números,
+sacado de la letra Andika: ver fonts/andika/OFL.txt).
+
+---------------------------------------------------------------------------
+Esta obra está bajo una licencia Creative Commons
+Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0).
+
+En resumen, esta licencia te permite:
+
+  - Compartir -- copiar y redistribuir el material en cualquier medio o
+    formato.
+  - Adaptar -- remezclar, transformar y construir a partir del material
+    (por ejemplo, cambiar los nombres de los personajes y escribir tus
+    propias frases para tu propio hijo o hija).
+
+Bajo los siguientes términos:
+
+  - Atribución -- debes dar crédito de manera adecuada, brindar un enlace
+    a la licencia, e indicar si se han realizado cambios.
+  - NoComercial -- no puedes hacer uso del material con propósitos
+    comerciales.
+  - CompartirIgual -- si remezclas, transformas o creas a partir del
+    material, debes distribuir tu contribución bajo la misma licencia que
+    el original.
+  - No hay restricciones adicionales -- no puedes aplicar términos legales
+    ni medidas tecnológicas que restrinjan legalmente a otras personas a
+    hacer cualquier uso permitido por la licencia.
+
+Este es un resumen legible por humanos (y no un sustituto) de la licencia.
+El texto legal completo, vinculante, está publicado por Creative Commons:
+
+  Resumen (deed):     https://creativecommons.org/licenses/by-nc-sa/4.0/
+  Texto legal completo: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+  En español:          https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.es
+
+En caso de cualquier discrepancia entre este resumen y el texto legal
+completo publicado en los enlaces anteriores, prevalece el texto legal
+completo.

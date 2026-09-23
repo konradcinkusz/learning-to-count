@@ -1,0 +1,17 @@
+# Artefactos de compilación de LaTeX -- se regeneran con `make`.
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.pdf
+
+# Generado por tools/gen_numeros.py a partir del JSON -- la fuente de
+# verdad es el JSON, no estos ficheros.
+content/generated-days.tex
+content/generated-clave.tex
+
+# Python
+__pycache__/
+*.pyc

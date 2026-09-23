@@ -1,0 +1,58 @@
+% lang/es.tex
+% -----------------------------------------------------------------------
+% Todas las cadenas de texto del cuaderno, en un solo sitio, como en
+% "Aprendo a leer": cambiar una palabra aquí la cambia en las 260 páginas
+% a la vez, sin tocar el contenido generado.
+% -----------------------------------------------------------------------
+
+% Total de días del cuaderno. tools/gen_numeros.py --check comprueba que
+% coincide con su propio TOTAL_DIAS.
+\newcommand{\totaldias}{260}
+
+% La cabecera de cada día (\cabeceraDia, preamble.tex).
+\newcommand{\lblFecha}{Fecha}
+\newcommand{\lblNotas}{Notas}
+\newcommand{\lblDia}{Día}
+\newcommand{\lblSemana}{Semana}
+\newcommand{\lblTrimestre}{Trimestre}
+\newcommand{\lblHecho}{Hecho}
+\newcommand{\lblHechoSola}{sola}
+\newcommand{\lblHechoConAyuda}{con ayuda}
+\newcommand{\lblHechoConDificultad}{con dificultad}
+
+% La caja de arriba, la misma todos los días.
+\newcommand{\lblNumeroDeHoy}{El número de hoy}
+
+% Los títulos de las cajas de actividad.
+\newcommand{\lblTraza}{Traza}
+\newcommand{\lblColorea}{Colorea}
+\newcommand{\lblRodea}{Rodea}
+\newcommand{\lblCuenta}{Cuenta}
+\newcommand{\lblBusca}{Busca}
+\newcommand{\lblDibuja}{Dibuja}
+\newcommand{\lblRepasa}{Repasa}
+
+% Las instrucciones: las lee un adulto en voz alta (van pequeñas y en
+% gris, como en "Aprendo a leer"). Las de "colorea", "rodea", "cuenta" y
+% "busca" las compone tools/gen_numeros.py con el número y las cosas de
+% cada día ("Colorea 2 pelotas.").
+\newcommand{\lblInstruccionTraza}{Repasa los puntos con el dedo, y luego con un lápiz. Después, escríbelo tú en la línea.}
+\newcommand{\lblInstruccionCuenta}{¿Cuántas hay? Cuéntalas señalando cada una con el dedo, y rodea el número.}
+\newcommand{\lblInstruccionBusca}{Rodea cada uno que encuentres. ¿Cuántos hay?}
+\newcommand{\lblInstruccionColoreaResto}{Las demás, déjalas en blanco.}
+
+% La portada.
+\newcommand{\lblTituloPortada}{Aprendo los números}
+\newcommand{\lblSubtituloPortada}{Un número nuevo cada semana}
+\newcommand{\lblSubtituloPortadaMetodo}{Cuaderno diario para contar, trazar los números y empezar a sumar -- con la familia de \emph{Aprendo a leer}}
+\newcommand{\lblPortadaNombre}{Nombre}
+\newcommand{\lblPortadaCurso}{Curso}
+
+% La medalla del final de cada trimestre (T1-T3) y el cartel de cada
+% diez páginas.
+\newcommand{\lblMedalla}[1]{¡Medalla de #1!}
+\newcommand{\lblMedallaAnimo}{¡Sigue así, \rule{55mm}{0.4pt}!}
+\newcommand{\lblPaginasHechas}[1]{¡#1 páginas hechas!}
+
+% La clave de respuestas.
+\newcommand{\lblClave}{Clave de respuestas}

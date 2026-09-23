@@ -1,0 +1,24 @@
+% frontmatter/portada.tex -- página de título. El icono es el libro
+% abierto de las portadas de "Aprendo a leer", con un 1 y un 2 en vez de
+% las líneas de texto: la misma serie, otro cuaderno.
+\begin{center}
+\vspace*{3.5cm}
+
+\begin{tikzpicture}[line width=1.6pt, line cap=round, line join=round, color=colorLectura]
+  \draw (-1.6,0) -- (0,0.35) -- (1.6,0) -- (1.6,-1.9) -- (0,-1.55) -- (-1.6,-1.9) -- cycle;
+  \draw (0,0.35) -- (0,-1.55);
+  \node[font=\bfseries\fontsize{30}{30}\selectfont] at (-0.8,-0.8) {1};
+  \node[font=\bfseries\fontsize{30}{30}\selectfont] at (0.8,-0.8) {2};
+\end{tikzpicture}
+
+\vspace{10mm}
+{\fontsize{44}{50}\selectfont\bfseries\color{colorLectura} \lblTituloPortada}\\[6mm]
+{\Large\color{colorGris} \lblSubtituloPortada}\\[4mm]
+{\normalsize\color{colorGris}\parbox{0.8\linewidth}{\centering \lblSubtituloPortadaMetodo}}
+
+\vspace{18mm}
+{\large \lblPortadaNombre:\ \rule{75mm}{0.4pt}}\\[6mm]
+{\large \lblPortadaCurso:\ \rule{75mm}{0.4pt}}
+\end{center}
+\vspace*{\fill}
+\newpage

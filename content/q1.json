@@ -1,0 +1,73 @@
+{
+  "_comentario": "Otoño (trimestre 1, días 1-65): los números del 1 al 10, y el 0, uno por semana. Cada día: el número de la semana ('numero'), las cosas que se dibujan con él en 'El número de hoy' ('objeto', de OBJETOS en tools/gen_numeros.py), una frase de la historia que dice ese número ('frase', la lee el adulto) y una actividad. Ver notes/01-plan.md.",
+  "dias": [
+    {
+      "dia": 1, "semana": 1, "tema": "La familia de Lucía",
+      "numero": 1, "objeto": "toby",
+      "frase": "Lucía tiene un perro, y se llama Toby.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 2, "semana": 1, "tema": "La familia de Lucía",
+      "numero": 1, "objeto": "manzana",
+      "frase": "Mamá le da a Lucía una manzana roja para el recreo.",
+      "actividad": {"tipo": "colorea", "objeto": "manzana", "total": 4}
+    },
+    {
+      "dia": 3, "semana": 1, "tema": "La familia de Lucía",
+      "numero": 1, "objeto": "globo",
+      "frase": "Dani tiene un globo azul, y no lo suelta ni para comer.",
+      "actividad": {"tipo": "rodea", "objeto": "globo", "grupos": [3, 1, 2]}
+    },
+    {
+      "dia": 4, "semana": 1, "tema": "La familia de Lucía",
+      "numero": 1, "objeto": "sol",
+      "frase": "Hoy hace un sol muy grande, y la familia sale al parque.",
+      "actividad": {"tipo": "dibuja", "prompt": "Dibuja 1 sol grande, y a Lucía jugando debajo."}
+    },
+    {
+      "dia": 5, "semana": 1, "tema": "La familia de Lucía",
+      "numero": 1, "objeto": "corazon",
+      "frase": "Lucía le hace un dibujo a cada uno: a Mamá, a Papá, a Dani y a la abuela Rosa.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 1.", "Sé trazar el 1.", "Sé ver dónde hay 1 cosa sola."],
+        "prompt": "Dibuja a la familia de Lucía, y 1 corazón grande para todos."
+      }
+    },
+    {
+      "dia": 6, "semana": 2, "tema": "Toby, el perro juguetón",
+      "numero": 2, "objeto": "huella",
+      "frase": "Toby entra corriendo del jardín, y deja dos huellas en la alfombra.",
+      "actividad": {"tipo": "traza"}
+    },
+    {
+      "dia": 7, "semana": 2, "tema": "Toby, el perro juguetón",
+      "numero": 2, "objeto": "pelota",
+      "frase": "A Toby le encanta jugar con dos pelotas a la vez.",
+      "actividad": {"tipo": "colorea", "objeto": "pelota", "total": 5}
+    },
+    {
+      "dia": 8, "semana": 2, "tema": "Toby, el perro juguetón",
+      "numero": 2, "objeto": "hueso",
+      "frase": "Papá le trae a Toby dos huesos nuevos, y Toby esconde uno.",
+      "actividad": {"tipo": "cuenta", "objeto": "hueso", "opciones": [1, 2]}
+    },
+    {
+      "dia": 9, "semana": 2, "tema": "Toby, el perro juguetón",
+      "numero": 2, "objeto": "estrella",
+      "frase": "Por la noche, Lucía y Dani ven dos estrellas desde la ventana.",
+      "actividad": {"tipo": "busca", "veces": 6, "otros": [1]}
+    },
+    {
+      "dia": 10, "semana": 2, "tema": "Toby, el perro juguetón",
+      "numero": 2, "objeto": "caramelo",
+      "frase": "La abuela Rosa trae dos caramelos: uno para Lucía y otro para Dani.",
+      "actividad": {
+        "tipo": "repasa",
+        "checklist": ["Sé cuál es el 2.", "Sé trazar el 2.", "Sé contar hasta 2."],
+        "prompt": "Dibuja a Toby jugando con sus 2 pelotas."
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+% main-bw.tex -- el mismo cuaderno, sin color. Mismo body.tex, mismo
+% preamble.tex; solo cambia \bookcolor, fijado ANTES de \input{preamble}
+% para que la paleta elija negro y gris en vez de los colores de cada
+% actividad: una versión para imprimir sin gastar tinta de color, sin
+% mantener una segunda copia del libro.
+\documentclass[11pt]{article}
+\def\bookcolor{bw}
+\input{preamble}
+\begin{document}
+\input{body}
+\end{document}
