@@ -13,6 +13,8 @@ content/generated-days.tex
 content/generated-clave.tex
 content/english/generated-days.tex
 content/english/generated-clave.tex
+content/polish/generated-days.tex
+content/polish/generated-clave.tex
 
 # Python
 __pycache__/

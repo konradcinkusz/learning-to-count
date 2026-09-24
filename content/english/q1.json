@@ -1,5 +1,5 @@
 {
-  "_comentario": "First Numbers, Part 1 (autumn, days 1-65): the English text of each day of Aprendo los números -- the sentence from the story that the grown-up reads out ('frase', with the day's number in words), and the text of its activity: 'prompt' for 'dibuja', 'checklist' and 'prompt' for 'repasa' (Friday), 'texto' for 'problema'. Everything else about the day (the number, the pictures, the activity) is the one in content/q1.json, page by page: see cargar_ingles in tools/gen_numeros.py. British English, like First Words and Read and Draw.",
+  "_comentario": "First Numbers, Part 1 (autumn, days 1-65): the English text of each day of Aprendo los números -- the sentence from the story that the grown-up reads out ('frase', with the day's number in words), and the text of its activity: 'prompt' for 'dibuja', 'checklist' and 'prompt' for 'repasa' (Friday), 'texto' for 'problema'. Everything else about the day (the number, the pictures, the activity) is the one in content/q1.json, page by page: see cargar_traduccion in tools/gen_numeros.py. British English, like First Words and Read and Draw.",
   "dias": [
     {"dia": 1, "frase": "Lucía has one dog, and his name is Toby."},
     {"dia": 2, "frase": "Mum gives Lucía one red apple for break time."},

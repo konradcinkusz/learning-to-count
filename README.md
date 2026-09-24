@@ -63,6 +63,24 @@ Está en `english.tex` (y `english-bw.tex`), con el texto de cada día en
 otra sale de `tools/idiomas.py`, y las comprobaciones son las mismas. El
 plan, en [`notes/02-english.md`](notes/02-english.md).
 
+## Poznaję liczby (en polaco)
+
+El mismo cuaderno en polaco, **página a página**, como *First Numbers*:
+el mismo número, las mismas cosas dibujadas y la misma actividad cada
+día. Lo que cambia es la lengua: la frase de la historia, los temas, los
+enunciados, con cada cosa en la forma que le toca con su número
+(*Pokoloruj 1 piłkę*, *2 piłki*, *5 piłek*), las instrucciones, las
+páginas para el adulto, la clave y el diploma. Y la frase del día dice
+su número en cualquiera de sus formas, que en polaco cambian con el
+caso y con lo que se cuenta (*jeden pies*, *jednego psa*, *dwie
+piłki*, *troje dzieci*): el script las lee todas. Los personajes se
+quedan (Lucía, babcia Rosa, pani Marta), y el dinero son euros.
+
+Está en `polish.tex` (y `polish-bw.tex`), con el texto de cada día en
+`content/polish/q*.json`, y las comprobaciones son las mismas. Se está
+escribiendo: el otoño, días 1--65, ya está. El plan, en
+[`notes/03-polish.md`](notes/03-polish.md).
+
 ## Descargar el PDF sin instalar nada
 
 **[⬇ PDF (color)](https://konradcinkusz.github.io/learning-to-count/aprendo-los-numeros.pdf)**
@@ -77,7 +95,8 @@ mismo contenido y la misma paginación: nada en el cuaderno se distingue
 solo por el color. Mientras Pages no esté activado, los mismos PDF están
 en la pestaña *Actions* → el último run de *Build* → artefactos
 `pdf-color` / `pdf-bw` -- y los de *First Numbers*, `pdf-english` /
-`pdf-english-bw`.
+`pdf-english-bw`; y los de *Poznaję liczby*, mientras se escribe,
+`pdf-polish` / `pdf-polish-bw`.
 
 ## Construir el PDF a mano
 
@@ -88,8 +107,9 @@ cargada con `fontspec` desde `fonts/andika/`) + `latexmk`, con `babel`,
 ```sh
 make              # genera, compila el cuaderno en color y comprueba
 make english      # lo mismo, "First Numbers" (english.tex)
-make all-formats  # los cuatro PDF, color Y blanco-y-negro de los dos -- lo que corre el CI
-make generate     # solo regenera los .tex de los dos cuadernos desde el JSON
+make polish       # lo mismo, "Poznaję liczby" (polish.tex)
+make all-formats  # los seis PDF, color Y blanco-y-negro de los tres -- lo que corre el CI
+make generate     # solo regenera los .tex de los tres cuadernos desde el JSON
 make build        # solo compila en color (asume que ya está generado)
 make build-bw     # solo compila en blanco y negro
 make check        # lee main.log + 1 día = 1 página (main.aux) + valida el JSON
@@ -101,25 +121,28 @@ make clean
 ```
 main.tex, main-bw.tex          -- el cuaderno, color y blanco-y-negro; solo fijan \bookcolor
 english.tex, english-bw.tex    -- "First Numbers": lo mismo, con \booklang{english}
+polish.tex, polish-bw.tex      -- "Poznaję liczby": lo mismo, con \booklang{polish}
 preamble.tex, lang/es.tex      -- el motor LaTeX y todas las cadenas de texto
-lang/en.tex                    -- las mismas cadenas, en inglés
-body.tex, body-english.tex     -- el orden del documento
+lang/en.tex, lang/pl.tex       -- las mismas cadenas, en inglés y en polaco
+body.tex, body-english.tex, body-polish.tex -- el orden del documento
 frontmatter/, backmatter/      -- portada, instrucciones, mapa del curso; clave de respuestas y diploma
-frontmatter/english/, backmatter/english/ -- lo mismo, en inglés
+frontmatter/english/, backmatter/english/ -- lo mismo, en inglés (y frontmatter/polish/, backmatter/polish/, en polaco)
 content/q1.json ...            -- los días, uno por trimestre, editados a mano
 content/english/q1.json ...    -- el texto en inglés de cada día (lo demás es el de content/q*.json)
+content/polish/q1.json ...     -- lo mismo, en polaco
 content/numeros-trazo.json     -- el contorno de cada número (Andika), generado por tools/gen_numeros_puntos.py
 content/generated-*.tex        -- GENERADO por tools/gen_numeros.py, no editar
 diagrams/kit.tex               -- las piezas de los dibujos de «First Words» (de Aprendo a leer)
 diagrams/objetos.tex           -- las cosas que se cuentan, cada una en la misma caja
 tools/gen_numeros.py           -- JSON -> LaTeX, la escalera, las comprobaciones de cada actividad, la clave
-tools/idiomas.py               -- lo que se escribe en la página, en español y en inglés
+tools/idiomas.py               -- lo que se escribe en la página, en español, en inglés y en polaco
 tools/gen_numeros_puntos.py    -- letra -> contorno de cada número (matplotlib; no forma parte de `make`)
 tools/checklog.py              -- lee el .log de LuaLaTeX correctamente (de Aprendo a leer)
 tools/check_pages.py           -- comprueba que cada día ocupa una sola página (de Aprendo a leer)
 docs/index.html                -- la página que publica .github/workflows/pages.yml
 notes/01-plan.md               -- el plan: la escalera, las actividades, las comprobaciones y las fases
 notes/02-english.md            -- el plan de "First Numbers"
+notes/03-polish.md             -- el plan de "Poznaję liczby"
 ```
 
 ## Licencia
@@ -147,3 +170,7 @@ cinco fases, un PR cada una: ver "Las fases" en
 medallas, sus respuestas y su diploma, en color y en blanco y negro,
 publicado junto al español. Se escribió en tres fases: ver
 [`notes/02-english.md`](notes/02-english.md).
+
+**Poznaję liczby**, en obras: el otoño (días 1--65, del 0 al 10), con su
+medalla, en color y en blanco y negro. Faltan el invierno, la primavera
+y el verano: ver [`notes/03-polish.md`](notes/03-polish.md).

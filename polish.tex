@@ -1,0 +1,12 @@
+% polish.tex -- "Poznaję liczby", en color: "Aprendo los números" en
+% polaco, página a página (ver tools/idiomas.py). Solo cambia \booklang,
+% fijado antes de \input{preamble} como \bookcolor: el mismo preámbulo,
+% con las cadenas de texto de lang/pl.tex; polish-bw.tex es el mismo
+% cuaderno sin color.
+\documentclass[11pt]{article}
+\def\bookcolor{color}
+\def\booklang{polish}
+\input{preamble}
+\begin{document}
+\input{body-polish}
+\end{document}

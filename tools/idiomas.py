@@ -1,15 +1,17 @@
-"""Las dos lenguas de los cuadernos de números.
+"""Las tres lenguas de los cuadernos de números.
 
-tools/gen_numeros.py genera dos cuadernos que son, página a página, el
-mismo: "Aprendo los números" (main.tex), en español, y "First Numbers"
+tools/gen_numeros.py genera tres cuadernos que son, página a página, el
+mismo: "Aprendo los números" (main.tex), en español; "First Numbers"
 (english.tex), en inglés británico, como "Read and Draw" y "First Words"
-de "Aprendo a leer". Comparten todo lo que no es lengua -- el calendario,
-la escalera, los dibujos, las actividades y lo que se comprueba de cada
-una --, y lo que cambia de uno a otro está aquí, en un solo sitio:
+de "Aprendo a leer"; y "Poznaję liczby" (polish.tex), en polaco.
+Comparten todo lo que no es lengua -- el calendario, la escalera, los
+dibujos, las actividades y lo que se comprueba de cada una --, y lo que
+cambia de uno a otro está aquí, en un solo sitio:
 
   - cómo se llama cada número, y cómo puede aparecer en la frase del día
     (en español, "un perro", "una manzana", "ninguna castaña"; en
-    inglés, "one dog", "no chestnuts");
+    inglés, "one dog", "no chestnuts"; en polaco, "jednego psa", "dwie
+    piłki", "żadnego kasztana");
   - cómo se llaman las cosas que se cuentan (el dibujo es el mismo:
     OBJETOS, en tools/gen_numeros.py);
   - el tema de cada semana y el nombre de cada medalla;
@@ -18,12 +20,12 @@ una --, y lo que cambia de uno a otro está aquí, en un solo sitio:
     cosas de cada día ("Colorea 2 pelotas.", "Colour 2 balls.").
 
 Lo que la página dice siempre igual (los títulos de las cajas, la
-cabecera de cada día, la portada) no está aquí, sino en lang/es.tex y
-lang/en.tex.
+cabecera de cada día, la portada) no está aquí, sino en lang/es.tex,
+lang/en.tex y lang/pl.tex.
 
-Cada lengua es un objeto con los mismos métodos: ESPANOL e INGLES, más
-abajo. Los métodos de ESPANOL devuelven, letra por letra, lo que
-escribía tools/gen_numeros.py antes de que hubiera un cuaderno en
+Cada lengua es un objeto con los mismos métodos: ESPANOL, INGLES y
+POLACO, más abajo. Los métodos de ESPANOL devuelven, letra por letra, lo
+que escribía tools/gen_numeros.py antes de que hubiera un cuaderno en
 inglés.
 """
 
@@ -816,5 +818,479 @@ class Ingles(Espanol):
                 ", ".join(f"{x} {self.nombres[x]}" for x in numeros))
 
 
+class Polaco(Espanol):
+    """"Poznaję liczby": el mismo cuaderno, en polaco. Los personajes y lo
+    que es de aquí se quedan como en español (Lucía, Dani, Toby, babcia
+    Rosa, pani Marta, el turrón, los churros, las torrijas), y el dinero
+    son euros -- que en polaco no se declina: 1 euro, 2 euro, 5 euro.
+
+    Lo difícil del polaco es el número. La cosa va en singular con el 1
+    (1 piłka), en nominativo plural con el 2, el 3 y el 4 (y el 22, el
+    23, el 24..., pero no el 12, el 13 ni el 14: 2 piłki) y en genitivo
+    plural con los demás (5 piłek, 12 piłek); y el propio número cambia
+    con el caso y con lo que cuenta: "jeden pies", "jednego psa", "dwie
+    piłki", "dwóch chłopców", "troje dzieci". Por eso la frase del día no
+    se busca en una lista de formas: se leen sus números (_valores), y
+    "dwadzieścia jeden" es el 21, no el 20 y el 1."""
+
+    codigo = "pl"
+
+    temas = [
+        "Rodzina Lucíi", "Toby, wesoły piesek", "Szkoła Lucíi",
+        "Okolica i park", "Jedzenie w domu", "Przychodzi jesień",
+        "Zabawki Daniego", "Kasztany i Wszystkich Świętych",
+        "Urodziny Lucíi", "Zwierzęta z okolicy", "Deszczowy dzień",
+        "Z mamą na targ", "Wigilia",
+        "Styczniowy mróz", "Urodziny taty", "Karnawałowy strój",
+        "Dzień Pokoju", "Lucía jest chora",
+        "Niedziela z babcią i robótkami", "Osiedlowa biblioteka",
+        "Urodziny Toby'ego", "Bardzo wietrzny dzień",
+        "Roślinny projekt pani Marty", "Dani psuje dinozaura Lucíi",
+        "Pachnie wiosną", "Koniec drugiej części roku",
+        "Toby gubi się w parku", "Daniemu wypada ząbek",
+        "Dzień Książki", "Zaczyna się Wielki Tydzień", "Szkolny ogródek",
+        "Lucía uczy się jeździć na rowerze", "Lucía zapisuje się na basen",
+        "Dzień Matki", "Dani zna już prawie wszystkie litery",
+        "Zbliża się koniec roku szkolnego", "Gąsienica zmienia się w motyla",
+        "Kiermasz książek na koniec roku", "Ostatni dzień szkoły",
+        "Zaczyna się lato", "Przyjazd na wieś babci Rosy",
+        "Sąsiad Andrés i jego kot Bigotes", "Dzień nad rzeką",
+        "Ogródek babci", "Letnia burza",
+        "Wycieczka na plażę", "Wiejski festyn",
+        "Dani zaprzyjaźnia się z Martínem", "Powrót do miasta",
+        "Przygotowania do szkoły",
+        "Dani ćwiczy czytanie na głos", "Znowu do szkoły",
+    ]
+
+    # "Medal za jesień!": \lblMedalla{#1}, en lang/pl.tex, pide el
+    # acusativo. "65 dni, 65 stron": 65, 130 y 195 piden el genitivo.
+    nombre_medalla = {1: "jesień", 2: "zimę", 3: "wiosnę"}
+    plantilla_medalla = Template(_MEDALLA % ("dni", "stron"))
+
+    # Los nombres de los números, en nominativo (los de la caja de
+    # arriba).
+    _HASTA_19 = [
+        "zero", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem",
+        "dziewięć", "dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście",
+        "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście",
+    ]
+    _DECENAS = {2: "dwadzieścia", 3: "trzydzieści", 4: "czterdzieści", 5: "pięćdziesiąt",
+                6: "sześćdziesiąt", 7: "siedemdziesiąt", 8: "osiemdziesiąt",
+                9: "dziewięćdziesiąt"}
+
+    # Y todas sus formas: los casos, el masculino de persona ("dwaj",
+    # "dwóch") y los colectivos ("dwoje dzieci"). El 0 también se dice
+    # "żaden", "nic" o "nikt".
+    _FORMAS = {
+        0: ("zero", "żaden", "żadna", "żadne", "żadnego", "żadnej", "żadnych", "żadnym",
+            "nic", "niczego", "nikt", "nikogo"),
+        1: ("jeden", "jedna", "jedno", "jednego", "jednej", "jednemu", "jednym", "jedną"),
+        2: ("dwa", "dwie", "dwaj", "dwóch", "dwu", "dwom", "dwóm", "dwoma", "dwiema",
+            "dwoje", "dwojga", "dwojgu", "dwojgiem"),
+        3: ("trzy", "trzej", "trzech", "trzem", "trzema", "troje", "trojga", "trojgu", "trojgiem"),
+        4: ("cztery", "czterej", "czterech", "czterem", "czterema", "czworo", "czworga",
+            "czworgu", "czworgiem"),
+        5: ("pięć", "pięciu", "pięcioma", "pięcioro", "pięciorga"),
+        6: ("sześć", "sześciu", "sześcioma", "sześcioro", "sześciorga"),
+        7: ("siedem", "siedmiu", "siedmioma", "siedmioro", "siedmiorga"),
+        8: ("osiem", "ośmiu", "ośmioma", "ośmioro", "ośmiorga"),
+        9: ("dziewięć", "dziewięciu", "dziewięcioma", "dziewięcioro", "dziewięciorga"),
+        10: ("dziesięć", "dziesięciu", "dziesięcioma", "dziesięcioro", "dziesięciorga"),
+        11: ("jedenaście", "jedenastu", "jedenastoma", "jedenaścioro"),
+        12: ("dwanaście", "dwunastu", "dwunastoma", "dwanaścioro"),
+        13: ("trzynaście", "trzynastu", "trzynastoma", "trzynaścioro"),
+        14: ("czternaście", "czternastu", "czternastoma", "czternaścioro"),
+        15: ("piętnaście", "piętnastu", "piętnastoma", "piętnaścioro"),
+        16: ("szesnaście", "szesnastu", "szesnastoma", "szesnaścioro"),
+        17: ("siedemnaście", "siedemnastu", "siedemnastoma", "siedemnaścioro"),
+        18: ("osiemnaście", "osiemnastu", "osiemnastoma", "osiemnaścioro"),
+        19: ("dziewiętnaście", "dziewiętnastu", "dziewiętnastoma", "dziewiętnaścioro"),
+        20: ("dwadzieścia", "dwudziestu", "dwudziestoma", "dwadzieścioro"),
+        30: ("trzydzieści", "trzydziestu", "trzydziestoma"),
+        40: ("czterdzieści", "czterdziestu", "czterdziestoma"),
+        50: ("pięćdziesiąt", "pięćdziesięciu", "pięćdziesięcioma"),
+        60: ("sześćdziesiąt", "sześćdziesięciu", "sześćdziesięcioma"),
+        70: ("siedemdziesiąt", "siedemdziesięciu", "siedemdziesięcioma"),
+        80: ("osiemdziesiąt", "osiemdziesięciu", "osiemdziesięcioma"),
+        90: ("dziewięćdziesiąt", "dziewięćdziesięciu", "dziewięćdziesięcioma"),
+        100: ("sto", "stu", "stoma"),
+    }
+    # Qué vale cada palabra, y qué puede ir detrás de una decena: del 2 al
+    # 9, cualquiera de sus formas; el 1, solo "jeden" ("dwadzieścia
+    # jeden", "dwudziestu jeden").
+    _VALOR = {f: n for n, formas in _FORMAS.items() for f in formas}
+    _TRAS_DECENA = dict({f: n for n, formas in _FORMAS.items() if 2 <= n <= 9 for f in formas}, jeden=1)
+
+    def _nombre(self, n):
+        if n < 20:
+            return self._HASTA_19[n]
+        if n == 100:
+            return "sto"
+        d, u = divmod(n, 10)
+        return self._DECENAS[d] + (f" {self._HASTA_19[u]}" if u else "")
+
+    def formas(self, n):
+        """Algunas de las formas del número n (para decir, si falla, qué
+        tiene que decir la frase)."""
+        if n in self._FORMAS:
+            return set(self._FORMAS[n])
+        d, u = divmod(n, 10)
+        unidades = ("jeden",) if u == 1 else self._FORMAS[u][:4]
+        return {f"{t} {x}" for t in self._FORMAS[d * 10][:2] for x in unidades}
+
+    def _valores(self, texto):
+        """Los números que dice `texto` con letra: "dwadzieścia jeden" es
+        el 21 (y no el 20 y el 1), y "dwudziestu trzech", el 23."""
+        palabras = re.findall(r"[^\W\d_]+", texto.lower())
+        valores, i = [], 0
+        while i < len(palabras):
+            v = self._VALOR.get(palabras[i])
+            if v is None:
+                i += 1
+                continue
+            if 20 <= v <= 90 and v % 10 == 0 and i + 1 < len(palabras) and palabras[i + 1] in self._TRAS_DECENA:
+                valores.append(v + self._TRAS_DECENA[palabras[i + 1]])
+                i += 2
+                continue
+            valores.append(v)
+            i += 1
+        return valores
+
+    def dice(self, texto, n):
+        return n in self._valores(texto)
+
+    def en_texto(self, texto, n):
+        return bool(re.search(rf"(?<!\d){n}(?!\d)", texto)) or self.dice(texto, n)
+
+    dice_cuantas = en_texto
+
+    # ----------------------------------------------------------------
+    # Las cosas que se cuentan: nominativo y acusativo singular,
+    # nominativo y genitivo plural, y género. "Pokoloruj 1 piłkę",
+    # "Pokoloruj 2 piłki", "Pokoloruj 5 piłek"; "Ile jest piłek?".
+    # ----------------------------------------------------------------
+    objetos = {
+        "manzana": ("jabłko", "jabłko", "jabłka", "jabłek", "n"),
+        "pelota": ("piłka", "piłkę", "piłki", "piłek", "f"),
+        "hueso": ("kość", "kość", "kości", "kości", "f"),
+        "sol": ("słońce", "słońce", "słońca", "słońc", "n"),
+        "huella": ("ślad łapy", "ślad łapy", "ślady łap", "śladów łap", "m"),
+        "toby": ("pies", "psa", "psy", "psów", "m"),
+        "globo": ("balonik", "balonik", "baloniki", "baloników", "m"),
+        "estrella": ("gwiazdka", "gwiazdkę", "gwiazdki", "gwiazdek", "f"),
+        "hoja": ("liść", "liść", "liście", "liści", "m"),
+        "corazon": ("serduszko", "serduszko", "serduszka", "serduszek", "n"),
+        "caramelo": ("cukierek", "cukierka", "cukierki", "cukierków", "m"),
+        "pez": ("rybka", "rybkę", "rybki", "rybek", "f"),
+        "lapiz": ("ołówek", "ołówek", "ołówki", "ołówków", "m"),
+        "libro": ("książka", "książkę", "książki", "książek", "f"),
+        "galleta": ("ciastko", "ciastko", "ciastka", "ciastek", "n"),
+        "seta": ("grzyb", "grzyba", "grzyby", "grzybów", "m"),
+        "castana": ("kasztan", "kasztan", "kasztany", "kasztanów", "m"),
+        "cesta": ("koszyk", "koszyk", "koszyki", "koszyków", "m"),
+        "vela": ("świeczka", "świeczkę", "świeczki", "świeczek", "f"),
+        "regalo": ("prezent", "prezent", "prezenty", "prezentów", "m"),
+        "arana": ("pająk", "pająka", "pająki", "pająków", "m"),
+        "paraguas": ("parasol", "parasol", "parasole", "parasoli", "m"),
+        "bola": ("bombka", "bombkę", "bombki", "bombek", "f"),
+        "arbol": ("drzewo", "drzewo", "drzewa", "drzew", "n"),
+        "pato": ("kaczka", "kaczkę", "kaczki", "kaczek", "f"),
+        "coche": ("samochodzik", "samochodzik", "samochodziki", "samochodzików", "m"),
+        "trex": ("dinozaur", "dinozaura", "dinozaury", "dinozaurów", "m"),
+        "mariposa": ("motyl", "motyla", "motyle", "motyli", "m"),
+        "gota": ("kropla", "kroplę", "krople", "kropli", "f"),
+        "nube": ("chmurka", "chmurkę", "chmurki", "chmurek", "f"),
+        "huevo": ("jajko", "jajko", "jajka", "jajek", "n"),
+        "pajaro": ("ptaszek", "ptaszka", "ptaszki", "ptaszków", "m"),
+        "gato": ("kot", "kota", "koty", "kotów", "m"),
+        "mochila": ("plecak", "plecak", "plecaki", "plecaków", "m"),
+        "ardilla": ("wiewiórka", "wiewiórkę", "wiewiórki", "wiewiórek", "f"),
+        "plato": ("talerz", "talerz", "talerze", "talerzy", "m"),
+        "mandarina": ("mandarynka", "mandarynkę", "mandarynki", "mandarynek", "f"),
+        "copo": ("płatek śniegu", "płatek śniegu", "płatki śniegu", "płatków śniegu", "m"),
+        "muneco": ("bałwan", "bałwana", "bałwany", "bałwanów", "m"),
+        "gorrofiesta": ("czapeczka", "czapeczkę", "czapeczki", "czapeczek", "f"),
+        "nota": ("nutka", "nutkę", "nutki", "nutek", "f"),
+        "osito": ("miś", "misia", "misie", "misiów", "m"),
+        "flor": ("kwiatek", "kwiatek", "kwiatki", "kwiatków", "m"),
+        "corona": ("korona", "koronę", "korony", "koron", "f"),
+        "cometa": ("latawiec", "latawiec", "latawce", "latawców", "m"),
+        "alubia": ("nasionko", "nasionko", "nasionka", "nasionek", "n"),
+        "boton": ("guzik", "guzik", "guziki", "guzików", "m"),
+        "tronco": ("polano", "polano", "polana", "polan", "n"),
+        "fresa": ("truskawka", "truskawkę", "truskawki", "truskawek", "f"),
+        "piruleta": ("lizak", "lizaka", "lizaki", "lizaków", "m"),
+        "paloma": ("gołąb", "gołębia", "gołębie", "gołębi", "m"),
+        "ovillo": ("kłębek włóczki", "kłębek włóczki", "kłębki włóczki", "kłębków włóczki", "m"),
+        "bufanda": ("szalik", "szalik", "szaliki", "szalików", "m"),
+        "gorro": ("czapka", "czapkę", "czapki", "czapek", "f"),
+        "maceta": ("doniczka", "doniczkę", "doniczki", "doniczek", "f"),
+        "brote": ("kiełek", "kiełek", "kiełki", "kiełków", "m"),
+        "pipa": ("pestka", "pestkę", "pestki", "pestek", "f"),
+        "rueda": ("koło", "koło", "koła", "kół", "n"),
+        "bici": ("rower", "rower", "rowery", "rowerów", "m"),
+        "oruga": ("gąsienica", "gąsienicę", "gąsienice", "gąsienic", "f"),
+        "gafas": ("para okularków", "parę okularków", "pary okularków", "par okularków", "f"),
+        "arbusto": ("krzak", "krzak", "krzaki", "krzaków", "m"),
+        "tarta": ("tort", "tort", "torty", "tortów", "m"),
+        "rosa": ("róża", "różę", "róże", "róż", "f"),
+        "abeja": ("pszczoła", "pszczołę", "pszczoły", "pszczół", "f"),
+        "pollito": ("kurczątko", "kurczątko", "kurczątka", "kurczątek", "n"),
+        "diente": ("ząbek", "ząbek", "ząbki", "ząbków", "m"),
+        "moneda": ("moneta", "monetę", "monety", "monet", "f"),
+        "mano": ("ręka", "rękę", "ręce", "rąk", "f"),
+        "torrija": ("grzanka", "grzankę", "grzanki", "grzanek", "f"),
+        "zanahoria": ("marchewka", "marchewkę", "marchewki", "marchewek", "f"),
+        "tomate": ("pomidor", "pomidor", "pomidory", "pomidorów", "m"),
+        "regadera": ("konewka", "konewkę", "konewki", "konewek", "f"),
+        "tarjeta": ("kartonik", "kartonik", "kartoniki", "kartoników", "m"),
+        "pan": ("bochenek", "bochenek", "bochenki", "bochenków", "m"),
+        "rayo": ("błyskawica", "błyskawicę", "błyskawice", "błyskawic", "f"),
+        "lechuga": ("sałata", "sałatę", "sałaty", "sałat", "f"),
+        "maleta": ("walizka", "walizkę", "walizki", "walizek", "f"),
+        "helado": ("rożek lodów", "rożek lodów", "rożki lodów", "rożków lodów", "m"),
+        "concha": ("muszelka", "muszelkę", "muszelki", "muszelek", "f"),
+        "cubo": ("wiaderko", "wiaderko", "wiaderka", "wiaderek", "n"),
+        "churro": ("churros", "churrosa", "churrosy", "churrosów", "m"),
+        "caracol": ("ślimak", "ślimaka", "ślimaki", "ślimaków", "m"),
+        "reloj": ("zegar", "zegar", "zegary", "zegarów", "m"),
+    }
+
+    # Lo que se cuenta de 2 en 2 o de 5 en 5 en "Cuenta": las ruedas de
+    # las bicis y los dedos de las manos (nominativo y genitivo plural).
+    contar_de = {"bici": ("koła", "kół"), "mano": ("palce", "palców")}
+
+    _DE = {1: "po kolei", 2: "dwójkami", 5: "piątkami", 10: "dziesiątkami"}
+    _ORDINALES = {1: "pierwsza", 2: "druga", 3: "trzecia", 4: "czwarta"}
+
+    antes, despues = "przed", "po"
+    signo_junta = "i"
+
+    # La instrucción de casi todas las actividades empieza igual.
+    LEE = "Dorosły czyta polecenie. "
+
+    @staticmethod
+    def _grupo(n):
+        """1: el singular; 2, 3 y 4 (y 22, 23, 24..., no 12, 13 y 14): el
+        nominativo plural; los demás, el genitivo plural."""
+        if n == 1:
+            return 1
+        if n % 10 in (2, 3, 4) and n % 100 not in (12, 13, 14):
+            return 2
+        return 5
+
+    def _con(self, n, uno, dos, cinco):
+        return {1: uno, 2: dos, 5: cinco}[self._grupo(n)]
+
+    def cosa(self, objeto, n):
+        """Detrás del número n, en nominativo: "1 piłka", "2 piłki", "5 piłek"."""
+        nom, _, plural, genitivo, _ = self.objetos[objeto]
+        return self._con(n, nom, plural, genitivo)
+
+    def acusativo(self, objeto, n):
+        """Lo mismo, en acusativo: "Pokoloruj 1 piłkę", "Skreśl 2 psy"."""
+        _, acu, plural, genitivo, _ = self.objetos[objeto]
+        return self._con(n, acu, plural, genitivo)
+
+    def genitivo_plural(self, objeto):
+        """"Ile jest piłek?"."""
+        return self.objetos[objeto][3]
+
+    def femenino(self, objeto):
+        return self.objetos[objeto][4] == "f"
+
+    def _de(self, paso):
+        return self._DE[paso]
+
+    @staticmethod
+    def _y(numeros):
+        """"5", "5 i 7", "5, 7 i 9"."""
+        numeros = [str(v) for v in numeros]
+        return numeros[0] if len(numeros) == 1 else ", ".join(numeros[:-1]) + " i " + numeros[-1]
+
+    def _cuantas_hay(self, objeto, n):
+        """"jest 1 piłka", "są 2 piłki", "jest 5 piłek"."""
+        return f"{'są' if self._grupo(n) == 2 else 'jest'} {n} {self.cosa(objeto, n)}"
+
+    def colorea(self, cuantas, objeto):
+        return f"Pokoloruj {cuantas} {self.acusativo(objeto, cuantas)}.", "Resztę zostaw bez koloru."
+
+    def rodea(self, cuantas, objeto, posicion):
+        if cuantas == 0:
+            enunciado = f"Zakreśl grupę, w której nie ma żadnych {self.genitivo_plural(objeto)}."
+            respuesta = f"0 {self.genitivo_plural(objeto)}"
+        elif cuantas == 1:
+            enunciado = f"Zakreśl grupę, w której jest tylko 1 {self.cosa(objeto, 1)}."
+            respuesta = f"1 {self.cosa(objeto, 1)}"
+        else:
+            enunciado = f"Zakreśl grupę, w której {self._cuantas_hay(objeto, cuantas)}."
+            respuesta = f"{cuantas} {self.cosa(objeto, cuantas)}"
+        return (enunciado, self.LEE + "Zakreśl ołówkiem całą grupę.",
+                f"{self._ORDINALES[posicion]} grupa ({respuesta})")
+
+    def cuenta(self, objeto, de):
+        if de == 1:
+            return (f"Ile jest {self.genitivo_plural(objeto)}?",
+                    self.LEE + "Licz, wskazując palcem każdą rzecz po kolei, i zakreśl liczbę.")
+        plural, genitivo = self.contar_de[objeto]
+        cada = "Każda" if self.femenino(objeto) else "Każdy"
+        return (f"Ile jest {genitivo}?",
+                self.LEE + f"{cada} {self.cosa(objeto, 1)} ma {de} {self._con(de, plural, plural, genitivo)}: "
+                f"licz {self._de(de)}, wskazując je po kolei, i zakreśl liczbę.")
+
+    def busca(self, buscar, veces):
+        return f"Znajdź wszystkie liczby {buscar}.", f"liczba {buscar} występuje {veces} razy"
+
+    def une(self, grupos):
+        return ("Połącz każdą grupę z jej liczbą.",
+                self.LEE + "Policz każdą grupę i poprowadź linię od jej kropki do kropki przy jej liczbie.",
+                "od góry: " + ", ".join(str(g) for g in grupos))
+
+    def serie(self, paso, faltan):
+        uno = len(faltan) == 1
+        hacia = "" if paso > 0 else " od końca"
+        return ("Jakiej liczby brakuje?" if uno else "Jakich liczb brakuje?",
+                self.LEE + f"Powiedz liczby z pociągu {self._de(abs(paso))}{hacia} "
+                + ("i wpisz do pustego wagonu tę, której brakuje." if uno
+                   else "i wpisz do pustych wagonów te, których brakuje."),
+                "brakuje " + self._y(faltan))
+
+    def decena(self, objeto):
+        return (f"Ile jest {self.genitivo_plural(objeto)}?",
+                self.LEE + "Na pełnej tacy jest 10: licz dalej od 10 te z drugiej tacy "
+                "i wpisz, ile ich jest.")
+
+    def junta(self, objeto):
+        return (f"Ile jest razem {self.genitivo_plural(objeto)}?",
+                self.LEE + "Połącz obie grupy: policz wszystko i wpisz, ile ich jest.")
+
+    def son(self, a, b, total):
+        return f"{a} i {b} to {total}"
+
+    def compara_numeros(self, que, numeros, elegido):
+        dos = len(numeros) == 2
+        cual = {("mas", True): "większą", ("mas", False): "największą",
+                ("menos", True): "mniejszą", ("menos", False): "najmniejszą"}[que, dos]
+        return (f"Zakreśl {cual} liczbę.",
+                self.LEE + "Jeśli trzeba, policzcie razem: mniejsza liczba to ta, którą "
+                "mówi się wcześniej przy liczeniu.",
+                str(elegido))
+
+    def compara_grupos(self, que, objeto, grupos):
+        genitivo = self.genitivo_plural(objeto)
+        if que == "igual":
+            igual = next(x for x in grupos if grupos.count(x) == 2)
+            p1, p2 = [i + 1 for i, x in enumerate(grupos) if x == igual]
+            enunciado = f"Zakreśl dwie grupy, w których jest tyle samo {genitivo}."
+            clave = f"{self._ORDINALES[p1]} i {self._ORDINALES[p2]} grupa ({igual} i {igual})"
+        else:
+            elegido = max(grupos) if que == "mas" else min(grupos)
+            dos = len(grupos) == 2
+            cuanto = {("mas", True): "więcej", ("mas", False): "najwięcej",
+                      ("menos", True): "mniej", ("menos", False): "najmniej"}[que, dos]
+            enunciado = f"Zakreśl grupę, w której jest {cuanto} {genitivo}."
+            clave = (f"{self._ORDINALES[grupos.index(elegido) + 1]} grupa "
+                     f"({elegido} {self.cosa(objeto, elegido)})")
+        return enunciado, self.LEE + "Policz każdą grupę i zakreśl ołówkiem tę, o którą chodzi.", clave
+
+    def vecinos(self, numeros):
+        uno = len(numeros) == 1
+        return ("Jaka liczba jest przed, a jaka po?" if uno
+                else "Jakie liczby są przed, a jakie po?",
+                self.LEE + "W domku po lewej wpisz liczbę, która jest przed; w domku po "
+                "prawej tę, która jest po.",
+                "; ".join(f"{x}: {x - 1} i {x + 1}" for x in numeros))
+
+    def recta(self, paso, faltan):
+        uno = len(faltan) == 1
+        return ("Jakiej liczby brakuje na osi liczbowej?" if uno
+                else "Jakich liczb brakuje na osi liczbowej?",
+                self.LEE + f"Powiedz liczby z osi {self._de(paso)}, od lewej do prawej, "
+                "i wpisz w każdą lukę tę, której brakuje.",
+                "brakuje " + self._y(faltan))
+
+    def ordena(self, orden, ordenados):
+        de, a = ("najmniejszej", "największej") if orden == "menor" else ("największej", "najmniejszej")
+        primero = "najmniejszą" if orden == "menor" else "największą"
+        return (f"Ułóż liczby od {de} do {a}.",
+                self.LEE + f"Wpisz liczby na dole po kolei, zgodnie ze strzałkami: najpierw {primero}.",
+                ", ".join(str(x) for x in ordenados))
+
+    def suma(self, objeto):
+        return (f"Ile jest razem {self.genitivo_plural(objeto)}?",
+                self.LEE + "Znak + oznacza, że łączymy: policz wszystko i wpisz wynik.")
+
+    def resta(self, quita, objeto):
+        return (f"Skreśl {quita} {self.acusativo(objeto, quita)}. Ile zostało?",
+                self.LEE + "Skreśl kreską te, które zabieramy, policz te, które zostały, "
+                "i wpisz wynik.")
+
+    def parte(self, total, parte, objeto):
+        return (f"{total} to {parte} i... ile jeszcze?",
+                self.LEE + f"Kreska dzieli grupę na dwie części. Po jednej stronie policzono już "
+                f"{parte}; policz te po drugiej stronie i wpisz, ile ich jest.",
+                f"{total} to {parte} i \\huecoRespuesta",
+                f"{total} to {parte} i {total - parte}")
+
+    def diez(self):
+        return ("Ile brakuje do 10?",
+                self.LEE + "Dorysuj w ramce brakujące kropki, żeby ją wypełnić, policz "
+                "dorysowane kropki i wpisz liczbę.")
+
+    def problema(self):
+        return ("Dorosły czyta zadanie, powoli. Jeśli to pomaga, narysuj je w ramce, "
+                "a potem wpisz działanie i wynik.")
+
+    def bloques(self, numero):
+        decenas, unidades = divmod(numero, 10)
+        return ("Jaka to liczba?",
+                self.LEE + "Każdy słupek to dziesiątka: dziesięć kostek. Policz słupki i pojedyncze "
+                "kostki, wpisz, ile jest jednych i drugich, a potem liczbę.",
+                r"{\fontsize{30}{36}\selectfont dziesiątki: \huecoRespuesta[18mm]\quad "
+                r"jedności: \huecoRespuesta[18mm]}\\[5mm] liczba: \huecoRespuesta",
+                f"{decenas} {self._con(decenas, 'dziesiątka', 'dziesiątki', 'dziesiątek')} i "
+                f"{unidades} {self._con(unidades, 'jedność', 'jedności', 'jedności')} to {numero}")
+
+    def tabla(self, faltan):
+        return ("Jakich liczb brakuje w tabeli?",
+                self.LEE + "Każdy rząd to jedna dziesiątka: mów liczby rząd po rzędzie i wpisz "
+                "w każdą pustą kratkę tę, której brakuje.",
+                "brakuje " + self._y(faltan))
+
+    def dinero(self, total):
+        return ("Ile jest pieniędzy?",
+                self.LEE + "Policz najpierw banknoty, a potem monety, i wpisz, ile jest "
+                "razem euro.",
+                "Razem: \\huecoRespuesta\\ euro",
+                f"{total} euro")
+
+    def hora(self, hora, minutos):
+        # "Jest godzina 3" (la trzecia) y "wpół do 4", que en polaco es
+        # las tres y media: la media hora se dice con la hora que llega.
+        siguiente = hora % 12 + 1
+        return ("Która godzina?",
+                self.LEE + "Krótka wskazówka pokazuje godzinę. Kiedy długa wskazówka jest na "
+                "samej górze, jest pełna godzina; kiedy na samym dole, jest wpół do następnej.",
+                "Jest godzina \\huecoRespuesta[20mm]" if minutos == 0
+                else "Jest wpół do \\huecoRespuesta[20mm]",
+                f"godzina {hora}" if minutos == 0 else f"wpół do {siguiente} ({hora}:30)")
+
+    def mide(self, largos):
+        kostek = lambda n: f"{n} {self._con(n, 'kostka', 'kostki', 'kostek')}"
+        if len(largos) == 1:
+            return ("Ile kostek ma ołówek?",
+                    self.LEE + "Policz kostki pod ołówkiem, od gumki do czubka.",
+                    "Liczba kostek: \\huecoRespuesta",
+                    kostek(largos[0]))
+        largo = "górny" if largos[0] > largos[1] else "dolny"
+        return ("Ile kostek ma każdy ołówek? Który jest dłuższy?",
+                self.LEE + "Policz kostki pod każdym ołówkiem, od gumki do czubka, i zakreśl "
+                "dłuższy.",
+                r"{\fontsize{28}{34}\selectfont Górny ołówek: \huecoRespuesta\\[4mm]"
+                r"Dolny ołówek: \huecoRespuesta}",
+                f"{kostek(largos[0])} i {kostek(largos[1])}: dłuższy jest {largo}")
+
+
 ESPANOL = Espanol()
 INGLES = Ingles()
+POLACO = Polaco()

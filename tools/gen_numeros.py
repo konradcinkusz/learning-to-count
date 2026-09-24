@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """Genera "Aprendo los números" (main.tex) a partir de content/q*.json:
 content/generated-days.tex (una página por día) y
-content/generated-clave.tex (la clave de respuestas); y "First Numbers"
-(english.tex), el mismo cuaderno en inglés, página a página:
-content/english/generated-days.tex y content/english/generated-clave.tex.
+content/generated-clave.tex (la clave de respuestas); y el mismo cuaderno
+en otras lenguas, página a página: "First Numbers" (english.tex), en
+inglés, en content/english/, y "Poznaję liczby" (polish.tex), en polaco,
+en content/polish/ (los mismos dos ficheros).
 
-"First Numbers" no tiene días propios: cada uno es el de "Aprendo los
+Las traducciones no tienen días propios: cada uno es el de "Aprendo los
 números" -- el mismo número, las mismas cosas, la misma actividad --, con
-la frase, el tema y los textos de su actividad en inglés, que están en
-content/english/q*.json (cargar_ingles, más abajo). Todo lo que se
-escribe en la página en una lengua o en la otra sale de tools/idiomas.py,
-y las comprobaciones son las mismas para los dos cuadernos.
+la frase, el tema y los textos de su actividad en su lengua, que están en
+content/<lengua>/q*.json (cargar_traduccion, más abajo). Todo lo que se
+escribe en la página en una lengua o en otra sale de tools/idiomas.py, y
+las comprobaciones son las mismas para todos los cuadernos.
 
 Es el generador de "Aprendo a leer" (tools/gen_palabras.py, en
 https://github.com/konradcinkusz/learning-to-read) para contar en vez de
@@ -26,11 +27,12 @@ historia, que lee el adulto), y una actividad que llena el resto de la
 página. Las actividades y lo que se comprueba de cada una están en
 render_actividad; el porqué, en notes/01-plan.md.
 
-No editar content/generated-*.tex ni content/english/generated-*.tex a
-mano -- se sobrescriben cada vez que se ejecuta este script.
+No editar content/generated-*.tex, content/english/generated-*.tex ni
+content/polish/generated-*.tex a mano -- se sobrescriben cada vez que se
+ejecuta este script.
 
 Uso:
-    python3 tools/gen_numeros.py            # regenera los dos cuadernos
+    python3 tools/gen_numeros.py            # regenera los tres cuadernos
     python3 tools/gen_numeros.py --check    # solo valida; exit 1 si algo no
                                             # cuadra o si lo generado está
                                             # desactualizado
@@ -43,26 +45,11 @@ import sys
 from pathlib import Path
 from string import Template
 
-from idiomas import ESPANOL, INGLES
+from idiomas import ESPANOL, INGLES, POLACO
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT_DIR = ROOT / "content"
-INGLES_DIR = CONTENT_DIR / "english"
 TRAZO_FILE = CONTENT_DIR / "numeros-trazo.json"
-
-
-# Los dos cuadernos: su lengua, lo que generan y el fichero de sus
-# cadenas de texto (que promete los mismos 260 días que este script).
-class Cuaderno:
-    def __init__(self, nombre, lengua, carpeta, lang):
-        self.nombre, self.lengua = nombre, lengua
-        self.salida_dias = carpeta / "generated-days.tex"
-        self.salida_clave = carpeta / "generated-clave.tex"
-        self.lang = ROOT / "lang" / lang
-
-
-APRENDO = Cuaderno("Aprendo los números", ESPANOL, CONTENT_DIR, "es.tex")
-FIRST = Cuaderno("First Numbers", INGLES, INGLES_DIR, "en.tex")
 
 # --------------------------------------------------------------------
 # El calendario
@@ -73,17 +60,42 @@ SEMANAS_POR_TRIMESTRE = 13
 # Mientras el cuaderno se escribe por partes (un PR por trimestre, cada
 # uno en verde antes de fusionarse), cuántos días tiene ya escritos: se
 # exigen exactamente esos, del 1 en adelante y sin huecos. None = el
-# cuaderno está entero, con sus 260 días. DIAS_ESCRITOS_INGLES, lo mismo
-# para "First Numbers", que se escribe también por partes: sus días son
-# los primeros de "Aprendo los números".
+# cuaderno está entero, con sus 260 días. DIAS_ESCRITOS_INGLES y
+# DIAS_ESCRITOS_POLACO, lo mismo para "First Numbers" y "Poznaję
+# liczby", que se escriben también por partes: sus días son los primeros
+# de "Aprendo los números".
 DIAS_ESCRITOS = None
 DIAS_ESCRITOS_INGLES = None
+DIAS_ESCRITOS_POLACO = 65
+
+
+# Los cuadernos: su lengua, dónde están sus textos (y lo que generan), el
+# fichero de sus cadenas de texto (que promete los mismos 260 días que
+# este script) y cuántos días tienen escritos.
+class Cuaderno:
+    def __init__(self, nombre, lengua, carpeta, lang, escritos, constante):
+        self.nombre, self.lengua, self.carpeta = nombre, lengua, carpeta
+        self.escritos, self.constante = escritos, constante
+        self.salida_dias = carpeta / "generated-days.tex"
+        self.salida_clave = carpeta / "generated-clave.tex"
+        self.lang = ROOT / "lang" / lang
+
+
+APRENDO = Cuaderno("Aprendo los números", ESPANOL, CONTENT_DIR, "es.tex", DIAS_ESCRITOS, "DIAS_ESCRITOS")
+# Las traducciones de "Aprendo los números", página a página.
+TRADUCCIONES = (
+    Cuaderno("First Numbers", INGLES, CONTENT_DIR / "english", "en.tex",
+             DIAS_ESCRITOS_INGLES, "DIAS_ESCRITOS_INGLES"),
+    Cuaderno("Poznaję liczby", POLACO, CONTENT_DIR / "polish", "pl.tex",
+             DIAS_ESCRITOS_POLACO, "DIAS_ESCRITOS_POLACO"),
+)
+LENGUAS = (ESPANOL, INGLES, POLACO)
 
 ULTIMO_DIA_TRIMESTRE = {1: 65, 2: 130, 3: 195, 4: 260}
 
 # Los temas de cada semana y el nombre de cada medalla están en
-# tools/idiomas.py, en las dos lenguas.
-for _lengua in (ESPANOL, INGLES):
+# tools/idiomas.py, en todas las lenguas.
+for _lengua in LENGUAS:
     assert len(_lengua.temas) == TOTAL_DIAS // DIAS_POR_SEMANA
 
 # --------------------------------------------------------------------
@@ -222,7 +234,7 @@ OBJETOS = {
     "helado": r"\objHelado", "concha": r"\objConcha", "cubo": r"\objCubo",
     "churro": r"\objChurro", "caracol": r"\objCaracol", "reloj": r"\objReloj",
 }
-for _lengua in (ESPANOL, INGLES):
+for _lengua in LENGUAS:
     assert set(_lengua.objetos) == set(OBJETOS), set(_lengua.objetos) ^ set(OBJETOS)
     assert set(_lengua.contar_de) == set(CONTAR_DE)
 
@@ -569,7 +581,7 @@ $cartel
 \end{cajaRepasa}""")
 
 # La página de medalla del final de cada trimestre (T1-T3) está en
-# tools/idiomas.py (plantilla_medalla), en las dos lenguas.
+# tools/idiomas.py (plantilla_medalla), en todas las lenguas.
 
 # Las formas que acompañan a los números en "busca": se ven distintas a
 # primera vista, así que lo que hay que mirar son los números. La
@@ -1144,7 +1156,7 @@ def render_actividad(d, L):
         raise ErrorDeContenido(
             f"día {num}: '{tipo}' no llega hasta la semana {DESDE_SEMANA[tipo]} (ver DESDE_SEMANA)"
         )
-    for otra in (ESPANOL, INGLES):
+    for otra in LENGUAS:
         if tipo in otra.solo_aqui and otra is not L:
             raise ErrorDeContenido(f"día {num}: '{tipo}' solo lo tiene el cuaderno en «{otra.codigo}»")
 
@@ -1564,31 +1576,33 @@ def cargar_dias():
 
 
 # Lo que se escribe a mano en cada actividad, además de lo que compone
-# este script: lo que "First Numbers" trae en inglés en
-# content/english/q*.json.
+# este script: lo que cada traducción trae en su lengua ("First Numbers"
+# en content/english/q*.json, "Poznaję liczby" en content/polish/q*.json).
 TEXTOS_ACTIVIDAD = {"dibuja": ("prompt",), "repasa": ("checklist", "prompt"), "problema": ("texto",)}
 
 
-def cargar_ingles(dias_es):
-    """Los días de "First Numbers": los de "Aprendo los números", uno a
-    uno, con el tema de su semana en inglés (tools/idiomas.py) y su frase
-    y los textos de su actividad de content/english/q*.json. Un día puede
-    cambiar de actividad, pero solo por una de las que no tiene el
-    cuaderno en español ("Number names", Ingles.solo_aqui): todo lo
-    demás es lo mismo, página a página."""
+def cargar_traduccion(dias_es, cuaderno):
+    """Los días de una traducción ("First Numbers", "Poznaję liczby"): los
+    de "Aprendo los números", uno a uno, con el tema de su semana en su
+    lengua (tools/idiomas.py) y su frase y los textos de su actividad de
+    content/<lengua>/q*.json. Un día puede cambiar de actividad, pero solo
+    por una de las que no tiene el cuaderno en español (en inglés,
+    "Number names": Ingles.solo_aqui): todo lo demás es lo mismo, página
+    a página."""
+    L, carpeta = cuaderno.lengua, cuaderno.carpeta.relative_to(ROOT)
     textos = {}
-    for ruta in sorted(INGLES_DIR.glob("q*.json")):
+    for ruta in sorted(cuaderno.carpeta.glob("q*.json")):
         for t in json.loads(ruta.read_text(encoding="utf-8"))["dias"]:
             if t.get("dia") in textos:
-                raise ErrorDeContenido(f"el día {t.get('dia')} está dos veces en content/english/")
+                raise ErrorDeContenido(f"el día {t.get('dia')} está dos veces en {carpeta}/")
             textos[t.get("dia")] = t
-    total = DIAS_ESCRITOS_INGLES or TOTAL_DIAS
+    total = cuaderno.escritos or TOTAL_DIAS
     if total > len(dias_es):
         raise ErrorDeContenido("no puede tener días que no tenga todavía «Aprendo los números»")
     if sorted(textos) != list(range(1, total + 1)):
         raise ErrorDeContenido(
-            f"tienen que estar los días del 1 al {total} en content/english/, sin huecos ni repetidos"
-            + (" (en obras: DIAS_ESCRITOS_INGLES)" if DIAS_ESCRITOS_INGLES else ""))
+            f"tienen que estar los días del 1 al {total} en {carpeta}/, sin huecos ni repetidos"
+            + (f" (en obras: {cuaderno.constante})" if cuaderno.escritos else ""))
     dias = []
     for d in dias_es[:total]:
         num, t = d["dia"], textos[d["dia"]]
@@ -1599,10 +1613,11 @@ def cargar_ingles(dias_es):
             raise ErrorDeContenido(f"día {num}: falta 'frase'")
         a = dict(d["actividad"])
         if "actividad" in t:
-            if t["actividad"].get("tipo") not in INGLES.solo_aqui:
+            if t["actividad"].get("tipo") not in L.solo_aqui:
                 raise ErrorDeContenido(
-                    f"día {num}: la actividad es la de «Aprendo los números», o una de "
-                    f"{sorted(INGLES.solo_aqui)}, que no tiene ({t['actividad'].get('tipo')!r})")
+                    f"día {num}: la actividad es la de «Aprendo los números»"
+                    + (f", o una de {sorted(L.solo_aqui)}, que no tiene" if L.solo_aqui else "")
+                    + f" ({t['actividad'].get('tipo')!r})")
             a = dict(t["actividad"])
         necesita = TEXTOS_ACTIVIDAD.get(a["tipo"], ())
         for c in ("prompt", "checklist", "texto"):
@@ -1615,7 +1630,7 @@ def cargar_ingles(dias_es):
             raise ErrorDeContenido(
                 f"día {num}: 'repasa' marca las mismas {len(d['actividad']['checklist'])} cosas "
                 "que en «Aprendo los números»")
-        dias.append(dict(d, tema=INGLES.temas[d["semana"] - 1], frase=t["frase"], actividad=a))
+        dias.append(dict(d, tema=L.temas[d["semana"] - 1], frase=t["frase"], actividad=a))
     return dias
 
 
@@ -1744,8 +1759,8 @@ def generar(dias, cuaderno, fuentes):
 
 
 def comprobar_totaldias(cuaderno):
-    """lang/es.tex y lang/en.tex prometen los mismos 260 días que este
-    script."""
+    """lang/es.tex, lang/en.tex y lang/pl.tex prometen los mismos 260
+    días que este script."""
     m = re.search(r"\\newcommand\{\\totaldias\}\{(\d+)\}", cuaderno.lang.read_text(encoding="utf-8"))
     if not m or int(m.group(1)) != TOTAL_DIAS:
         raise ErrorDeContenido(f"\\totaldias en {cuaderno.lang.relative_to(ROOT)} tiene que ser {TOTAL_DIAS}")
@@ -1754,15 +1769,16 @@ def comprobar_totaldias(cuaderno):
 def main():
     check_only = "--check" in sys.argv
     salidas, resumen = [], []
-    for cuaderno in (APRENDO, FIRST):
+    for cuaderno in (APRENDO,) + TRADUCCIONES:
+        escritos = cuaderno.escritos
         try:
             comprobar_totaldias(cuaderno)
             if cuaderno is APRENDO:
                 dias = dias_es = cargar_dias()
-                escritos, fuentes = DIAS_ESCRITOS, "content/q*.json"
+                fuentes = "content/q*.json"
             else:
-                dias = cargar_ingles(dias_es)
-                escritos, fuentes = DIAS_ESCRITOS_INGLES, "content/q*.json y content/english/q*.json"
+                dias = cargar_traduccion(dias_es, cuaderno)
+                fuentes = f"content/q*.json y {cuaderno.carpeta.relative_to(ROOT)}/q*.json"
             validar_dias(dias, cuaderno.lengua, escritos)
             tex, clave = generar(dias, cuaderno, fuentes)
         except ErrorDeContenido as exc:
