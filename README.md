@@ -77,8 +77,7 @@ piłki*, *troje dzieci*): el script las lee todas. Los personajes se
 quedan (Lucía, babcia Rosa, pani Marta), y el dinero son euros.
 
 Está en `polish.tex` (y `polish-bw.tex`), con el texto de cada día en
-`content/polish/q*.json`, y las comprobaciones son las mismas. Se está
-escribiendo: del otoño a la primavera, días 1--195, ya está. El plan,
+`content/polish/q*.json`, y las comprobaciones son las mismas. El plan,
 en [`notes/03-polish.md`](notes/03-polish.md).
 
 ## Descargar el PDF sin instalar nada
@@ -89,14 +88,17 @@ en [`notes/03-polish.md`](notes/03-polish.md).
 *First Numbers*: **[⬇ PDF (colour)](https://konradcinkusz.github.io/learning-to-count/first-numbers.pdf)**
 · **[⬇ PDF (black and white)](https://konradcinkusz.github.io/learning-to-count/first-numbers-bw.pdf)**
 
+*Poznaję liczby*: **[⬇ PDF (kolorowy)](https://konradcinkusz.github.io/learning-to-count/poznaje-liczby.pdf)**
+· **[⬇ PDF (czarno-biały)](https://konradcinkusz.github.io/learning-to-count/poznaje-liczby-cz-b.pdf)**
+
 Enlaces fijos, publicados por GitHub Pages en cada push a `main` (ver
 `.github/workflows/pages.yml`). Las dos versiones tienen exactamente el
 mismo contenido y la misma paginación: nada en el cuaderno se distingue
 solo por el color. Mientras Pages no esté activado, los mismos PDF están
 en la pestaña *Actions* → el último run de *Build* → artefactos
 `pdf-color` / `pdf-bw` -- y los de *First Numbers*, `pdf-english` /
-`pdf-english-bw`; y los de *Poznaję liczby*, mientras se escribe,
-`pdf-polish` / `pdf-polish-bw`.
+`pdf-english-bw`; y los de *Poznaję liczby*, `pdf-polish` /
+`pdf-polish-bw`.
 
 ## Construir el PDF a mano
 
@@ -171,6 +173,7 @@ medallas, sus respuestas y su diploma, en color y en blanco y negro,
 publicado junto al español. Se escribió en tres fases: ver
 [`notes/02-english.md`](notes/02-english.md).
 
-**Poznaję liczby**, en obras: del otoño a la primavera (días 1--195, del
-0 al 50), con sus tres medallas, en color y en blanco y negro. Falta el
-verano: ver [`notes/03-polish.md`](notes/03-polish.md).
+**Poznaję liczby**, también completo: los 260 días en polaco, con sus
+medallas, sus respuestas y su diploma, en color y en blanco y negro,
+publicado junto al español y al inglés. Se escribió en tres fases: ver
+[`notes/03-polish.md`](notes/03-polish.md).
