@@ -78,8 +78,8 @@ quedan (Lucía, babcia Rosa, pani Marta), y el dinero son euros.
 
 Está en `polish.tex` (y `polish-bw.tex`), con el texto de cada día en
 `content/polish/q*.json`, y las comprobaciones son las mismas. Se está
-escribiendo: el otoño, días 1--65, ya está. El plan, en
-[`notes/03-polish.md`](notes/03-polish.md).
+escribiendo: del otoño a la primavera, días 1--195, ya está. El plan,
+en [`notes/03-polish.md`](notes/03-polish.md).
 
 ## Descargar el PDF sin instalar nada
 
@@ -171,6 +171,6 @@ medallas, sus respuestas y su diploma, en color y en blanco y negro,
 publicado junto al español. Se escribió en tres fases: ver
 [`notes/02-english.md`](notes/02-english.md).
 
-**Poznaję liczby**, en obras: el otoño (días 1--65, del 0 al 10), con su
-medalla, en color y en blanco y negro. Faltan el invierno, la primavera
-y el verano: ver [`notes/03-polish.md`](notes/03-polish.md).
+**Poznaję liczby**, en obras: del otoño a la primavera (días 1--195, del
+0 al 50), con sus tres medallas, en color y en blanco y negro. Falta el
+verano: ver [`notes/03-polish.md`](notes/03-polish.md).
