@@ -66,7 +66,7 @@ SEMANAS_POR_TRIMESTRE = 13
 # de "Aprendo los números".
 DIAS_ESCRITOS = None
 DIAS_ESCRITOS_INGLES = None
-DIAS_ESCRITOS_POLACO = 195
+DIAS_ESCRITOS_POLACO = None
 
 
 # Los cuadernos: su lengua, dónde están sus textos (y lo que generan), el

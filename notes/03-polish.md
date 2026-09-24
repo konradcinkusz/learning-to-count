@@ -92,5 +92,6 @@ cuántos días están escritos.
    relleno) para ver cómo quedan en polaco todas las actividades,
    también las que llegan después. **Hecho.**
 2. **El invierno y la primavera** (días 66--195). **Hecho.**
-3. **El verano** (días 196--260), y publicarlo: la página de descarga y
-   Pages con los seis PDF.
+3. **El verano** (días 196--260), y publicarlo: el cuaderno entero
+   (`DIAS_ESCRITOS_POLACO = None`), la página de descarga y Pages con
+   los seis PDF. **Hecho.**
