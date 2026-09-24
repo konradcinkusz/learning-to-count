@@ -92,4 +92,4 @@ cuántos días están escritos.
 2. **El invierno y la primavera** (días 66--195), con el primer día de
    "Number names". **Hecho.**
 3. **El verano** (días 196--260), con el segundo, y publicarlo: la
-   página de descarga y Pages con los cuatro PDF.
+   página de descarga y Pages con los cuatro PDF. **Hecho.**

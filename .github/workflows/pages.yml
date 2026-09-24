@@ -1,7 +1,9 @@
-# El cuaderno necesita una dirección: esto compila y publica los dos PDF
-# en GitHub Pages en cada push a `main`, como en "Aprendo a leer". Repite
-# a propósito los pasos de build.yml y lee su propio log: Pages no debe
-# publicar nunca un PDF que no se haya construido limpio.
+# El cuaderno necesita una dirección: esto compila y publica los cuatro
+# PDF -- "Aprendo los números" y "First Numbers", el mismo cuaderno en
+# inglés, en color y en blanco y negro -- en GitHub Pages en cada push a
+# `main`, como en "Aprendo a leer". Repite a propósito los pasos de
+# build.yml y lee su propio log: Pages no debe publicar nunca un PDF que
+# no se haya construido limpio.
 #
 # PRIMER DESPLIEGUE: crear la página de Pages de un repositorio es una
 # acción administrativa que ningún token de workflow puede hacer. Alguien
@@ -27,7 +29,8 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Cuatro cuadernos de 271 páginas, uno detrás de otro.
+    timeout-minutes: 40
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -44,18 +47,20 @@ jobs:
       - name: Valida el contenido antes de publicar nada
         run: python3 tools/gen_numeros.py --check
 
-      - name: Compila el cuaderno (color y blanco y negro)
+      - name: Compila los dos cuadernos (color y blanco y negro)
         uses: xu-cheng/latex-action@v3
         with:
           root_file: |
             main.tex
             main-bw.tex
+            english.tex
+            english-bw.tex
           latexmk_use_lualatex: true
           args: -interaction=nonstopmode -file-line-error
 
       - name: Lee los logs y comprueba las páginas
         run: |
-          for r in main main-bw; do
+          for r in main main-bw english english-bw; do
             python3 tools/checklog.py "$r.log"
             python3 tools/check_pages.py "$r.aux"
           done
@@ -66,6 +71,8 @@ jobs:
           cp docs/index.html _site/
           cp main.pdf _site/aprendo-los-numeros.pdf
           cp main-bw.pdf _site/aprendo-los-numeros-bn.pdf
+          cp english.pdf _site/first-numbers.pdf
+          cp english-bw.pdf _site/first-numbers-bw.pdf
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

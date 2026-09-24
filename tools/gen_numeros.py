@@ -77,7 +77,7 @@ SEMANAS_POR_TRIMESTRE = 13
 # para "First Numbers", que se escribe también por partes: sus días son
 # los primeros de "Aprendo los números".
 DIAS_ESCRITOS = None
-DIAS_ESCRITOS_INGLES = 195
+DIAS_ESCRITOS_INGLES = None
 
 ULTIMO_DIA_TRIMESTRE = {1: 65, 2: 130, 3: 195, 4: 260}
 
