@@ -27,10 +27,11 @@ PATRON_LABEL = re.compile(r"\\newlabel\{dia:(\d+)\}\{\{[^{}]*\}\{(\d+)\}")
 # respuestas: la página que viene justo después del último día.
 PATRON_CLAVE = re.compile(r"\\newlabel\{clave\}\{\{[^{}]*\}\{(\d+)\}")
 
-# Fin de trimestre (T1-T3): tools/gen_days.py inserta una página de
+# Fin de trimestre (T1-T3): tools/gen_numeros.py inserta una página de
 # medalla, sin \label propio, justo después del último día del
-# trimestre (ver PLANTILLA_MEDALLA) -- el salto hasta el primer día del
-# trimestre siguiente es de 2 páginas a propósito, no un desbordamiento.
+# trimestre (ver plantilla_medalla en tools/idiomas.py) -- el salto hasta
+# el primer día del trimestre siguiente es de 2 páginas a propósito, no
+# un desbordamiento. Lo mismo en "First Numbers".
 SALTOS_ESPERADOS = {65: 2, 130: 2, 195: 2}
 
 # Antes del día 1 van la portada, "Cómo usar este cuaderno", "Las

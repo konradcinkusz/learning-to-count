@@ -61,13 +61,18 @@ jobs:
       # Color y blanco-y-negro comparten body.tex y el contenido generado
       # letra por letra; una matriz en vez de un job duplicado: un cambio
       # que solo rompe uno de los dos formatos tiene que ser tan visible
-      # como uno que rompe los dos.
+      # como uno que rompe los dos. Lo mismo "First Numbers", el cuaderno
+      # en inglés (english.tex), en sus dos formatos.
       matrix:
         include:
           - variant: color
             root: main
           - variant: bw
             root: main-bw
+          - variant: english
+            root: english
+          - variant: english-bw
+            root: english-bw
     steps:
       - uses: actions/checkout@v4
 
