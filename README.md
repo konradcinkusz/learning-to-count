@@ -68,13 +68,16 @@ plan, en [`notes/02-english.md`](notes/02-english.md).
 **[⬇ PDF (color)](https://konradcinkusz.github.io/learning-to-count/aprendo-los-numeros.pdf)**
 · **[⬇ PDF (blanco y negro)](https://konradcinkusz.github.io/learning-to-count/aprendo-los-numeros-bn.pdf)**
 
+*First Numbers*: **[⬇ PDF (colour)](https://konradcinkusz.github.io/learning-to-count/first-numbers.pdf)**
+· **[⬇ PDF (black and white)](https://konradcinkusz.github.io/learning-to-count/first-numbers-bw.pdf)**
+
 Enlaces fijos, publicados por GitHub Pages en cada push a `main` (ver
 `.github/workflows/pages.yml`). Las dos versiones tienen exactamente el
 mismo contenido y la misma paginación: nada en el cuaderno se distingue
 solo por el color. Mientras Pages no esté activado, los mismos PDF están
 en la pestaña *Actions* → el último run de *Build* → artefactos
-`pdf-color` / `pdf-bw` -- y los de *First Numbers*, mientras se escribe,
-`pdf-english` / `pdf-english-bw`.
+`pdf-color` / `pdf-bw` -- y los de *First Numbers*, `pdf-english` /
+`pdf-english-bw`.
 
 ## Construir el PDF a mano
 
@@ -140,6 +143,7 @@ color y en blanco y negro. Cada push comprueba el cuaderno entero: 1 día
 cinco fases, un PR cada una: ver "Las fases" en
 [`notes/01-plan.md`](notes/01-plan.md).
 
-**First Numbers**, en obras: del otoño a la primavera, días 1--195. Se
-escribe en tres fases -- el otoño; el invierno y la primavera; el
-verano, y publicarlo --: ver [`notes/02-english.md`](notes/02-english.md).
+**First Numbers**, también completo: los 260 días en inglés, con sus
+medallas, sus respuestas y su diploma, en color y en blanco y negro,
+publicado junto al español. Se escribió en tres fases: ver
+[`notes/02-english.md`](notes/02-english.md).
