@@ -47,7 +47,10 @@ jobs:
       # La escalera (cada número llega en su semana, y nada lo usa antes),
       # el calendario (días, semanas, temas, el lunes se traza y el
       # viernes se repasa) y lo que se comprueba de cada actividad (ver
-      # render_actividad en tools/gen_numeros.py).
+      # render_actividad en tools/gen_numeros.py), en los tres cuadernos:
+      # "Aprendo los números", "First Numbers" y "Poznaję liczby", que
+      # además tienen que ser, página a página, el mismo
+      # (cargar_traduccion).
       - name: Valida el contenido (escalera, calendario, actividades)
         run: python3 tools/gen_numeros.py --check
 
@@ -61,8 +64,9 @@ jobs:
       # Color y blanco-y-negro comparten body.tex y el contenido generado
       # letra por letra; una matriz en vez de un job duplicado: un cambio
       # que solo rompe uno de los dos formatos tiene que ser tan visible
-      # como uno que rompe los dos. Lo mismo "First Numbers", el cuaderno
-      # en inglés (english.tex), en sus dos formatos.
+      # como uno que rompe los dos. Lo mismo "First Numbers" y "Poznaję
+      # liczby", los cuadernos en inglés (english.tex) y en polaco
+      # (polish.tex), en sus dos formatos.
       matrix:
         include:
           - variant: color
@@ -73,6 +77,10 @@ jobs:
             root: english
           - variant: english-bw
             root: english-bw
+          - variant: polish
+            root: polish
+          - variant: polish-bw
+            root: polish-bw
     steps:
       - uses: actions/checkout@v4
 
@@ -100,7 +108,7 @@ jobs:
         run: python3 tools/checklog.py ${{ matrix.root }}.log
 
       # Cada día cabe en una sola cara A4: se comprueba en las páginas
-      # reales del .aux, en los dos formatos.
+      # reales del .aux, en los seis PDF.
       - name: Cada día ocupa exactamente una página
         run: python3 tools/check_pages.py ${{ matrix.root }}.aux
 

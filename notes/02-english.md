@@ -14,7 +14,7 @@ Se mantiene todo lo que no es lengua: el calendario, la escalera
 los dibujos, lo que se comprueba de cada actividad y la clave, que la
 calcula el script. No hay una segunda copia de los días:
 `content/english/q*.json` solo trae el texto de cada uno, y
-`cargar_ingles` (en `tools/gen_numeros.py`) lo pone encima del día de
+`cargar_traduccion` (en `tools/gen_numeros.py`) lo pone encima del día de
 `content/q*.json`:
 
 - `frase`: la frase de la historia, que lee el adulto;
@@ -64,7 +64,7 @@ unir cada número con su nombre, que lee el adulto marcando el final
   18 y 80.
 
 Son los únicos días en que la actividad no es la de *Aprendo los
-números*: `cargar_ingles` solo deja cambiarla por una de las que el
+números*: `cargar_traduccion` solo deja cambiarla por una de las que el
 cuaderno en español no tiene (`Ingles.solo_aqui`), y "Number names"
 pasa por las mismas comprobaciones que las demás (de 4 a 6 números, ya
 llegados, uno de ellos el del día, y desde la semana 35).

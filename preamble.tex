@@ -36,17 +36,27 @@
 % La lengua del cuaderno: english.tex (y english-bw.tex) fija
 % \booklang{english} antes de \input{preamble}, como \bookcolor, y el
 % mismo preámbulo compone "First Numbers": el mismo cuaderno, en inglés,
-% con sus cadenas de texto en lang/en.tex en vez de lang/es.tex.
+% con sus cadenas de texto en lang/en.tex en vez de lang/es.tex; y
+% polish.tex (y polish-bw.tex), con \booklang{polish}, "Poznaję liczby",
+% en polaco, con lang/pl.tex.
 \makeatletter
 \newif\ifenglishbook
+\newif\ifpolishbook
 \def\aln@booklang@english{english}
-\@ifundefined{booklang}{\englishbookfalse}{%
+\def\aln@booklang@polish{polish}
+\@ifundefined{booklang}{\englishbookfalse\polishbookfalse}{%
   \ifx\booklang\aln@booklang@english \englishbooktrue \else \englishbookfalse \fi
+  \ifx\booklang\aln@booklang@polish \polishbooktrue \else \polishbookfalse \fi
 }
 \makeatother
 
 \ifenglishbook
   \usepackage[british]{babel}
+\else\ifpolishbook
+  \usepackage[polish]{babel}
+  % babel-polish también hace de " un carácter activo (ver más abajo, en
+  % el español).
+  \AtBeginDocument{\shorthandoff{"}}
 \else
   \usepackage[spanish]{babel}
   % babel-spanish hace de " un carácter activo; las comillas escritas a
@@ -54,7 +64,7 @@
   % largo, en el preamble.tex de "Aprendo a leer"). Solo funciona así, al
   % empezar el documento.
   \AtBeginDocument{\shorthandoff{"}}
-\fi
+\fi\fi
 
 % El pie de página ("Día N / 260") vive en el pie de verdad, no en la
 % página de texto: la caja de actividad llena todo lo que queda de página
@@ -76,7 +86,7 @@
 \setlength{\parskip}{2pt}
 
 % --- cadenas de texto ----------------------------------------------------
-\ifenglishbook \input{lang/en} \else \input{lang/es} \fi
+\ifenglishbook \input{lang/en} \else\ifpolishbook \input{lang/pl} \else \input{lang/es} \fi\fi
 
 % =========================================================================
 % Paleta

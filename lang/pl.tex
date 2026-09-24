@@ -1,0 +1,84 @@
+% lang/pl.tex
+% -----------------------------------------------------------------------
+% "Poznaję liczby": las cadenas de texto del cuaderno en polaco, las
+% mismas que lang/es.tex, una a una. polish.tex fija \booklang{polish}
+% antes de \input{preamble}, y preamble.tex lee este fichero en vez de
+% lang/es.tex. Lo que cambia cada día (los enunciados, las instrucciones
+% y la clave) lo escribe tools/gen_numeros.py con tools/idiomas.py.
+% -----------------------------------------------------------------------
+
+% Total de días del cuaderno. tools/gen_numeros.py --check comprueba que
+% coincide con su propio TOTAL_DIAS.
+\newcommand{\totaldias}{260}
+
+% La cabecera de cada día (\cabeceraDia, preamble.tex). "Część", como
+% "Part" en inglés: cada parte es una estación.
+\newcommand{\lblFecha}{Data}
+\newcommand{\lblNotas}{Uwagi}
+\newcommand{\lblDia}{Dzień}
+\newcommand{\lblSemana}{Tydzień}
+\newcommand{\lblTrimestre}{Część}
+\newcommand{\lblHecho}{Zrobione}
+\newcommand{\lblHechoSola}{samodzielnie}
+\newcommand{\lblHechoConAyuda}{z pomocą}
+\newcommand{\lblHechoConDificultad}{z trudem}
+
+% La caja de arriba, la misma todos los días.
+\newcommand{\lblNumeroDeHoy}{Liczba dnia}
+
+% Los títulos de las cajas de actividad.
+\newcommand{\lblTraza}{Pisz po śladzie}
+\newcommand{\lblColorea}{Pokoloruj}
+\newcommand{\lblRodea}{Zakreśl}
+\newcommand{\lblCuenta}{Policz}
+\newcommand{\lblBusca}{Znajdź}
+\newcommand{\lblUne}{Połącz}
+\newcommand{\lblCompleta}{Uzupełnij}
+\newcommand{\lblDecena}{Dziesięć i więcej}
+\newcommand{\lblCompara}{Porównaj}
+\newcommand{\lblVecinos}{Przed i po}
+\newcommand{\lblRecta}{Oś liczbowa}
+\newcommand{\lblOrdena}{Ułóż po kolei}
+\newcommand{\lblJunta}{Razem}
+\newcommand{\lblSuma}{Dodawanie}
+\newcommand{\lblResta}{Odejmowanie}
+\newcommand{\lblParte}{Na dwie części}
+\newcommand{\lblDiez}{Do dziesięciu}
+\newcommand{\lblProblema}{Zadanie}
+\newcommand{\lblBloques}{Dziesiątki i jedności}
+% "Number names" solo sale en "First Numbers" (lang/en.tex), pero su caja
+% es la misma en todos los cuadernos (preamble.tex).
+\newcommand{\lblNombres}{Nazwy liczb}
+\newcommand{\lblTabla}{Tabela do stu}
+\newcommand{\lblDinero}{Pieniądze}
+\newcommand{\lblHora}{Zegar}
+\newcommand{\lblMide}{Zmierz}
+\newcommand{\lblDibuja}{Narysuj}
+\newcommand{\lblRepasa}{Powtórka}
+
+% Las instrucciones que no cambian de un día a otro (las demás las
+% compone tools/gen_numeros.py). Lo que se le dice a la niña o al niño no
+% tiene género: "samodzielnie", no "sam" ni "sama".
+\newcommand{\lblInstruccionTraza}{Pisz po kropkach najpierw palcem, a potem ołówkiem. Potem napisz liczbę samodzielnie na linii.}
+\newcommand{\lblInstruccionBusca}{Zakreśl każdą, którą znajdziesz. Ile ich jest?}
+
+% La tabla de las decenas y las unidades de la caja de arriba: D
+% (dziesiątki) y J (jedności), como en los colegios polacos.
+\newcommand{\lblDecenasCorto}{D}
+\newcommand{\lblUnidadesCorto}{J}
+
+% La portada.
+\newcommand{\lblTituloPortada}{Poznaję liczby}
+\newcommand{\lblSubtituloPortada}{Co tydzień nowa liczba}
+\newcommand{\lblSubtituloPortadaMetodo}{Zeszyt na każdy dzień: liczę, piszę liczby po śladzie i zaczynam dodawać -- razem z Lucíą, Danim i Tobym}
+\newcommand{\lblPortadaNombre}{Imię}
+\newcommand{\lblPortadaCurso}{Klasa}
+
+% La medalla del final de cada parte (1-3) y el cartel de cada diez
+% páginas ("Już 10 stron!": con 10, 20, 30..., siempre "stron").
+\newcommand{\lblMedalla}[1]{Medal za #1!}
+\newcommand{\lblMedallaAnimo}{Tak trzymaj, \rule{55mm}{0.4pt}!}
+\newcommand{\lblPaginasHechas}[1]{Już #1 stron!}
+
+% La clave de respuestas.
+\newcommand{\lblClave}{Odpowiedzi}
