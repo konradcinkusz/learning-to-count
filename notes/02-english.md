@@ -90,6 +90,6 @@ cuántos días están escritos.
    (con frases de relleno) para ver cómo quedan en inglés todas las
    actividades, también las que llegan después. **Hecho.**
 2. **El invierno y la primavera** (días 66--195), con el primer día de
-   "Number names".
+   "Number names". **Hecho.**
 3. **El verano** (días 196--260), con el segundo, y publicarlo: la
    página de descarga y Pages con los cuatro PDF.

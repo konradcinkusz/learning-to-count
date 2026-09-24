@@ -140,6 +140,6 @@ color y en blanco y negro. Cada push comprueba el cuaderno entero: 1 día
 cinco fases, un PR cada una: ver "Las fases" en
 [`notes/01-plan.md`](notes/01-plan.md).
 
-**First Numbers**, en obras: el otoño, días 1--65. Se escribe en tres
-fases -- el otoño; el invierno y la primavera; el verano, y publicarlo
---: ver [`notes/02-english.md`](notes/02-english.md).
+**First Numbers**, en obras: del otoño a la primavera, días 1--195. Se
+escribe en tres fases -- el otoño; el invierno y la primavera; el
+verano, y publicarlo --: ver [`notes/02-english.md`](notes/02-english.md).
