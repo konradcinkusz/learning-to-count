@@ -11,6 +11,8 @@
 # verdad es el JSON, no estos ficheros.
 content/generated-days.tex
 content/generated-clave.tex
+content/english/generated-days.tex
+content/english/generated-clave.tex
 
 # Python
 __pycache__/

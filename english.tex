@@ -1,0 +1,12 @@
+% english.tex -- "First Numbers", en color: "Aprendo los números" en
+% inglés, página a página (ver tools/idiomas.py). Solo cambia \booklang,
+% fijado antes de \input{preamble} como \bookcolor: el mismo preámbulo,
+% con las cadenas de texto de lang/en.tex; english-bw.tex es el mismo
+% cuaderno sin color.
+\documentclass[11pt]{article}
+\def\bookcolor{color}
+\def\booklang{english}
+\input{preamble}
+\begin{document}
+\input{body-english}
+\end{document}

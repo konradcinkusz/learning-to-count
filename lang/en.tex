@@ -1,0 +1,82 @@
+% lang/en.tex
+% -----------------------------------------------------------------------
+% "First Numbers": las cadenas de texto del cuaderno en inglés (británico,
+% como "Read and Draw" y "First Words" de "Aprendo a leer"), las mismas
+% que lang/es.tex, una a una. english.tex fija \booklang{english} antes de
+% \input{preamble}, y preamble.tex lee este fichero en vez de lang/es.tex.
+% Lo que cambia cada día (los enunciados, las instrucciones y la clave)
+% lo escribe tools/gen_numeros.py con tools/idiomas.py.
+% -----------------------------------------------------------------------
+
+% Total de días del cuaderno. tools/gen_numeros.py --check comprueba que
+% coincide con su propio TOTAL_DIAS.
+\newcommand{\totaldias}{260}
+
+% La cabecera de cada día (\cabeceraDia, preamble.tex). "Part", no
+% "Term", como en "Read and Draw": cada parte es una estación.
+\newcommand{\lblFecha}{Date}
+\newcommand{\lblNotas}{Notes}
+\newcommand{\lblDia}{Day}
+\newcommand{\lblSemana}{Week}
+\newcommand{\lblTrimestre}{Part}
+\newcommand{\lblHecho}{Done}
+\newcommand{\lblHechoSola}{alone}
+\newcommand{\lblHechoConAyuda}{with help}
+\newcommand{\lblHechoConDificultad}{with difficulty}
+
+% La caja de arriba, la misma todos los días.
+\newcommand{\lblNumeroDeHoy}{Today's number}
+
+% Los títulos de las cajas de actividad.
+\newcommand{\lblTraza}{Trace}
+\newcommand{\lblColorea}{Colour}
+\newcommand{\lblRodea}{Circle}
+\newcommand{\lblCuenta}{Count}
+\newcommand{\lblBusca}{Find}
+\newcommand{\lblUne}{Match}
+\newcommand{\lblCompleta}{Fill in}
+\newcommand{\lblDecena}{Ten and more}
+\newcommand{\lblCompara}{Compare}
+\newcommand{\lblVecinos}{Before and after}
+\newcommand{\lblRecta}{The number line}
+\newcommand{\lblOrdena}{Put in order}
+\newcommand{\lblJunta}{Put together}
+\newcommand{\lblSuma}{Add}
+\newcommand{\lblResta}{Take away}
+\newcommand{\lblParte}{Split in two}
+\newcommand{\lblDiez}{Make 10}
+\newcommand{\lblProblema}{Word problem}
+\newcommand{\lblBloques}{Tens and ones}
+\newcommand{\lblNombres}{Number names}
+\newcommand{\lblTabla}{The hundred square}
+\newcommand{\lblDinero}{Money}
+\newcommand{\lblHora}{Time}
+\newcommand{\lblMide}{Measure}
+\newcommand{\lblDibuja}{Draw}
+\newcommand{\lblRepasa}{Look back}
+
+% Las instrucciones que no cambian de un día a otro (las demás las
+% compone tools/gen_numeros.py).
+\newcommand{\lblInstruccionTraza}{Trace over the dots with your finger, then with a pencil. Then write it yourself on the line.}
+\newcommand{\lblInstruccionBusca}{Circle each one you find. How many are there?}
+
+% La tabla de las decenas y las unidades de la caja de arriba: T (tens)
+% y O (ones), como en los colegios británicos.
+\newcommand{\lblDecenasCorto}{T}
+\newcommand{\lblUnidadesCorto}{O}
+
+% La portada.
+\newcommand{\lblTituloPortada}{First Numbers}
+\newcommand{\lblSubtituloPortada}{A new number every week}
+\newcommand{\lblSubtituloPortadaMetodo}{A daily book for counting, tracing numbers and starting to add -- with Lucía, Dani and Toby, the family from \emph{First Words}}
+\newcommand{\lblPortadaNombre}{Name}
+\newcommand{\lblPortadaCurso}{Class}
+
+% La medalla del final de cada parte (1-3) y el cartel de cada diez
+% páginas.
+\newcommand{\lblMedalla}[1]{#1 medal!}
+\newcommand{\lblMedallaAnimo}{Keep it up, \rule{55mm}{0.4pt}!}
+\newcommand{\lblPaginasHechas}[1]{#1 pages done!}
+
+% La clave de respuestas.
+\newcommand{\lblClave}{Answers}

@@ -25,7 +25,7 @@ cuentan, el enunciado de una línea.
 - **260 días, 52 semanas, cuatro trimestres = cuatro estaciones**, con
   vacaciones incluidas, y una medalla al final de otoño, invierno y
   primavera; un diploma al final.
-- **Los mismos temas semana a semana** (`TEMAS` en `tools/gen_numeros.py`,
+- **Los mismos temas semana a semana** (`temas` en `tools/idiomas.py`,
   copiados del cuaderno de frases): quien lleve los dos cuadernos
   cuenta esa semana lo que lee. La semana del cumpleaños de Lucía, el
   número es el 7: las siete velas.

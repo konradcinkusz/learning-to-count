@@ -42,6 +42,27 @@ verano, la tabla del 100, el dinero, la hora y medir.
 El plan completo, semana a semana, está en
 [`notes/01-plan.md`](notes/01-plan.md).
 
+## First Numbers (en inglés)
+
+El mismo cuaderno en inglés (británico, como *Read and Draw* y *First
+Words* de *Aprendo a leer*), **página a página**: el mismo número, las
+mismas cosas dibujadas y la misma actividad cada día, así que se puede
+hacer uno, el otro o los dos. Lo que cambia es la lengua: la frase de la
+historia, los temas, los enunciados, las instrucciones, las páginas para
+el adulto, la clave y el diploma. Los personajes y lo que es de aquí se
+quedan como en esos dos cuadernos (Lucía, Grandma Rosa, Bigotes, los
+churros, el turrón), y el dinero son euros: Lucía vive en España.
+
+Lo único que tiene de más: cuando llegan las decenas, un par de días de
+**Number names** -- unir 13, 30, 14, 40... con su nombre --, porque en
+inglés *thirteen* y *thirty* suenan casi igual, y en español *trece* y
+*treinta* no.
+
+Está en `english.tex` (y `english-bw.tex`), con el texto de cada día en
+`content/english/q*.json`; todo lo que se escribe en una lengua o en la
+otra sale de `tools/idiomas.py`, y las comprobaciones son las mismas. El
+plan, en [`notes/02-english.md`](notes/02-english.md).
+
 ## Descargar el PDF sin instalar nada
 
 **[⬇ PDF (color)](https://konradcinkusz.github.io/learning-to-count/aprendo-los-numeros.pdf)**
@@ -52,7 +73,8 @@ Enlaces fijos, publicados por GitHub Pages en cada push a `main` (ver
 mismo contenido y la misma paginación: nada en el cuaderno se distingue
 solo por el color. Mientras Pages no esté activado, los mismos PDF están
 en la pestaña *Actions* → el último run de *Build* → artefactos
-`pdf-color` / `pdf-bw`.
+`pdf-color` / `pdf-bw` -- y los de *First Numbers*, mientras se escribe,
+`pdf-english` / `pdf-english-bw`.
 
 ## Construir el PDF a mano
 
@@ -62,8 +84,9 @@ cargada con `fontspec` desde `fonts/andika/`) + `latexmk`, con `babel`,
 
 ```sh
 make              # genera, compila el cuaderno en color y comprueba
-make all-formats  # los dos PDF, color Y blanco-y-negro -- lo que corre el CI
-make generate     # solo regenera los .tex desde el JSON
+make english      # lo mismo, "First Numbers" (english.tex)
+make all-formats  # los cuatro PDF, color Y blanco-y-negro de los dos -- lo que corre el CI
+make generate     # solo regenera los .tex de los dos cuadernos desde el JSON
 make build        # solo compila en color (asume que ya está generado)
 make build-bw     # solo compila en blanco y negro
 make check        # lee main.log + 1 día = 1 página (main.aux) + valida el JSON
@@ -74,20 +97,26 @@ make clean
 
 ```
 main.tex, main-bw.tex          -- el cuaderno, color y blanco-y-negro; solo fijan \bookcolor
+english.tex, english-bw.tex    -- "First Numbers": lo mismo, con \booklang{english}
 preamble.tex, lang/es.tex      -- el motor LaTeX y todas las cadenas de texto
-body.tex                       -- el orden del documento
+lang/en.tex                    -- las mismas cadenas, en inglés
+body.tex, body-english.tex     -- el orden del documento
 frontmatter/, backmatter/      -- portada, instrucciones, mapa del curso; clave de respuestas y diploma
+frontmatter/english/, backmatter/english/ -- lo mismo, en inglés
 content/q1.json ...            -- los días, uno por trimestre, editados a mano
+content/english/q1.json ...    -- el texto en inglés de cada día (lo demás es el de content/q*.json)
 content/numeros-trazo.json     -- el contorno de cada número (Andika), generado por tools/gen_numeros_puntos.py
 content/generated-*.tex        -- GENERADO por tools/gen_numeros.py, no editar
 diagrams/kit.tex               -- las piezas de los dibujos de «First Words» (de Aprendo a leer)
 diagrams/objetos.tex           -- las cosas que se cuentan, cada una en la misma caja
 tools/gen_numeros.py           -- JSON -> LaTeX, la escalera, las comprobaciones de cada actividad, la clave
+tools/idiomas.py               -- lo que se escribe en la página, en español y en inglés
 tools/gen_numeros_puntos.py    -- letra -> contorno de cada número (matplotlib; no forma parte de `make`)
 tools/checklog.py              -- lee el .log de LuaLaTeX correctamente (de Aprendo a leer)
 tools/check_pages.py           -- comprueba que cada día ocupa una sola página (de Aprendo a leer)
 docs/index.html                -- la página que publica .github/workflows/pages.yml
 notes/01-plan.md               -- el plan: la escalera, las actividades, las comprobaciones y las fases
+notes/02-english.md            -- el plan de "First Numbers"
 ```
 
 ## Licencia
@@ -110,3 +139,7 @@ color y en blanco y negro. Cada push comprueba el cuaderno entero: 1 día
 = 1 página, log limpio, cada día dentro de la escalera. Se escribió en
 cinco fases, un PR cada una: ver "Las fases" en
 [`notes/01-plan.md`](notes/01-plan.md).
+
+**First Numbers**, en obras: el otoño, días 1--65. Se escribe en tres
+fases -- el otoño; el invierno y la primavera; el verano, y publicarlo
+--: ver [`notes/02-english.md`](notes/02-english.md).
