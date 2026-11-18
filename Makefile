@@ -58,22 +58,27 @@ check:
 check-bw:
 	python3 tools/checklog.py $(BW).log
 	python3 tools/check_pages.py $(BW).aux
+	python3 tools/gen_numeros.py --check
 
 check-english:
 	python3 tools/checklog.py $(EN).log
 	python3 tools/check_pages.py $(EN).aux
+	python3 tools/gen_numeros.py --check
 
 check-english-bw:
 	python3 tools/checklog.py $(EN_BW).log
 	python3 tools/check_pages.py $(EN_BW).aux
+	python3 tools/gen_numeros.py --check
 
 check-polish:
 	python3 tools/checklog.py $(PL).log
 	python3 tools/check_pages.py $(PL).aux
+	python3 tools/gen_numeros.py --check
 
 check-polish-bw:
 	python3 tools/checklog.py $(PL_BW).log
 	python3 tools/check_pages.py $(PL_BW).aux
+	python3 tools/gen_numeros.py --check
 
 clean:
 	latexmk -C $(MAIN).tex

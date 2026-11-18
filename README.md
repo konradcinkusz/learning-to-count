@@ -147,6 +147,17 @@ notes/02-english.md            -- el plan de "First Numbers"
 notes/03-polish.md             -- el plan de "Poznaję liczby"
 ```
 
+## La familia de cuadernos
+
+Del mismo autor, con el mismo motor y los mismos personajes:
+
+- [**Aprendo a leer**](https://github.com/konradcinkusz/learning-to-read)
+  ([PDF y página](https://konradcinkusz.github.io/learning-to-read/)):
+  leer y escribir, para la misma edad.
+- [**Aprendo economía**](https://github.com/konradcinkusz/learning-economics)
+  ([PDF y página](https://konradcinkusz.github.io/learning-economics/)):
+  las ideas de la economía de cada día, para siete u ocho años.
+
 ## Licencia
 
 Como *Aprendo a leer*: el motor -- LaTeX, los dibujos, las herramientas,

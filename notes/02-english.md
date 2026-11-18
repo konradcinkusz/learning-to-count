@@ -71,12 +71,16 @@ llegados, uno de ellos el del día, y desde la semana 35).
 
 ## Las comprobaciones
 
-Las mismas, en los dos cuadernos: `python3 tools/gen_numeros.py --check`
-valida y genera los dos; `make all-formats` compila los cuatro PDF
-(color y blanco y negro de cada uno) y comprueba el log y que cada día
-ocupa una página, y el día 1 la página 5 (también en inglés: las páginas
-para el adulto tienen que seguir cabiendo en una cada una). El CI hace
-lo mismo, con un job por PDF.
+Las mismas en los tres cuadernos (español, inglés y polaco):
+`python3 tools/gen_numeros.py --check` valida los tres y que lo
+generado esté al día (si los `.tex` generados no existen, dice `FALTA`,
+no `DESACTUALIZADO`); `make all-formats` compila los seis PDF (color y
+blanco y negro de cada uno) y comprueba el log y que cada día ocupa una
+página, y el día 1 la página 5 (también en inglés: las páginas para el
+adulto tienen que seguir cabiendo en una cada una). Cada `check-*` del
+`Makefile` incluye también `gen_numeros.py --check`. El CI hace lo mismo,
+con un job por PDF, y `python3 -m pytest tests` prueba los validadores
+con fixtures negativas.
 
 ## Las fases
 

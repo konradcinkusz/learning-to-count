@@ -16,7 +16,7 @@ precisamente para que el resto del pipeline (tools/gen_numeros.py) no
 dependa de matplotlib ni de fontTools.
 
 Requiere matplotlib y numpy (no son dependencias del proyecto --
-instálalas aparte: pip install matplotlib numpy).
+instálalas aparte: pip install -r requirements.txt).
 
 Uso:
     python3 tools/gen_numeros_puntos.py

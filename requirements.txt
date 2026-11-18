@@ -1,0 +1,6 @@
+# Only needed to regenerate content/numeros-trazo.json with
+# tools/gen_numeros_puntos.py. `make generate` and the CI gates use the
+# standard library only. fontTools is not imported directly; matplotlib
+# brings it in as a dependency.
+matplotlib==3.11.2
+numpy==2.5.5
