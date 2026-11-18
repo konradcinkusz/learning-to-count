@@ -83,7 +83,7 @@ jobs:
         with:
           path: _site
       - id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
       - name: Si configure-pages ha fallado
         if: failure()
