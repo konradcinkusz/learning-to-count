@@ -54,6 +54,12 @@ jobs:
       - name: Valida el contenido (escalera, calendario, actividades)
         run: python3 tools/gen_numeros.py --check
 
+      # Tests de los validadores (con fixtures negativas sintéticas).
+      - name: Tests de las comprobaciones
+        run: |
+          python3 -m pip install pytest
+          python3 -m pytest -q tests
+
   build:
     name: PDF (${{ matrix.variant }})
     needs: gates
