@@ -101,7 +101,7 @@ jobs:
       # fontspec exige lualatex o xelatex. args NO lleva -pdf: con
       # latexmk_use_lualatex la propia acción añade -lualatex.
       - name: Compila el cuaderno
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: ${{ matrix.root }}.tex
           latexmk_use_lualatex: true
