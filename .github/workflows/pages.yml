@@ -48,7 +48,7 @@ jobs:
         run: python3 tools/gen_numeros.py --check
 
       - name: Compila los tres cuadernos (color y blanco y negro)
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: |
             main.tex
