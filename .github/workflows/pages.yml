@@ -78,7 +78,7 @@ jobs:
           cp polish.pdf _site/poznaje-liczby.pdf
           cp polish-bw.pdf _site/poznaje-liczby-cz-b.pdf
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
