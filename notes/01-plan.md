@@ -253,19 +253,25 @@ Del 100 se encoge un poco su número en «El número de hoy», y el tren de
 
 ## Cómo se comprueba
 
-- `make generate` escribe `content/generated-days.tex` y
-  `content/generated-clave.tex`; `python3 tools/gen_numeros.py --check`
-  valida el JSON (calendario, temas, escalera, actividades) y que lo
-  generado esté al día.
+- `make generate` escribe los `generated-days.tex` y
+  `generated-clave.tex` de los tres cuadernos (`content/`,
+  `content/english/` y `content/polish/`); `python3 tools/gen_numeros.py
+  --check` valida el JSON (calendario, temas, escalera, actividades) y
+  que lo generado esté al día (`FALTA` si no se ha generado,
+  `DESACTUALIZADO` si no coincide). Está en todos los `check-*` del
+  `Makefile`.
 - `tools/checklog.py` lee el log de LuaLaTeX (errores, cajas overfull) y
   `tools/check_pages.py` comprueba en el `.aux` que cada día ocupa
   exactamente una página — los dos, de *Aprendo a leer* —, y además que
   el día 1 cae en la página 5: "Las actividades" (la página que las
   explica, una a una, para el adulto) crece con cada estación, y tiene
   que seguir cabiendo en una página.
-- El CI (`.github/workflows/build.yml`) hace las dos cosas en cada push y
-  cada PR, en color y en blanco y negro; Pages publica los dos PDF en
-  cada push a `main`.
+- `python3 -m pytest tests` prueba esos validadores con fixtures
+  negativas sintéticas (un día con un número que aún no ha llegado, un
+  log con un error, un `.aux` con un día desbordado).
+- El CI (`.github/workflows/build.yml`) hace todo eso en cada push y cada
+  PR, en los seis PDF (color y blanco y negro de los tres cuadernos);
+  Pages publica los seis PDF en cada push a `main`.
 
 ## Las fases
 
